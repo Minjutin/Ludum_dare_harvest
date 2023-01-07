@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(TilePainter))]
 public class TileManager : MonoBehaviour
 {
+    // TileManager handles with TileGrids data & functionality side
+
     #region PROPERTIES
 
     private TilePainter painter;
@@ -11,15 +14,21 @@ public class TileManager : MonoBehaviour
     public int gridRows = 30;
     public int gridColumns = 30;
 
+    // 2D Tile Array
+    TileDaddy[,] tileArray;
 
-    // TEMPORARY
+    // TileDaddy
+    //
+    //  -> FertileTile
+    //  -> EmptyTile
+    //  -> FloorTile
+
     public enum tileType
     {
-        f3, f2, f1, empty, water, path
+        fertile_3, fertile_2, fertile_1, empty, water, notSet
     }
 
-    tileType[,] gridArray;
-    // ***
+
 
     #endregion
 
@@ -28,29 +37,52 @@ public class TileManager : MonoBehaviour
     {
         painter = GetComponent<TilePainter>();
 
+
+    }
+
+    private void Start()
+    {
         // Set up the tile Array
         SetUpTileArray();
 
         // Print the array
+        PrintTiles();
     }
 
     private void SetUpTileArray()
     {
         // Initialize the Array
-        gridArray = new tileType[gridRows, gridColumns];
+        tileArray = new TileDaddy[gridRows, gridColumns];
 
         // Set the tile types
-
+        for (int x = 0; x < gridRows; x++)
+        {
+            for (int y = 0; y < gridColumns; y++)
+            {
+                // Check if there already is a tile
+                tileType type = painter.ReadTileGraphics(x, y);
+                if (type != tileType.notSet)
+                {
+                    // There is already a tile, do nothing
+                }
+                else
+                {
+                    // It's empty
+                    // -> Put a random tile there
+                    SetRandomTileAt(x, y);
+                }
+            }
+        }
     }
 
-    private void RandomizeTiles()
+    private void RandomizeEmptyTiles()
     {
         for (int x = 0; x < gridRows; x++)
         {
             for (int y = 0; y < gridColumns; y++)
             {
                 // Set Tile Type
-                gridArray[x, y] = SetRandomTileAt(x, y);
+                //tileArray[x, y] = SetRandomTileAt(x, y); TODO !!!!!!
             }
         }
     }
@@ -64,17 +96,27 @@ public class TileManager : MonoBehaviour
             for (int y = 0; y < gridColumns; y++)
             {
                 // Set Tile Type
-                //painter.SetRandomTileAt
+                //painter.SetRandomTileAt       TODO
             }
         }
     }
     #endregion
 
     #region Tile CHANGING
-    private tileType SetRandomTileAt(int x, int y)
+    public TileDaddy ReadTile(int xPos, int yPos)
     {
-        // Randomize the tile
-        return tileType.f3;
+        // Get the Tile at x,y location
+        return tileArray[xPos, yPos];
+    }
+
+    public void SetTile()
+    {
+
+    }
+
+    private void SetRandomTileAt(int x, int y)
+    {
+        painter.SetRandomTileAt(x, y);
     }
     #endregion
 

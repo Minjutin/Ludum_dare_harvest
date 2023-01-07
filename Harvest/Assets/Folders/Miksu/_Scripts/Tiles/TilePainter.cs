@@ -5,13 +5,13 @@ using UnityEngine.Tilemaps;
 
 public class TilePainter : MonoBehaviour
 {
-    public UnityEngine.Tilemaps.Tile fertile3;
-    public UnityEngine.Tilemaps.Tile fertile2;
-    public UnityEngine.Tilemaps.Tile fertile1;
+    // Handles the TileGrids graphical side
 
-    public UnityEngine.Tilemaps.Tile[] fullFertile;
-    public UnityEngine.Tilemaps.Tile[] semiFertile;
-    public UnityEngine.Tilemaps.Tile[] smallFertile;
+    #region Properties
+
+    public List<Tile> fullFertile = new List<Tile>();
+    public List<Tile> semiFertile = new List<Tile>();
+    public List<Tile> littleFertile = new List<Tile>();
 
     private List<Tile> tiles = new List<Tile>();
 
@@ -21,6 +21,8 @@ public class TilePainter : MonoBehaviour
     public int columns = 5;
 
     [ContextMenu("Paint")]
+
+    #endregion
 
     private void PaintTiles()
     {
@@ -50,12 +52,58 @@ public class TilePainter : MonoBehaviour
         }
     }
 
-    private void Start()
+    public TileManager.tileType ReadTileGraphics(int x, int y)
     {
-        tiles.Add(fertile3);
-        tiles.Add(fertile2);
-        tiles.Add(fertile1);
+        Vector3Int pos = new Vector3Int(x, y);
 
-        PaintTiles();
+        Tile tile = tilemap.GetTile(pos) as Tile;
+
+        // Check if there is a tile set
+        if (tile == null)
+        {
+            // No tile set, return null
+            return TileManager.tileType.notSet;
+        }
+
+        // If there is, check type
+        if (fullFertile.Contains(tile))
+        {
+            return TileManager.tileType.fertile_3;
+        }
+        else if (semiFertile.Contains(tile))
+        {
+            return TileManager.tileType.fertile_2;
+        }
+        else if (littleFertile.Contains(tile))
+        {
+            return TileManager.tileType.fertile_1;
+        }
+
+        return TileManager.tileType.empty;
+
+    }
+
+    private void Awake()
+    {
+        AddAllTiles();
+
+        //PaintTiles();
+    }
+
+    private void AddAllTiles()
+    {
+        foreach(Tile tile in fullFertile)
+        {
+            tiles.Add(tile);
+        }
+        foreach(Tile tile in semiFertile)
+        {
+            tiles.Add(tile);
+        }
+        foreach(Tile tile in littleFertile)
+        {
+            tiles.Add(tile);
+        }
+
     }
 }

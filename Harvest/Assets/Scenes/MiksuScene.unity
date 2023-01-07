@@ -461,10 +461,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 842a6e35dececa74996cf6bb1e98b575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fertile3: {fileID: 0}
-  fertile2: {fileID: 0}
-  fertile1: {fileID: 0}
-  tilemap: {fileID: 0}
+  fullFertile:
+  - {fileID: 11400000, guid: 8821b3d17f91a7d458c389127028b8b1, type: 2}
+  - {fileID: 11400000, guid: c54ee2b9a69dbc6458a3184e12f4dd3a, type: 2}
+  semiFertile:
+  - {fileID: 11400000, guid: adead540307ceed4f9886d20dc0f2ec2, type: 2}
+  - {fileID: 11400000, guid: 335daf508d58af346b56d8c21358d9b8, type: 2}
+  - {fileID: 11400000, guid: 6a377ac8d6df89846b70492dfa8d5325, type: 2}
+  littleFertile:
+  - {fileID: 11400000, guid: 4960dcff294e2ea44bc85bc76ba00000, type: 2}
+  - {fileID: 11400000, guid: f459b699b6609cd47bfc3c523992899d, type: 2}
+  - {fileID: 11400000, guid: feda57808450f694eb49dc0f776d0e1e, type: 2}
+  tilemap: {fileID: 107376371}
   rows: 5
   columns: 5
 --- !u!114 &109436041
@@ -587,9 +595,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 842a6e35dececa74996cf6bb1e98b575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fertile3: {fileID: 11400000, guid: f569ee31123294742bd196f8af0fa81f, type: 2}
-  fertile2: {fileID: 11400000, guid: e18383343fb443440836663355f89da3, type: 2}
-  fertile1: {fileID: 11400000, guid: 86bc857469cd43e428809846bed418e6, type: 2}
+  fullFertile: []
+  semiFertile: []
+  littleFertile: []
   tilemap: {fileID: 107376371}
   rows: 30
   columns: 30
