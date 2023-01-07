@@ -7,4 +7,6 @@ using UnityEngine;
 public class Enums : MonoBehaviour
 {
     public enum FruitType {Fruit1, Fruit2, Fruit3, Fruit4};
+
+    public enum Fertility { F1, F2, F3};
 }
