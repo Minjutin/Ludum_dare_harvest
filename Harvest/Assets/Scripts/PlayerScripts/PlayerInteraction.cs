@@ -23,13 +23,14 @@ public class PlayerInteraction : MonoBehaviour
         //if(tile is spawnTile) {
             //if(tile has InventoryItem){
                 InventoryItem item = new InventoryItem(); //Get the item from the tile
-                CollectItem(item);
+                Collect(item);
         //}
         //}
 
         //TODO check if tile is fertile.
         //if(tile is fertileTile){
-            //if tile has no plant and you have seed in your inventory slot, put it in
+            //if tile has no plant and you have seed in your inventory slot
+                PlantSeed();
             //if tile has a plant and plant is ready, collect it.
             //otherwise be like "NO"
         //}
@@ -40,18 +41,50 @@ public class PlayerInteraction : MonoBehaviour
         //}
     }
 
-    private void CollectItem(InventoryItem item)
-    {
-        inventory.AddItem(item);
-    } //Collect item
-
-    private void GiveItem()
+    private void SacrificeItem()
     {
         if (inventory.thereIsItem(chosenSlot))
         {
+            inventory.RemoveItem(chosenSlot);
+            //TODO Commit the sacrification.
+        }
+        else
+        {
+            //TODO if the inventory slot is empty.
+        }
+    } //Sacrifice item from the inventory.
 
+    private void PlantSeed() //TODO Add a Tile class object here!
+    {
+        if (inventory.thereIsItem(chosenSlot))
+        {
+            if(inventory.GetItem(chosenSlot) is Seed)
+            {
+                inventory.RemoveItem(chosenSlot);
+                //Plant seed to the Tile in question
+            }
+            else
+            {
+                //TODO if the inventory item has a wrong type
+            }
+        }
+        else
+        {
+            //TODO if the inventory slot is empty.
         }
     }
+
+    private void Collect(InventoryItem item) //TODO add a Tile object to here!
+    {
+        if (!inventory.isFull())
+        {
+            inventory.AddItem(item);
+        }
+        else
+        {
+            Debug.LogWarning("Inventory is full but you are trying to collect an item.");
+        }
+    } //Collect the item.
 
     private void ChangeSlot()
     {
