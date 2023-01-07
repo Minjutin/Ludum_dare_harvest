@@ -5,10 +5,13 @@ using UnityEngine.Tilemaps;
 
 public class TilePainter : MonoBehaviour
 {
-    [SerializeField]
     public UnityEngine.Tilemaps.Tile fertile3;
     public UnityEngine.Tilemaps.Tile fertile2;
     public UnityEngine.Tilemaps.Tile fertile1;
+
+    public UnityEngine.Tilemaps.Tile[] fullFertile;
+    public UnityEngine.Tilemaps.Tile[] semiFertile;
+    public UnityEngine.Tilemaps.Tile[] smallFertile;
 
     private List<Tile> tiles = new List<Tile>();
 
@@ -34,7 +37,7 @@ public class TilePainter : MonoBehaviour
         //Debug.Log(tilemap.GetTile(pos).name);
     }
 
-    private void SetRandomTileAt(int x, int y)
+    public void SetRandomTileAt(int x, int y)
     {
         Vector3Int pos = new Vector3Int(x, y);
 
