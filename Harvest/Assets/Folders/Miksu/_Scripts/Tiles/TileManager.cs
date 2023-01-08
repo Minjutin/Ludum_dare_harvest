@@ -228,4 +228,9 @@ public class TileManager : MonoBehaviour
     }
 
     #endregion
+
+    public TileDaddy GetTileAt(int x, int y)
+    {
+        return tileArray[x, y];
+    }
 }

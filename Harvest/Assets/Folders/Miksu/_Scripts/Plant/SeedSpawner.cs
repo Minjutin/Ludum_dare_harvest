@@ -22,17 +22,26 @@ public class SeedSpawner : MonoBehaviour
 
     #region SPAWNING
 
-    public void SpawnSeedAt(int x, int y, FertileTile tile)
+    public bool TrySpawnSeedAt(int x, int y, FertileTile tile)
     {
-        Vector3 pos = new Vector3(x, 0, y);
+        // Cancel if the tile already has an Item
+        if (tile.HasItem()) { return false; }
 
-        // Give Tile an Item
-        Plant plant = new Plant();
-        tile.SetItem(plant);
+        Vector3 pos = new Vector3(x, 0, y);
 
         // Spawn the GameObject
         GameObject plantGO = Resources.Load<GameObject>("Plant/Plant");
         Instantiate(plantGO, pos, Quaternion.identity);
+
+        // Give Tile an Item
+        //tile.SetItem(plantGO.GetComponent<Plant>()); // CORRECT WAY?
+
+        // TEMPORARY
+        Seed seed = new Seed();    // TEMPORARY
+        tile.SetItem(seed);
+
+        // Return as succesful
+        return true;
     }
 
     #endregion
@@ -46,11 +55,32 @@ public class SeedSpawner : MonoBehaviour
     {
         WaitForSeconds wait = new WaitForSeconds(timeBetweenSpawns);
 
+        FertileTile randomTile;
+
+        int gridRows = tileManager.gridRows;
+        int gridColumns = tileManager.gridColumns;
+
         while (spawningOn)
         {
             yield return wait;
 
-            // Try to spawn a seed
+            // Pick a random tile
+            int rand_X = Random.Range(0, gridRows);
+            int rand_Y = Random.Range(0, gridColumns);
+
+            TileDaddy candidate = tileManager.GetTileAt(rand_X, rand_Y);
+            candidate = candidate as FertileTile;
+            if (candidate is FertileTile)
+            {
+                // Try to spawn a seed
+                bool success;
+                success = TrySpawnSeedAt(rand_X, rand_Y, candidate as FertileTile);
+
+                if (!success) { Debug.Log("Failed to spawn plant at: (" + rand_X + "," + rand_Y + ")"); }
+
+            }
+
+
         }
 
     }
