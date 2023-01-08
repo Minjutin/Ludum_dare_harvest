@@ -25,7 +25,7 @@ public class TileManager : MonoBehaviour
 
     public enum tileType
     {
-        fertile_2, fertile_1, fertile_0, empty, water, notSet
+        fertile_2, fertile_1, fertile_0, empty, water, sacrifice, notSet
     }
 
 
@@ -140,6 +140,14 @@ public class TileManager : MonoBehaviour
             tileArray[x, y] = wTile;
             painter.PaintTileAt(x, y, wTile);
         }
+
+        // SACRIFICE
+        else if (type == tileType.sacrifice)
+        {
+            SacrificeTile sTile = new SacrificeTile(Enums.God.God1);    // TODO: Different Gods
+            tileArray[x, y] = sTile;
+            painter.PaintTileAt(x, y, sTile);
+        }
     }
 
     private void SetRandomTileAt(int x, int y)
@@ -195,19 +203,23 @@ public class TileManager : MonoBehaviour
 
         //Debug.Log("Player Real  Pos: " + playerPos);
         //Debug.Log("Player ROUND Pos: " + x + " " + y);
-        if (tileArray[x, y] is FertileTile)
+        //if (tileArray[x, y] is FertileTile)
+        //{
+        //    FertileTile fTile = tileArray[x, y] as FertileTile;
+        //    if (fTile.fertilityLevel == Enums.Fertility.F0)
+        //    {
+        //        Debug.Log("Barren");
+        //    }
+        //    else if (fTile.fertilityLevel == Enums.Fertility.F1) { Debug.Log("Fertile"); }
+        //    else if (fTile.fertilityLevel == Enums.Fertility.F2) { Debug.Log("VERY Fertile"); }
+        //}
+        //else if (tileArray[x, y] is WaterTile)
+        //{
+        //    Debug.Log("It's water.");
+        //}
+        if (tileArray[x,y] is SacrificeTile)
         {
-            FertileTile fTile = tileArray[x, y] as FertileTile;
-            if (fTile.fertilityLevel == Enums.Fertility.F0)
-            {
-                Debug.Log("Barren");
-            }
-            else if (fTile.fertilityLevel == Enums.Fertility.F1) { Debug.Log("Fertile"); }
-            else if (fTile.fertilityLevel == Enums.Fertility.F2) { Debug.Log("VERY Fertile"); }
-        }
-        else if (tileArray[x, y] is WaterTile)
-        {
-            Debug.Log("It's water.");
+            Debug.Log("SACRIFICE");
         }
 
         // Return TileDaddy type

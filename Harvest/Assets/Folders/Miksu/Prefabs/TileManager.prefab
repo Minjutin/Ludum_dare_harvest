@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 842a6e35dececa74996cf6bb1e98b575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tilemap: {fileID: 0}
   fertile_2:
   - {fileID: 11400000, guid: 8821b3d17f91a7d458c389127028b8b1, type: 2}
   - {fileID: 11400000, guid: c54ee2b9a69dbc6458a3184e12f4dd3a, type: 2}
@@ -70,4 +71,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 400fceb6d63bfb3498c56f358508f052, type: 2}
   waterTile:
   - {fileID: 11400000, guid: e10af00a936b2ad4b80d97606adb1020, type: 2}
-  tilemap: {fileID: 0}
+  sacrificeTiles:
+  - {fileID: 11400000, guid: f569ee31123294742bd196f8af0fa81f, type: 2}
