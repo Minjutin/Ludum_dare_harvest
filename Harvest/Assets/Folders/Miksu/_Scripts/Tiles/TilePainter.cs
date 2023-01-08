@@ -48,8 +48,32 @@ public class TilePainter : MonoBehaviour
         if (tilemap.GetTile(pos) == null)
         {
             tilemap.SetTile(pos, random);
+        }
+    }
+
+    public void SetRandomGraphicFor(int x, int y, TileDaddy tileType)
+    {
+        Vector3Int pos = new Vector3Int(x, y);
+
+        Tile random;
+        random = littleFertile[0]; // Default
+
+        if (tileType is FertileTile)
+        {
+            // Choose random Fertility tile
+            random = fullFertile[Random.Range(0, fullFertile.Count)];
+        }
+        else if (tileType is EmptyTile)
+        {
 
         }
+        else if (tileType is FloorTile)
+        {
+
+        }
+
+
+            tilemap.SetTile(pos, random);
     }
 
     public TileManager.tileType ReadTileGraphics(int x, int y)
