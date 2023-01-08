@@ -217,10 +217,10 @@ public class TileManager : MonoBehaviour
         //{
         //    Debug.Log("It's water.");
         //}
-        if (tileArray[x,y] is SacrificeTile)
-        {
-            Debug.Log("SACRIFICE");
-        }
+        //if (tileArray[x,y] is SacrificeTile)
+        //{
+        //    Debug.Log("SACRIFICE");
+        //}
 
         // Return TileDaddy type
         return tileArray[x, y];
