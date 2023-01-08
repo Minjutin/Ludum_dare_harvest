@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8bf022b0631376a4697ac4cc43a1ed75
+guid: fbb2179ae6a6e7b439064a148d7f597f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 165
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -101,143 +101,131 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: boness_0
+      name: SmallDecor_1
       rect:
         serializedVersion: 2
-        x: 162
-        y: 160
-        width: 894
-        height: 929
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 843
+        y: 168
+        width: 138
+        height: 198
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 078351460ca80cd41924d4839c7c0eb7
-      internalID: 1692334820
+      spriteID: 79807fc1532688d4889153390bfa5f24
+      internalID: 348249862
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boness_1
+      name: SmallDecor_3
       rect:
         serializedVersion: 2
-        x: 1016
-        y: 192
-        width: 460
-        height: 585
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 593
+        y: 177
+        width: 104
+        height: 188
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 930c8983228e2494ea0e81d55766144b
-      internalID: -123660092
+      spriteID: d56cc60a2ac9c1b4f9435c1bcdf1af0b
+      internalID: -1948430308
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boness_2
+      name: SmallDecor_6
       rect:
         serializedVersion: 2
-        x: 1135
-        y: 184
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 128
+        y: 153
+        width: 92
+        height: 119
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db2aea6f0b20b9e4d9098d734a61ce03
-      internalID: 1266295628
+      spriteID: 6bd5b21a4d53a414488bfcc02f9c8ab2
+      internalID: 1440806876
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boness_3
+      name: SmallDecor_7
       rect:
         serializedVersion: 2
-        x: 1534
-        y: 166
-        width: 351
-        height: 324
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 395
+        y: 169
+        width: 46
+        height: 72
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4342b613714d904584e543ba0a75ff2
-      internalID: -2046420316
+      spriteID: 42fdd9e30f3240c48a26d88330479779
+      internalID: -1544494513
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boness_4
+      name: SmallDecor_13
       rect:
         serializedVersion: 2
-        x: 418
-        y: 146
-        width: 12
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1124
+        y: 179
+        width: 264
+        height: 85
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd70e5e6d469d2f4c9b80a40cf3934e3
-      internalID: -331230930
+      spriteID: 861ea5bb7c0ecbc49ac5a79a90769381
+      internalID: -826744725
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boness_5
+      name: SmallDecor_17
       rect:
         serializedVersion: 2
-        x: 427
-        y: 156
-        width: 21
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1587
+        y: 165
+        width: 297
+        height: 106
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51803f7b98318684b8350b84dd4ca6a7
-      internalID: -549764022
+      spriteID: 9731d6a9902c9904182e40b6f255da34
+      internalID: -825293898
       vertices: []
       indices: 
       edges: []
@@ -245,7 +233,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 1723bdaaefd9a174ebd8e1273e0efc79
+    spriteID: 11ab0b3c35b44d54781bb6e57eed6ee1
     internalID: 0
     vertices: []
     indices: 
@@ -253,12 +241,26 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      boness_5: -549764022
-      boness_2: 1266295628
-      boness_0: 1692334820
-      boness_3: -2046420316
-      boness_4: -331230930
-      boness_1: -123660092
+      SmallDecor_6: 1440806876
+      SmallDecor_11: 564875742
+      SmallDecor_16: -311224170
+      SmallDecor_18: -1757009041
+      SmallDecor_5: -1508044096
+      SmallDecor_0: -1967398717
+      SmallDecor_7: -1544494513
+      SmallDecor_9: 1882576433
+      SmallDecor_4: -1091394548
+      SmallDecor_19: 1500374078
+      SmallDecor_15: 59056448
+      SmallDecor_2: 381277836
+      SmallDecor_8: 84286313
+      SmallDecor_10: 1550645339
+      SmallDecor_14: 17474727
+      SmallDecor_3: -1948430308
+      SmallDecor_17: -825293898
+      SmallDecor_1: 348249862
+      SmallDecor_12: -158745750
+      SmallDecor_13: -826744725
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
