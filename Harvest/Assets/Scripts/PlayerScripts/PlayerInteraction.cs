@@ -174,7 +174,8 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (inventory.GetItem(chosenSlot) is Seed)
             {
-                tile.SetItem(inventory.GetItem(chosenSlot)); //Plant the plant to the tile.
+                Plant planted = new Plant();
+                tile.SetItem(planted); //Plant the plant to the tile.
                 inventory.RemoveItem(chosenSlot); //Delete item from the inventory
             }
             else
