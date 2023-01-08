@@ -9,9 +9,15 @@ public class PlayerInput : MonoBehaviour
     #region Delegates
     #endregion
 
+    TileManager tileManager;
+
     [Header("Player GameObject")]
     GameObject player;
+
     PlayerMovement playerMovement;
+
+    // Player Gameplay
+    PlayerInteraction playerInteraction;
 
 
     // Moving
@@ -24,10 +30,16 @@ public class PlayerInput : MonoBehaviour
 
     private void Start()
     {
+        // Get TileManager
+        tileManager = FindObjectOfType<TileManager>();
+
         // Get Player
         playerMovement = FindObjectOfType<PlayerMovement>();
         player = playerMovement.gameObject;
         if (!player) { Debug.Log("No Player Found!"); }
+
+        // Find other references
+        playerInteraction = FindObjectOfType<PlayerInteraction>();
     }
 
     private void Update()
@@ -43,6 +55,9 @@ public class PlayerInput : MonoBehaviour
     private void ListenForInputs()
     {
         GetMoveInputs();
+
+        GetInventoryInput();
+        GetInteractionInputs();
     }
 
     private void GetMoveInputs()
@@ -78,6 +93,38 @@ public class PlayerInput : MonoBehaviour
 
         // Normalize the Vector
         moveInput = moveInput.normalized;
+
+    }
+
+    private void GetInteractionInputs()
+    {
+        // Detect Keypress
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            //playerInteraction.InteractionButtonPressed(
+            //                        tileManager.GetTilePlayerIsOn(player.transform.position));
+            // Above get the tile
+
+            TileDaddy tile = tileManager.GetTilePlayerIsOn(player.transform.position);
+            FertileTile fTile = tile as FertileTile;
+
+            ////if (tileManager.GetTilePlayerIsOn(player.transform.position) is FertileTile)
+            //if (fTile is FertileTile)
+            //{
+            //    Debug.Log("Player on fertile tile");
+            //}
+            //else
+            //{
+            //    Debug.Log("Player NOT on fertile land");
+            //}
+
+            //Debug.Log(tile.GetType().Name);
+            ////Debug.Log("Player is on: " + tileManager.GetTilePlayerIsOn(player.transform.position).GetType().ToString());
+        }
+    }
+
+    private void GetInventoryInput()
+    {
 
     }
     #endregion

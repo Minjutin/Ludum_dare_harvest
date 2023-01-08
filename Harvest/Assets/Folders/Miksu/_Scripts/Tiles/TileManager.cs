@@ -25,7 +25,7 @@ public class TileManager : MonoBehaviour
 
     public enum tileType
     {
-        fertile_3, fertile_2, fertile_1, empty, water, notSet
+        fertile_2, fertile_1, fertile_0, empty, water, notSet
     }
 
 
@@ -36,8 +36,6 @@ public class TileManager : MonoBehaviour
     private void Awake()
     {
         painter = GetComponent<TilePainter>();
-
-
     }
 
     private void Start()
@@ -63,7 +61,10 @@ public class TileManager : MonoBehaviour
                 tileType type = painter.ReadTileGraphics(x, y);
                 if (type != tileType.notSet)
                 {
-                    // There is already a tile, do nothing
+                    // There is already a tile
+                    // -> Get Tile Type
+                    // --> Save the Tile Type into the TileArray
+                    SetNewTileAt(type, x, y);
                 }
                 else
                 {
@@ -109,19 +110,100 @@ public class TileManager : MonoBehaviour
         return tileArray[xPos, yPos];
     }
 
-    public void SetTile()
+    public void SetNewTileAt(tileType type, int x, int y)
     {
 
+        // FERTILE
+        if (type == tileType.fertile_0)
+        {
+            FertileTile fTile = new FertileTile(Enums.Fertility.F0);
+            tileArray[x, y] = fTile;
+            painter.PaintTileAt(x, y, fTile);
+        }
+        else if (type == tileType.fertile_1)
+        {
+            FertileTile fTile = new FertileTile(Enums.Fertility.F1);
+            tileArray[x, y] = fTile;
+            painter.PaintTileAt(x, y, fTile);
+        }
+        else if (type == tileType.fertile_2)
+        {
+            FertileTile fTile = new FertileTile(Enums.Fertility.F2);
+            tileArray[x, y] = fTile;
+            painter.PaintTileAt(x, y, fTile);
+        }
+
+        // WATER
+        else if (type == tileType.water)
+        {
+            WaterTile wTile = new WaterTile();
+            tileArray[x, y] = wTile;
+            painter.PaintTileAt(x, y, wTile);
+        }
     }
 
     private void SetRandomTileAt(int x, int y)
     {
-        painter.SetRandomTileAt(x, y);
+        // Set a random tile in memory
+        int random = Random.Range(0, 4);
+
+        // FERTILE
+        if (random == 0)
+        {
+            // Create the new Tile
+            FertileTile fTile = new FertileTile(Enums.Fertility.F0);
+            // Set the tile to memory
+            tileArray[x, y] = fTile;
+            // Paint
+            painter.PaintTileAt(x, y, fTile);
+        }
+        else if (random == 1)
+        {
+            FertileTile fTile = new FertileTile(Enums.Fertility.F1);
+            tileArray[x, y] = fTile;
+            painter.PaintTileAt(x, y, fTile);
+        }
+        else if (random == 2)
+        {
+            FertileTile fTile = new FertileTile(Enums.Fertility.F2);
+            tileArray[x, y] = fTile;
+            painter.PaintTileAt(x, y, fTile);
+        }
+
+        // WATER
+        else if (random == 3)
+        {
+            WaterTile wTile = new WaterTile();
+            tileArray[x, y] = wTile;
+            painter.PaintTileAt(x, y, wTile);
+        }
     }
     #endregion
 
 
     #region Tile INTERACTION
+    public TileDaddy GetTilePlayerIsOn(Vector3 playerPos)
+    {
+        int x = Mathf.RoundToInt(playerPos.x);
+        int y = Mathf.RoundToInt(playerPos.z); // translates Z pos to Y
 
+        Debug.Log("Player Real  Pos: " + playerPos);
+        Debug.Log("Player ROUND Pos: " + x + " " + y);
+
+        if (tileArray[x, y] is FertileTile)
+        {
+            Debug.Log("Is fertile tile");
+
+            FertileTile fTile = tileArray[x, y] as FertileTile;
+            if (fTile.fertilityLevel == Enums.Fertility.F0)
+            {
+                Debug.Log("... but it isn't very fertile");
+            }
+        }
+        else { Debug.Log("It ISNT fertile"); }
+
+        return tileArray[x, y];
+
+    }
     #endregion
 }

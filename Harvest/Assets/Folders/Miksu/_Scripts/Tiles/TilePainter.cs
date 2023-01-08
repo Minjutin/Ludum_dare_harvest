@@ -9,9 +9,15 @@ public class TilePainter : MonoBehaviour
 
     #region Properties
 
-    public List<Tile> fullFertile = new List<Tile>();
-    public List<Tile> semiFertile = new List<Tile>();
-    public List<Tile> littleFertile = new List<Tile>();
+    [Header("Fertile Tiles")]
+    public List<Tile> fertile_2 = new List<Tile>();
+    public List<Tile> fertile_1 = new List<Tile>();
+    public List<Tile> fertile_0 = new List<Tile>();
+
+    [Header("Water Tiles")]
+    public List<Tile> waterTile = new List<Tile>();
+
+
 
     private List<Tile> tiles = new List<Tile>();
 
@@ -24,56 +30,59 @@ public class TilePainter : MonoBehaviour
 
     #endregion
 
-    private void PaintTiles()
+    #region PAINTING
+
+    public void PaintTileAt(int x, int y, TileDaddy tile)
     {
-        //tilemap.SetTile(pos, fertile2);
-
-        for (int y = 0; y < columns; y++)
-        {
-            for (int x = 0; x < rows; x++)
-            {
-                SetRandomTileAt(x, y);
-            }
-        }
-
-        //Debug.Log(tilemap.GetTile(pos).name);
+        SetRandomGraphicFor(x, y, tile);
     }
 
-    public void SetRandomTileAt(int x, int y)
+    // Graphically Paints the Tile to Tilemap
+    private void Paint(int x, int y, Tile tile)
     {
         Vector3Int pos = new Vector3Int(x, y);
 
-        Tile random = tiles[Random.Range(0, tiles.Count)];
-
-        if (tilemap.GetTile(pos) == null)
-        {
-            tilemap.SetTile(pos, random);
-        }
+        // Paint the tile
+        tilemap.SetTile(pos, tile);
     }
+
+    #endregion
 
     public void SetRandomGraphicFor(int x, int y, TileDaddy tileType)
     {
         Vector3Int pos = new Vector3Int(x, y);
 
-        Tile random;
-        random = littleFertile[0]; // Default
 
-        if (tileType is FertileTile)
+        FertileTile fTile = tileType as FertileTile;
+        if (fTile is FertileTile)
         {
-            // Choose random Fertility tile
-            random = fullFertile[Random.Range(0, fullFertile.Count)];
+            if (fTile.fertilityLevel == Enums.Fertility.F0)
+            {
+                // No fertility
+                Paint(x, y, fertile_0[Random.Range(0, fertile_0.Count)]);
+            }
+            else if (fTile.fertilityLevel == Enums.Fertility.F1)
+            {
+                // Fertility level 1
+                Paint(x, y, fertile_1[Random.Range(0, fertile_1.Count)]);
+            }
+            else if (fTile.fertilityLevel == Enums.Fertility.F2)
+            {
+                // Fertility level 2
+                Paint(x, y, fertile_2[Random.Range(0, fertile_2.Count)]);
+            }
         }
-        else if (tileType is EmptyTile)
+
+        // Not fertile
+        // -> Is it water?
+        WaterTile wTile = tileType as WaterTile;
+        if(wTile is WaterTile)
         {
-
-        }
-        else if (tileType is FloorTile)
-        {
-
+            if (waterTile.Count >= 1)
+            { Paint(x, y, waterTile[0]); }
+            
         }
 
-
-            tilemap.SetTile(pos, random);
     }
 
     public TileManager.tileType ReadTileGraphics(int x, int y)
@@ -90,44 +99,30 @@ public class TilePainter : MonoBehaviour
         }
 
         // If there is, check type
-        if (fullFertile.Contains(tile))
-        {
-            return TileManager.tileType.fertile_3;
-        }
-        else if (semiFertile.Contains(tile))
+
+        // FERTILE
+        if (fertile_2.Contains(tile))
         {
             return TileManager.tileType.fertile_2;
         }
-        else if (littleFertile.Contains(tile))
+        else if (fertile_1.Contains(tile))
         {
             return TileManager.tileType.fertile_1;
         }
+        else if (fertile_0.Contains(tile))
+        {
+            return TileManager.tileType.fertile_0;
+        }
 
+        // WATER
+        else if (waterTile.Contains(tile))
+        {
+            return TileManager.tileType.water;
+        }
+
+        //Debug.Log("Tile at (" + x + "," + y + ") has invalid type of: " + tile.name);
         return TileManager.tileType.empty;
 
     }
 
-    private void Awake()
-    {
-        AddAllTiles();
-
-        //PaintTiles();
-    }
-
-    private void AddAllTiles()
-    {
-        foreach(Tile tile in fullFertile)
-        {
-            tiles.Add(tile);
-        }
-        foreach(Tile tile in semiFertile)
-        {
-            tiles.Add(tile);
-        }
-        foreach(Tile tile in littleFertile)
-        {
-            tiles.Add(tile);
-        }
-
-    }
 }
