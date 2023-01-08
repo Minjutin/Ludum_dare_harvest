@@ -184,24 +184,33 @@ public class TileManager : MonoBehaviour
     #region Tile INTERACTION
     public TileDaddy GetTilePlayerIsOn(Vector3 playerPos)
     {
+        // ATTENTION!
+        // Grid needs to be positioned -0.5 from origo in both X and Z axis
+        // for the positioning to work properly
+
+        Debug.DrawRay(playerPos, Vector3.up, Color.red, 1f);
+
         int x = Mathf.RoundToInt(playerPos.x);
         int y = Mathf.RoundToInt(playerPos.z); // translates Z pos to Y
 
-        Debug.Log("Player Real  Pos: " + playerPos);
-        Debug.Log("Player ROUND Pos: " + x + " " + y);
+        //Debug.Log("Player Real  Pos: " + playerPos);
+        //Debug.Log("Player ROUND Pos: " + x + " " + y);
+        //if (tileArray[x, y] is FertileTile)
+        //{
+        //    FertileTile fTile = tileArray[x, y] as FertileTile;
+        //    if (fTile.fertilityLevel == Enums.Fertility.F0)
+        //    {
+        //        Debug.Log("Barren");
+        //    }
+        //    else if (fTile.fertilityLevel == Enums.Fertility.F1) { Debug.Log("Fertile"); }
+        //    else if (fTile.fertilityLevel == Enums.Fertility.F2) { Debug.Log("VERY Fertile"); }
+        //}
+        //else if (tileArray[x,y] is WaterTile)
+        //{
+        //    Debug.Log("It's water.");
+        //}
 
-        if (tileArray[x, y] is FertileTile)
-        {
-            Debug.Log("Is fertile tile");
-
-            FertileTile fTile = tileArray[x, y] as FertileTile;
-            if (fTile.fertilityLevel == Enums.Fertility.F0)
-            {
-                Debug.Log("... but it isn't very fertile");
-            }
-        }
-        else { Debug.Log("It ISNT fertile"); }
-
+        // Return TileDaddy type
         return tileArray[x, y];
 
     }

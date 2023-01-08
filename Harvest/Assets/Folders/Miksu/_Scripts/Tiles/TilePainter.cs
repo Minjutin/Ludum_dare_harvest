@@ -23,9 +23,6 @@ public class TilePainter : MonoBehaviour
 
     public Tilemap tilemap;
 
-    public int rows = 5;
-    public int columns = 5;
-
     [ContextMenu("Paint")]
 
     #endregion

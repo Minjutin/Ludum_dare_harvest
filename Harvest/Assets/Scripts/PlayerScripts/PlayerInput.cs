@@ -101,25 +101,10 @@ public class PlayerInput : MonoBehaviour
         // Detect Keypress
         if (Input.GetKeyDown(KeyCode.E))
         {
-            //playerInteraction.InteractionButtonPressed(
-            //                        tileManager.GetTilePlayerIsOn(player.transform.position));
-            // Above get the tile
+            playerInteraction.InteractionButtonPressed(
+                                    tileManager.GetTilePlayerIsOn(player.transform.position));
+                                    // Above gets the tile
 
-            TileDaddy tile = tileManager.GetTilePlayerIsOn(player.transform.position);
-            FertileTile fTile = tile as FertileTile;
-
-            ////if (tileManager.GetTilePlayerIsOn(player.transform.position) is FertileTile)
-            //if (fTile is FertileTile)
-            //{
-            //    Debug.Log("Player on fertile tile");
-            //}
-            //else
-            //{
-            //    Debug.Log("Player NOT on fertile land");
-            //}
-
-            //Debug.Log(tile.GetType().Name);
-            ////Debug.Log("Player is on: " + tileManager.GetTilePlayerIsOn(player.transform.position).GetType().ToString());
         }
     }
 
