@@ -10,6 +10,8 @@ public class FertileTile : TileDaddy
 
     public Item item { get; private set; }
 
+    public GameObject itemGO;
+
     public FertileTile(Enums.Fertility fertility)
     {
         fertilityLevel = fertility;
@@ -35,6 +37,12 @@ public class FertileTile : TileDaddy
         if(setItem is Plant || setItem is Seed || setItem is Manure)
         {
             item = setItem;
+
+
+            if (setItem is Plant)
+            {
+                // Spawn a Plant GameObject
+            }
         } else
         {
             Debug.Log("Tile can't hold this type of item.");        }
@@ -44,5 +52,20 @@ public class FertileTile : TileDaddy
     {
         item = null;
     } //Remove an existing item.
+
+    public void SpawnSeed(GameObject seed)
+    {
+        // Get the Seed reference
+        itemGO = seed;
+
+        // Needs to be Destroyed by something else,
+        // as FertileTile etc. aren't MonoBehaviours
+    }
+
+    public void SpawnPlant(GameObject plant)
+    {
+        // Get the Plant Reference
+        itemGO = plant;
+    }
     #endregion
 }
