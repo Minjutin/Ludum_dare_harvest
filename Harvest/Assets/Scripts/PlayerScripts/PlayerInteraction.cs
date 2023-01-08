@@ -176,6 +176,8 @@ public class PlayerInteraction : MonoBehaviour
             {
                 Plant planted = new Plant();
                 tile.SetItem(planted); //Plant the plant to the tile.
+                tile.SpawnPlant(Instantiate(Resources.Load("Plant/Plant"), tile.position, Quaternion.identity) as GameObject);
+
                 inventory.RemoveItem(chosenSlot); //Delete item from the inventory
             }
             else
@@ -209,6 +211,8 @@ public class PlayerInteraction : MonoBehaviour
             {
                 inventory.AddItem(item); //Aadd item to inventory.
                 tile.RemoveItem(); //Remove the item from the tile.
+                Destroy(tile.itemGO);
+                tile.itemGO = null; // Remove indicator
             }
             else  {
                 //TODO inventory is full.
@@ -227,6 +231,8 @@ public class PlayerInteraction : MonoBehaviour
                 Enums.FruitType plantType = plant.Type;
                 inventory.AddItem(new Fruit(plantType)); //Add fruit.
                 tile.RemoveItem(); //Remove the plant from the tile.
+                Destroy(tile.itemGO);
+                tile.itemGO = null; // Remove indicator
             }
             else
             {

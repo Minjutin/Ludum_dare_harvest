@@ -112,23 +112,28 @@ public class TileManager : MonoBehaviour
 
     public void SetNewTileAt(tileType type, int x, int y)
     {
+        Vector3 pos = new Vector3(x, 0, y);
+
 
         // FERTILE
         if (type == tileType.fertile_0)
         {
             FertileTile fTile = new FertileTile(Enums.Fertility.F0);
+            fTile.position = pos;
             tileArray[x, y] = fTile;
             painter.PaintTileAt(x, y, fTile);
         }
         else if (type == tileType.fertile_1)
         {
             FertileTile fTile = new FertileTile(Enums.Fertility.F1);
+            fTile.position = pos;
             tileArray[x, y] = fTile;
             painter.PaintTileAt(x, y, fTile);
         }
         else if (type == tileType.fertile_2)
         {
             FertileTile fTile = new FertileTile(Enums.Fertility.F2);
+            fTile.position = pos;
             tileArray[x, y] = fTile;
             painter.PaintTileAt(x, y, fTile);
         }
@@ -137,6 +142,7 @@ public class TileManager : MonoBehaviour
         else if (type == tileType.water)
         {
             WaterTile wTile = new WaterTile();
+            wTile.position = pos;
             tileArray[x, y] = wTile;
             painter.PaintTileAt(x, y, wTile);
         }
@@ -145,6 +151,7 @@ public class TileManager : MonoBehaviour
         else if (type == tileType.sacrifice)
         {
             SacrificeTile sTile = new SacrificeTile(Enums.God.God1);    // TODO: Different Gods
+            sTile.position = pos;
             tileArray[x, y] = sTile;
             painter.PaintTileAt(x, y, sTile);
         }
@@ -152,6 +159,8 @@ public class TileManager : MonoBehaviour
 
     private void SetRandomTileAt(int x, int y)
     {
+        Vector3 pos = new Vector3(x, 0, y);
+
         // Set a random tile in memory
         int random = Random.Range(0, 4);
 
@@ -160,6 +169,8 @@ public class TileManager : MonoBehaviour
         {
             // Create the new Tile
             FertileTile fTile = new FertileTile(Enums.Fertility.F0);
+            // Set the position for the tile
+            fTile.position = pos;
             // Set the tile to memory
             tileArray[x, y] = fTile;
             // Paint
@@ -169,12 +180,14 @@ public class TileManager : MonoBehaviour
         {
             FertileTile fTile = new FertileTile(Enums.Fertility.F1);
             tileArray[x, y] = fTile;
+            fTile.position = pos;
             painter.PaintTileAt(x, y, fTile);
         }
         else if (random == 2)
         {
             FertileTile fTile = new FertileTile(Enums.Fertility.F2);
             tileArray[x, y] = fTile;
+            fTile.position = pos;
             painter.PaintTileAt(x, y, fTile);
         }
 
@@ -182,6 +195,7 @@ public class TileManager : MonoBehaviour
         else if (random == 3)
         {
             WaterTile wTile = new WaterTile();
+            wTile.position = pos;
             tileArray[x, y] = wTile;
             painter.PaintTileAt(x, y, wTile);
         }
