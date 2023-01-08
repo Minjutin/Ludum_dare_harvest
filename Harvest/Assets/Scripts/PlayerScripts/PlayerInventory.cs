@@ -2,14 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Player inventory contains an array of every item in the player's inventory. It can hold max 3 items simultaneously.
-
+//Player inventory contains an array of every item in the player's inventory. It can hold max 3 items simultaneously.s
 //In this script, you can check if there is an item in certain slot, what the item is, remove it from the inventory or add a new item if there is enough space.
 
 public class PlayerInventory : MonoBehaviour
 {
     //How many inventory items.
     const int inventorySize = 3;
+
+    //Initialize
+    PlayerStats stats;
+
+    void Awake()
+    {
+        stats = this.GetComponent<PlayerStats>();
+    }
+
+    //-------------------------------------------------------------
 
     //Check, use, add and remove items.
     #region Using inventory
@@ -33,13 +42,14 @@ public class PlayerInventory : MonoBehaviour
 
     public void AddItem(InventoryItem item)
     {
-        if (!isFull())
+        if (!IsFull())
         {
             for (int i = 0; i < inventorySize; i++)
             {
                 if (inventoryItems[i] != null) //Find the first array placement with no element and add the item.
                 {
-                    inventoryItems[i] = item;
+                    inventoryItems[i] = item; //add item
+                    stats.ChangeSpeed(ItemsAmount()); //change speed
                     break;
                 }
             }
@@ -53,10 +63,17 @@ public class PlayerInventory : MonoBehaviour
 
     public void RemoveItem(int slot)
     {
-        if ( slot==0 || slot==1 || slot==2 )
-        { 
-            inventoryItems[slot] = null;
+        if(slot < 0 ||slot > 3)
+        {
+            Debug.LogError("There is no inventory slot "+slot);
         }
+
+        if (this.ThereIsItem(slot))
+        { 
+            inventoryItems[slot] = null; //make the slot null.
+            stats.ChangeSpeed(ItemsAmount()); //Change speed.
+        }
+
     } //Drop the chosen item in the inventory.
 
     #endregion
@@ -66,7 +83,7 @@ public class PlayerInventory : MonoBehaviour
     //Check how many items is currently in the inventory and related stuff
     #region Inventory size
 
-    public int itemsAmount()
+    public int ItemsAmount()
     {
         int amount = 0;
         for (int i = 0; i < inventorySize; i++)
@@ -78,9 +95,9 @@ public class PlayerInventory : MonoBehaviour
         }
         return amount;
     } //Return the amount of items currently in the inventory.
-    public bool isFull()
+    public bool IsFull()
     {
-        if (itemsAmount() == 3)
+        if (ItemsAmount() == 3)
         {
             return true;
         }
