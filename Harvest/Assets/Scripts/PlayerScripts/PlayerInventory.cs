@@ -74,8 +74,16 @@ public class PlayerInventory : MonoBehaviour
             stats.ChangeSpeed(ItemsAmount()); //Change speed.
         }
 
-    } //Drop the chosen item in the inventory.
+    } //Remove the chosen item in the inventory.
 
+    public void DropAll()
+    {
+        for(int i = 0; i<3; i++)
+        {
+            inventoryItems[i] = null; //make the slot null.
+        }
+        stats.ChangeSpeed(0);
+    }
     #endregion
 
     //-----------------------------------------------------------

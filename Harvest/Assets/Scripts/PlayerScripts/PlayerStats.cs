@@ -19,6 +19,8 @@ public class PlayerStats : MonoBehaviour
     [Header("Wanted plant")]
     [SerializeField] Enums.FruitType wantedFruit;
 
+    public bool isWet; 
+
     public Enums.God god { get; private set; }
 
     //Initializing 
@@ -28,6 +30,7 @@ public class PlayerStats : MonoBehaviour
     public void Awake()
     {
         //TODO find constants from the hierarcy
+        isWet = false;
     }
 
     // Update is called once per frame
