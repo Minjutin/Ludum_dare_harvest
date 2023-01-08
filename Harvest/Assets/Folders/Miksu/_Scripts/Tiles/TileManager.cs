@@ -144,7 +144,7 @@ public class TileManager : MonoBehaviour
             WaterTile wTile = new WaterTile();
             wTile.position = pos;
             tileArray[x, y] = wTile;
-            painter.PaintTileAt(x, y, wTile);
+            //painter.PaintTileAt(x, y, wTile); // Already has a tile
         }
 
         // SACRIFICE
@@ -153,7 +153,7 @@ public class TileManager : MonoBehaviour
             SacrificeTile sTile = new SacrificeTile(Enums.God.God1);    // TODO: Different Gods
             sTile.position = pos;
             tileArray[x, y] = sTile;
-            painter.PaintTileAt(x, y, sTile);
+            //painter.PaintTileAt(x, y, sTile); // Already has a tile
         }
     }
 
@@ -162,7 +162,7 @@ public class TileManager : MonoBehaviour
         Vector3 pos = new Vector3(x, 0, y);
 
         // Set a random tile in memory
-        int random = Random.Range(0, 4);
+        int random = Random.Range(0, 3);
 
         // FERTILE
         if (random == 0)
