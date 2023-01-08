@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Everything that is related to the player interaction.
+//Plant, Sacrifice, collect
+
+
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -38,44 +41,59 @@ public class PlayerInteraction : MonoBehaviour
             {
                 //------------------------ TAKE ITEM ------------------------------------------------
 
-                if(fTile.item is InventoryItem){
-                    Collect(fTile);
+                if (fTile.item is InventoryItem) {
+                    TryCollect(fTile);
                 }
 
                 //------------------------ TAKE ITEM ------------------------------------------------
 
-                //------------------------ FERTILIZE PLANT ------------------------------------------------
 
-                if(fTile.item is Plant)
+                else if (fTile.item is Plant)
                 {
-                    Collect(fTile);
+                    Plant plant = fTile.item as Plant;
+                    //TODO If plant is not ready
+                    if (plant.level < Plant.maxLevel)
+                    {
+
+                        //------------------------ FERTILIZE PLANT ------------------------------------------------
+                        //Fertilize
+                        //------------------------ FERTILIZE PLANT ------------------------------------------------
+
+                    }
+
+                    //------------------------ COLLECT PLANT ---------------------------------------
+                    else if (plant.level >= Plant.maxLevel)
+                    {
+                        TryCollect(fTile);
+                    }
+                    //------------------------ COLLECT PLANT ---------------------------------------
+
+
                 }
 
-                //------------------------ FERTILIZE PLANT ------------------------------------------------
+
+                //------------------------ PLANT SEED ------------------------------------------------
+
+                //If fertiled tile does not contain an item and player is holding a seed.
+                else if (fTile.item == null)
+                {
+                    PlantSeed(fTile);
+                }
+
+                //------------------------ PLANT SEED ------------------------------------------------
+
             }
 
-
-            //------------------------ PLANT SEED ------------------------------------------------
-
-            //If fertiled tile does not contain an item and player is holding a seed.
-            else if (fTile.item == null)
+            //If tile is sacrifice tile, check if there is an item to be sacrifices.
+            if (tile is SacrificeTile)
             {
-                PlantSeed(fTile);
+                SacrificeItem();
             }
-
-            //------------------------ PLANT SEED ------------------------------------------------
-
-        }
-
-        //If tile is sacrifice tile, check if there is an item to be sacrifices.
-        if(tile is SacrificeTile)
-        {
-            SacrificeItem();
-        }
-        //TODO check if you can sacrifice the fruit on the tile
-        //if(you can sacrifice on this tile){
+            //TODO check if you can sacrifice the fruit on the tile
+            //if(you can sacrifice on this tile){
             //if you have inventory item chosen, give it to the gods
-        //}
+            //}
+        } 
     }
 
     //If change slot button has been pressed.
@@ -112,20 +130,20 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (inventory.ThereIsItem(chosenSlot))
         {
-            InventoryItem item = inventory.GetItem(chosenSlot); 
-            
+            InventoryItem item = inventory.GetItem(chosenSlot);
+
             //TODO change the points.
-            if(item is Manure)
+            if (item is Manure)
             {
                 //points -amount
             }
-            if(item is Fruit)
+            if (item is Fruit)
             {
                 //if normal fruit +1, if favorite fruit +3, if needed fruit + 7
             }
 
             inventory.RemoveItem(chosenSlot);
-            
+
         }
         else
         {
@@ -142,7 +160,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (inventory.ThereIsItem(chosenSlot))
         {
-            if(inventory.GetItem(chosenSlot) is Seed)
+            if (inventory.GetItem(chosenSlot) is Seed)
             {
                 tile.SetItem(inventory.GetItem(chosenSlot)); //Plant the plant to the tile.
                 inventory.RemoveItem(chosenSlot); //Delete item from the inventory
@@ -162,12 +180,14 @@ public class PlayerInteraction : MonoBehaviour
     //------------------- COLLECT ITEMS -------------------------
     //-----------------------------------------------------------
 
-    private void Collect(FertileTile tile) //Collect an item from a tile
+    public void TryCollect(FertileTile tile) //Collect an item from a tile
     {
+        //------ Check if there is an item.
         if (tile.item == null) //Check if there is an item.
-            Debug.LogError("Tile does not contain an item even though you're trying to collect it.");
-
-        if (tile.item is InventoryItem) //Check if the item is InventoryItem.
+            Debug.LogWarning("Tile does not contain an item even though you're trying to collect it.");
+        
+        //------- Check if the item is InventoryItem.
+        if (tile.item is InventoryItem) 
         {
             InventoryItem item = tile.item as InventoryItem;
 
@@ -177,17 +197,33 @@ public class PlayerInteraction : MonoBehaviour
                 inventory.AddItem(item); //Aadd item to inventory.
                 tile.RemoveItem(); //Remove the item from the tile.
             }
+            else  {
+                //TODO inventory is full.
+            }
+
+        }
+
+        //------ Check if the item is plant
+        if (tile.item is Plant)
+        {
+            Plant plant = tile.item as Plant;
+
+            //If there is space in the inventory, remove the object.
+            if (!inventory.isFull())
+            {
+                Enums.FruitType plantType = plant.Type;
+                inventory.AddItem(new Fruit(plantType)); //Add fruit.
+                tile.RemoveItem(); //Remove the plant from the tile.
+            }
             else
             {
-                Debug.LogWarning("Inventory is full but you are trying to collect an item.");
+                //TODO inventory is full.
             }
         }
-        else
-            Debug.LogError("Tile with an item that is not inventory item.");
 
-    } //Tile should contain an item that has a class that inherits from the InventoryItem.
+    } 
 
-    #endregion Different Interactions
+    #endregion
 
-
+    
 }

@@ -7,4 +7,9 @@ using UnityEngine;
 public class Fruit: InventoryItem
 {
     Enums.FruitType Type;
+
+    public Fruit(Enums.FruitType fType)
+    {
+        Type = fType;
+    }
 }
