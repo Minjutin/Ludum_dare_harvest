@@ -23,13 +23,8 @@ public class PlayerInteraction : MonoBehaviour
     #region Button detection
 
     //If interaction button has been pressed.
-    public void InteractionButtonPressed()
+    public void InteractionButtonPressed(TileDaddy tile)
     {
-        // ---- TODO CHECK THE TILE ACTUALLY ----
-        TileDaddy tile = new TileDaddy();
-        // ---- TODO ENDS ----
-
-
         //If tile is fertile tile, either take the item, plant a seed or fertilize the plant.
 
         if (tile is FertileTile)
@@ -37,7 +32,7 @@ public class PlayerInteraction : MonoBehaviour
             FertileTile fTile = tile as FertileTile;
 
             //If fertiled tile contains an item that is not a plant.
-            if (fTile.item != null)
+            if (fTile.HasItem())
             {
                 //------------------------ TAKE ITEM ------------------------------------------------
 
@@ -75,7 +70,7 @@ public class PlayerInteraction : MonoBehaviour
                 //------------------------ PLANT SEED ------------------------------------------------
 
                 //If fertiled tile does not contain an item and player is holding a seed.
-                else if (fTile.item == null)
+                else if (!fTile.HasItem())
                 {
                     PlantSeed(fTile);
                 }
@@ -183,11 +178,11 @@ public class PlayerInteraction : MonoBehaviour
     public void TryCollect(FertileTile tile) //Collect an item from a tile
     {
         //------ Check if there is an item.
-        if (tile.item == null) //Check if there is an item.
+        if (!tile.HasItem()) //Check if there is an item.
             Debug.LogWarning("Tile does not contain an item even though you're trying to collect it.");
         
         //------- Check if the item is InventoryItem.
-        if (tile.item is InventoryItem) 
+        else if (tile.item is InventoryItem) 
         {
             InventoryItem item = tile.item as InventoryItem;
 
@@ -204,7 +199,7 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         //------ Check if the item is plant
-        if (tile.item is Plant)
+        else if (tile.item is Plant)
         {
             Plant plant = tile.item as Plant;
 

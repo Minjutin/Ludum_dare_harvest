@@ -11,20 +11,9 @@ public class PlayerInventory : MonoBehaviour
     //How many inventory items.
     const int inventorySize = 3;
 
-    //Return if the inventory is full.
-    public bool isFull()
-    {
-        bool full = true;
-        for(int i = 0; i<inventorySize; i++)
-        {
-            if (inventoryItems[i] == null)
-            {
-                full = false;
-            }
-        }
-        return full;
-    }
-
+    //Check, use, add and remove items.
+    #region Using inventory
+    
     //Array of items in the inventory
     InventoryItem[] inventoryItems = new InventoryItem[inventorySize];
 
@@ -36,7 +25,6 @@ public class PlayerInventory : MonoBehaviour
         }
         return false;
     } //Check if there is an item in this slot.
-
 
     public InventoryItem GetItem(int slot)
     {
@@ -70,5 +58,37 @@ public class PlayerInventory : MonoBehaviour
             inventoryItems[slot] = null;
         }
     } //Drop the chosen item in the inventory.
+
+    #endregion
+
+    //-----------------------------------------------------------
+
+    //Check how many items is currently in the inventory and related stuff
+    #region Inventory size
+
+    public int itemsAmount()
+    {
+        int amount = 0;
+        for (int i = 0; i < inventorySize; i++)
+        {
+            if (inventoryItems[i] != null)
+            {
+                amount++;
+            }
+        }
+        return amount;
+    } //Return the amount of items currently in the inventory.
+    public bool isFull()
+    {
+        if (itemsAmount() == 3)
+        {
+            return true;
+        }
+        return false;
+    } //Return if the inventory is full.
+
+    #endregion
+
+    //-----------------------------------------------------------
 }
 
