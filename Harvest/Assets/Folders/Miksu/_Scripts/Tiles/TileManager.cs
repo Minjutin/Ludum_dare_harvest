@@ -195,20 +195,20 @@ public class TileManager : MonoBehaviour
 
         //Debug.Log("Player Real  Pos: " + playerPos);
         //Debug.Log("Player ROUND Pos: " + x + " " + y);
-        //if (tileArray[x, y] is FertileTile)
-        //{
-        //    FertileTile fTile = tileArray[x, y] as FertileTile;
-        //    if (fTile.fertilityLevel == Enums.Fertility.F0)
-        //    {
-        //        Debug.Log("Barren");
-        //    }
-        //    else if (fTile.fertilityLevel == Enums.Fertility.F1) { Debug.Log("Fertile"); }
-        //    else if (fTile.fertilityLevel == Enums.Fertility.F2) { Debug.Log("VERY Fertile"); }
-        //}
-        //else if (tileArray[x,y] is WaterTile)
-        //{
-        //    Debug.Log("It's water.");
-        //}
+        if (tileArray[x, y] is FertileTile)
+        {
+            FertileTile fTile = tileArray[x, y] as FertileTile;
+            if (fTile.fertilityLevel == Enums.Fertility.F0)
+            {
+                Debug.Log("Barren");
+            }
+            else if (fTile.fertilityLevel == Enums.Fertility.F1) { Debug.Log("Fertile"); }
+            else if (fTile.fertilityLevel == Enums.Fertility.F2) { Debug.Log("VERY Fertile"); }
+        }
+        else if (tileArray[x, y] is WaterTile)
+        {
+            Debug.Log("It's water.");
+        }
 
         // Return TileDaddy type
         return tileArray[x, y];
