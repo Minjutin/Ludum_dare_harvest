@@ -1,0 +1,827 @@
+fileFormatVersion: 2
+guid: 9738ee0d3866e1a43ab215bfb4b45e72
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 330
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FertileCorner_TopL
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 1191
+        width: 330
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63913023bbda4394e8ec33f0234e4baa
+      internalID: -127361871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileTiles_1
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 1191
+        width: 331
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d16159028b609b4409f58ef4c9a2c2be
+      internalID: 1118603685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileTiles_2
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 1191
+        width: 330
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9565ae8ae4e55da48bbeba9fe965526c
+      internalID: 1131139733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileCorner_TopR
+      rect:
+        serializedVersion: 2
+        x: 1184
+        y: 1191
+        width: 330
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51a915dde12bd804b8baac9a2fa73a87
+      internalID: 747755354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileSingle_0
+      rect:
+        serializedVersion: 2
+        x: 1575
+        y: 1191
+        width: 331
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ded32109bb0a88540ae4a221aec0dfcf
+      internalID: -139875128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileSingle_1
+      rect:
+        serializedVersion: 2
+        x: 1938
+        y: 1195
+        width: 330
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1ebcfe977ab71a489f6f7e281c73ad1
+      internalID: -2047397827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileSingle_2
+      rect:
+        serializedVersion: 2
+        x: 2297
+        y: 1195
+        width: 330
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 185bc4321ffccc048a0d656188c759b4
+      internalID: -731323492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileSingle_3
+      rect:
+        serializedVersion: 2
+        x: 2659
+        y: 1191
+        width: 331
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f0b8de757cfb9a44bc2d8ac6029f063
+      internalID: 603638687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileTiles_8
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 820
+        width: 330
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c099d8d811cb324e9dcebe3788d4eb1
+      internalID: 1797354338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileTiles_9
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 820
+        width: 331
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68ed50e4e9056934b89bae826ee92e99
+      internalID: -1965327687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileTiles_10
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 820
+        width: 330
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4f28d994f222b8498e8980c6ad8605c
+      internalID: 80538044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileTiles_11
+      rect:
+        serializedVersion: 2
+        x: 1184
+        y: 820
+        width: 330
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b494eb9f0aac1843846d490df55afa4
+      internalID: -316524863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileSingle_4
+      rect:
+        serializedVersion: 2
+        x: 1573
+        y: 820
+        width: 331
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c7101424dbf63145b24be254373b33f
+      internalID: -984225138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileSingle_5
+      rect:
+        serializedVersion: 2
+        x: 1936
+        y: 820
+        width: 330
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 139b93e37430ccd4ba0c5dd4e0739834
+      internalID: 683699339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileSingle_6
+      rect:
+        serializedVersion: 2
+        x: 2297
+        y: 820
+        width: 330
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9e068d809eb95e4480766c601225862
+      internalID: -638712520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileSingle_7
+      rect:
+        serializedVersion: 2
+        x: 2659
+        y: 822
+        width: 331
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eeb9ae9f888e3c243b69384a8e287ddb
+      internalID: 70628697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileTiles_16
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 451
+        width: 330
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11996dd90343c594e8578afdeb316929
+      internalID: -796702235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileTiles_17
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 451
+        width: 331
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cf78ccd4403c494ba69659058807926
+      internalID: 1696415382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileTiles_18
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 451
+        width: 330
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ba5a7c0d4510d84cbd04e774a19f00c
+      internalID: -1316835381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileTiles_19
+      rect:
+        serializedVersion: 2
+        x: 1184
+        y: 451
+        width: 330
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1e691fd8f2dbe848a542621abf262bb
+      internalID: 1501508152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileSingle_8
+      rect:
+        serializedVersion: 2
+        x: 1573
+        y: 451
+        width: 331
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86595ee0500f9b84d8916dbdb84abc3c
+      internalID: 1302539551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileSingle_9
+      rect:
+        serializedVersion: 2
+        x: 1936
+        y: 451
+        width: 330
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7f159cbac5fdd44380dcc5b28bafd20
+      internalID: 1516803372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileSingle_10
+      rect:
+        serializedVersion: 2
+        x: 2297
+        y: 451
+        width: 330
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f40e5f0381a761429605fd596afd4ab
+      internalID: -316475136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileSingle_11
+      rect:
+        serializedVersion: 2
+        x: 2659
+        y: 451
+        width: 331
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3f319e7265f8164aac25e32dfc53bc3
+      internalID: 1638828987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileCorner_BottomL
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 80
+        width: 330
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4be0a107213f0574b8cf98c98c04973e
+      internalID: -231549959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileTiles_25
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 80
+        width: 331
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11c55671ab3ad2044b0288507bba9b75
+      internalID: -1223363724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileTiles_26
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 80
+        width: 330
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ba4e99e4a55786478ca876cf25b3cc7
+      internalID: -21360591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileCorner_BottomR
+      rect:
+        serializedVersion: 2
+        x: 1184
+        y: 80
+        width: 330
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 563607c6878c78e44aae843bc0aa8db2
+      internalID: -1529696735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileSingle_12
+      rect:
+        serializedVersion: 2
+        x: 1571
+        y: 80
+        width: 331
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71b2fed7aa8d1f444be6170b8c186a87
+      internalID: 1003446445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileSingle_13
+      rect:
+        serializedVersion: 2
+        x: 1936
+        y: 82
+        width: 330
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e94b3ada46909794e9d4cb2344a70309
+      internalID: -906967216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileSingle_14
+      rect:
+        serializedVersion: 2
+        x: 2297
+        y: 80
+        width: 330
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ef72543d59b67e42a04c4c8543b8948
+      internalID: -1627097152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FertileSingle_15
+      rect:
+        serializedVersion: 2
+        x: 2659
+        y: 80
+        width: 331
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efef30d8157b96944908241e4890e8e7
+      internalID: -2128378921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 9c8a805efe6b7074eb5c2ff5255acd57
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      FertileTiles_17: 1696415382
+      FertileTiles_2: 1131139733
+      FertileSingle_0: -139875128
+      FertileSingle_11: 1638828987
+      FertileSingle_12: 1003446445
+      FertileSingle_10: -316475136
+      FertileCorner_BottomR: -1529696735
+      FertileSingle_7: 70628697
+      FertileSingle_5: 683699339
+      FertileSingle_14: -1627097152
+      FertileSingle_13: -906967216
+      FertileSingle_4: -984225138
+      FertileCorner_TopL: -127361871
+      FertileTiles_19: 1501508152
+      FertileTiles_8: 1797354338
+      FertileCorner_BottomL: -231549959
+      FertileTiles_9: -1965327687
+      FertileTiles_1: 1118603685
+      FertileTiles_11: -316524863
+      FertileSingle_3: 603638687
+      FertileCorner_TopR: 747755354
+      FertileSingle_1: -2047397827
+      FertileTiles_10: 80538044
+      FertileSingle_6: -638712520
+      FertileSingle_8: 1302539551
+      FertileTiles_18: -1316835381
+      FertileTiles_26: -21360591
+      FertileTiles_25: -1223363724
+      FertileSingle_2: -731323492
+      FertileSingle_15: -2128378921
+      FertileSingle_9: 1516803372
+      FertileTiles_16: -796702235
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
