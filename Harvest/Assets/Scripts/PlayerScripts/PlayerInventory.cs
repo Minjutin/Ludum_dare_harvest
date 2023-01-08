@@ -50,6 +50,7 @@ public class PlayerInventory : MonoBehaviour
                 {
                     inventoryItems[i] = item; //add item
                     stats.ChangeSpeed(ItemsAmount()); //change speed
+                    PrintInventory();
                     break;
                 }
             }
@@ -59,7 +60,7 @@ public class PlayerInventory : MonoBehaviour
         }
 
 
-    } //Add item to the player's inventory.
+    } //Add item to the player's inventory. Must be used only when you're sure that the inventory isn't full.
 
     public void RemoveItem(int slot)
     {
@@ -72,6 +73,7 @@ public class PlayerInventory : MonoBehaviour
         { 
             inventoryItems[slot] = null; //make the slot null.
             stats.ChangeSpeed(ItemsAmount()); //Change speed.
+            PrintInventory();
         }
 
     } //Remove the chosen item in the inventory.
@@ -105,7 +107,7 @@ public class PlayerInventory : MonoBehaviour
     } //Return the amount of items currently in the inventory.
     public bool IsFull()
     {
-        if (ItemsAmount() == 3)
+        if (ItemsAmount() >= inventorySize)
         {
             return true;
         }
@@ -115,5 +117,18 @@ public class PlayerInventory : MonoBehaviour
     #endregion
 
     //-----------------------------------------------------------
+
+    //Only for Debug purposes
+    public void PrintInventory()
+    {
+        for(int i = 0; i<3; i++)
+        {
+            if (this.ThereIsItem(i))
+            {
+                Debug.Log("Inventory placement "+1+": "+inventoryItems[i]);
+            }
+            
+        }
+    }
 }
 

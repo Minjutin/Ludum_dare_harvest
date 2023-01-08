@@ -19,6 +19,12 @@ public class PlayerInteraction : MonoBehaviour
     {
         inventory = this.GetComponent<PlayerInventory>(); //Fetch inventory
         stats = this.GetComponent<PlayerStats>();
+
+        //TEST
+        inventory.AddItem(new Seed());
+        inventory.AddItem(new Seed());
+        inventory.AddItem(new Manure());
+        inventory.PrintInventory();
     }
 
     #region Button detection
@@ -52,8 +58,8 @@ public class PlayerInteraction : MonoBehaviour
                     {
 
                         //------------------------ FERTILIZE PLANT ------------------------------------------------
-                       
-                        
+
+                        TryFertilize(fTile);
 
                         //------------------------ FERTILIZE PLANT ------------------------------------------------
 
@@ -109,7 +115,7 @@ public class PlayerInteraction : MonoBehaviour
                 chosenSlot = 2;
                 break;
             case 2:
-                chosenSlot = 3;
+                chosenSlot = 0;
                 break;
             default:
                 Debug.Log("There is no slot with number " + chosenSlot);
@@ -171,7 +177,7 @@ public class PlayerInteraction : MonoBehaviour
     //------------------- COLLECT ITEMS -------------------------
     //-----------------------------------------------------------
 
-    public void TryCollect(FertileTile tile) //Collect an item from a tile
+    private void TryCollect(FertileTile tile) //Collect an item from a tile
     {
         //------ Check if there is an item.
         if (!tile.HasItem()) //Check if there is an item.
@@ -212,9 +218,23 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
 
-    } 
+    }
 
+
+
+    //-----------------------------------------------------------
+    //------------------- FERTILIZE -------------------------
+    //-----------------------------------------------------------
+
+    private void TryFertilize(FertileTile tile)
+    {
+        Plant plant = tile.item as Plant;
+        if(inventory.GetItem(chosenSlot) is Manure)
+        {
+            //TODO make plant grow 
+        }
+    }
     #endregion
 
-    
+
 }
