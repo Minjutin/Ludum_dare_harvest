@@ -17,10 +17,6 @@ public class TilePainter : MonoBehaviour
     [Header("Water Tiles")]
     public List<Tile> waterTile = new List<Tile>();
 
-
-
-    private List<Tile> tiles = new List<Tile>();
-
     public Tilemap tilemap;
 
     [ContextMenu("Paint")]
