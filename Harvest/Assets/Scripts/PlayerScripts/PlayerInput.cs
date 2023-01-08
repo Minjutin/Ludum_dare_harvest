@@ -113,8 +113,8 @@ public class PlayerInput : MonoBehaviour
         // Detect Keypress
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            // TODO - Hook up the inventory script
-            Debug.Log("Q doesn't yet do anything");
+            // Change Inventory slot
+            playerInteraction.ChangeSlot();
         }
     }
     #endregion
