@@ -33,11 +33,11 @@ public class SeedSpawner : MonoBehaviour
         GameObject plantGO = Resources.Load<GameObject>("Plant/Plant");
         Instantiate(plantGO, pos, Quaternion.identity);
 
-        // Give Tile an Item
-        //tile.SetItem(plantGO.GetComponent<Plant>()); // CORRECT WAY?
+        // Initialize PlantGrowth Script
+        plantGO.GetComponent<PlantGrowth>().tile = tile;
 
-        // TEMPORARY
-        Seed seed = new Seed();    // TEMPORARY
+        // Give the Seed Item to the tile
+        Seed seed = new Seed();
         tile.SetItem(seed);
 
         // Return as succesful
