@@ -120,7 +120,8 @@ public class TileManager : MonoBehaviour
     }
     #endregion
 
-    #region Tile FUNCTIONALITY
+
+    #region Tile INTERACTION
 
     #endregion
 }
