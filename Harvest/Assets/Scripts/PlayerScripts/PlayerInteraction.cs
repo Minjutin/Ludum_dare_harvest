@@ -17,14 +17,16 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Awake()
     {
-        inventory = this.GetComponent<PlayerInventory>(); //Fetch inventory
-        stats = this.GetComponent<PlayerStats>();
+        inventory = FindObjectOfType<PlayerInventory>(); //Fetch inventory
+        stats = FindObjectOfType<PlayerStats>();
+    }
 
+    private void Start()
+    {
         //TEST
         inventory.AddItem(new Seed());
         inventory.AddItem(new Seed());
         inventory.AddItem(new Manure());
-        inventory.PrintInventory();
     }
 
     #region Button detection
@@ -33,17 +35,17 @@ public class PlayerInteraction : MonoBehaviour
     public void InteractionButtonPressed(TileDaddy tile)
     {
         //If tile is fertile tile, either take the item, plant a seed or fertilize the plant.
-
         if (tile is FertileTile)
         {
             FertileTile fTile = tile as FertileTile;
-
+            
             //If fertiled tile contains an item that is not a plant.
             if (fTile.HasItem())
             {
                 //------------------------ TAKE ITEM ------------------------------------------------
 
-                if (fTile.item is InventoryItem) {
+                if (fTile.item is InventoryItem)
+                {
                     TryCollect(fTile);
                 }
 
@@ -68,6 +70,7 @@ public class PlayerInteraction : MonoBehaviour
                     //------------------------ COLLECT PLANT ---------------------------------------
                     else if (plant.level >= Plant.maxLevel)
                     {
+                        Debug.Log("Collect plant");
                         TryCollect(fTile);
                     }
                     //------------------------ COLLECT PLANT ---------------------------------------
@@ -77,30 +80,32 @@ public class PlayerInteraction : MonoBehaviour
 
 
                 //------------------------ PLANT SEED ------------------------------------------------
-
-                //If fertiled tile does not contain an item and player is holding a seed.
-                else if (!fTile.HasItem())
-                {
-                    PlantSeed(fTile);
-                }
-
-                //------------------------ PLANT SEED ------------------------------------------------
-
             }
-
-            //If tile is sacrifice tile, check if there is an item to be sacrifices.
-            if (tile is SacrificeTile)
+            //If fertiled tile does not contain an item and player is holding a seed.
+            else if (!fTile.HasItem())
             {
-                SacrificeTile stile = tile as SacrificeTile;
 
-                if(stats.god == stile.god)  //If god and sacrifice tile matches up.
-                    SacrificeItem();
+                PlantSeed(fTile);
             }
-            //TODO check if you can sacrifice the fruit on the tile
-            //if(you can sacrifice on this tile){
-            //if you have inventory item chosen, give it to the gods
-            //}
-        } 
+
+            //------------------------ PLANT SEED ------------------------------------------------
+        }
+
+        //If tile is sacrifice tile, check if there is an item to be sacrifices.
+        if (tile is SacrificeTile)
+        {
+            Debug.Log("Sacrifice Tile");
+            SacrificeTile stile = tile as SacrificeTile;
+
+            if (stats.god == stile.god)  //If god and sacrifice tile matches up.
+            { 
+                SacrificeItem();
+            }
+        }
+        //TODO check if you can sacrifice the fruit on the tile
+        //if(you can sacrifice on this tile){
+        //if you have inventory item chosen, give it to the gods
+        //}
     }
 
     //If change slot button has been pressed.
@@ -110,6 +115,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             case 0:
                 chosenSlot = 1;
+                
                 break;
             case 1:
                 chosenSlot = 2;
@@ -121,6 +127,15 @@ public class PlayerInteraction : MonoBehaviour
                 Debug.Log("There is no slot with number " + chosenSlot);
                 break;
         }
+
+        //Debug
+        if (inventory.ThereIsItem(chosenSlot))
+        {
+            Debug.Log("Item is now " + inventory.GetItem(chosenSlot).itemName);
+        }
+        else
+            Debug.Log("Slot " + chosenSlot + " is empty");
+
     }
 
     #endregion

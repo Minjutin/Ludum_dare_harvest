@@ -6,10 +6,12 @@ using UnityEngine;
 public class Constants : MonoBehaviour
 {
 
-    [Header("Different speeds. Levels go from fastest to slowest.")]
+    [Header("Speed level speeds. Element 0=fastest, Element 3=slowest")]
     public float[] speedLevels = new float[4];
 
 
-    [Header("Different points. Levels go from biggest to smallest")]
-    public int wantedPoints,favoritePoints, fruitPoints, seedPoints, manurePoints;
+    [Header("Points")]
+    public int wantedPoints;
+    public int favoritePoints;
+    public int fruitPoints, seedPoints, manurePoints;
 }

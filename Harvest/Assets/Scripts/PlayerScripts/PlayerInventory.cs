@@ -15,7 +15,7 @@ public class PlayerInventory : MonoBehaviour
 
     void Awake()
     {
-        stats = this.GetComponent<PlayerStats>();
+        stats = FindObjectOfType<PlayerStats>();
     }
 
     //-------------------------------------------------------------
@@ -46,7 +46,7 @@ public class PlayerInventory : MonoBehaviour
         {
             for (int i = 0; i < inventorySize; i++)
             {
-                if (inventoryItems[i] != null) //Find the first array placement with no element and add the item.
+                if (!ThereIsItem(i)) //Find the first array placement with no element and add the item.
                 {
                     inventoryItems[i] = item; //add item
                     stats.ChangeSpeed(ItemsAmount()); //change speed
@@ -121,14 +121,11 @@ public class PlayerInventory : MonoBehaviour
     //Only for Debug purposes
     public void PrintInventory()
     {
-        for(int i = 0; i<3; i++)
-        {
-            if (this.ThereIsItem(i))
-            {
-                Debug.Log("Inventory placement "+1+": "+inventoryItems[i]);
-            }
-            
-        }
+
+        Debug.Log("Inventory placement "+1+": "+inventoryItems[0]+"\n" +
+            "Inventory placement " + 2 + ": " + inventoryItems[1]+"\n"+
+            "Inventory placement " + 3 + ": " + inventoryItems[2]);
+           
     }
 }
 

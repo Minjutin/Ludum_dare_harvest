@@ -7,4 +7,9 @@ using UnityEngine;
 public class Manure : InventoryItem
 {
 
+    public Manure()
+    {
+        itemName = "Manure";
+    }
+
 }
