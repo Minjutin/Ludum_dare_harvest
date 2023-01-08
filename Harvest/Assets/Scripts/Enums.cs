@@ -8,5 +8,5 @@ public class Enums : MonoBehaviour
 {
     public enum FruitType {Fruit1, Fruit2, Fruit3, Fruit4};
 
-    public enum Fertility { F1, F2, F3};
+    public enum Fertility { F0, F1, F2, F3};
 }

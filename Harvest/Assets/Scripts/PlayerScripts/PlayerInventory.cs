@@ -28,7 +28,7 @@ public class PlayerInventory : MonoBehaviour
     //Array of items in the inventory
     InventoryItem[] inventoryItems = new InventoryItem[inventorySize];
 
-    public bool thereIsItem(int slot)
+    public bool ThereIsItem(int slot)
     {
         if (inventoryItems[slot] != null)
         {
