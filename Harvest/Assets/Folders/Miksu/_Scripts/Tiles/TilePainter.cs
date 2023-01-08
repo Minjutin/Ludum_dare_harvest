@@ -9,6 +9,8 @@ public class TilePainter : MonoBehaviour
 
     #region Properties
 
+    public Tilemap tilemap;
+
     [Header("Fertile Tiles")]
     public List<Tile> fertile_2 = new List<Tile>();
     public List<Tile> fertile_1 = new List<Tile>();
@@ -17,7 +19,8 @@ public class TilePainter : MonoBehaviour
     [Header("Water Tiles")]
     public List<Tile> waterTile = new List<Tile>();
 
-    public Tilemap tilemap;
+    [Header("Sacrifice Tiles")]
+    public List<Tile> sacrificeTiles = new List<Tile>();
 
     [ContextMenu("Paint")]
 
@@ -41,12 +44,12 @@ public class TilePainter : MonoBehaviour
 
     #endregion
 
-    public void SetRandomGraphicFor(int x, int y, TileDaddy tileType)
+    public void SetRandomGraphicFor(int x, int y, TileDaddy tile)
     {
         Vector3Int pos = new Vector3Int(x, y);
 
-
-        FertileTile fTile = tileType as FertileTile;
+        // FERTILE
+        FertileTile fTile = tile as FertileTile;
         if (fTile is FertileTile)
         {
             if (fTile.fertilityLevel == Enums.Fertility.F0)
@@ -66,14 +69,22 @@ public class TilePainter : MonoBehaviour
             }
         }
 
-        // Not fertile
-        // -> Is it water?
-        WaterTile wTile = tileType as WaterTile;
+        // WATER
+        WaterTile wTile = tile as WaterTile;
         if(wTile is WaterTile)
         {
             if (waterTile.Count >= 1)
             { Paint(x, y, waterTile[0]); }
-            
+            else { Debug.LogWarning("No WaterTiles assigned at TilePainter"); }
+        }
+
+        // SACRIFICE
+        SacrificeTile sTile = tile as SacrificeTile;
+        if (sTile is SacrificeTile)
+        {
+            if (sacrificeTiles.Count >= 1)
+            { Paint(x, y, sacrificeTiles[0]); } // Might want to turn this off?
+            else { Debug.LogWarning("No SacrificeTiles assigned at TilePainter"); }
         }
 
     }
@@ -111,6 +122,12 @@ public class TilePainter : MonoBehaviour
         else if (waterTile.Contains(tile))
         {
             return TileManager.tileType.water;
+        }
+
+        // SACRIFICE
+        else if (sacrificeTiles.Contains(tile))
+        {
+            return TileManager.tileType.sacrifice;
         }
 
         //Debug.Log("Tile at (" + x + "," + y + ") has invalid type of: " + tile.name);
