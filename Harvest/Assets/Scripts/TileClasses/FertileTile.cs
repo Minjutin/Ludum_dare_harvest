@@ -66,6 +66,9 @@ public class FertileTile : TileDaddy
     {
         // Get the Plant Reference
         itemGO = plant;
+
+        // Give Plant a reference to this tile
+        //plant.GetComponent<PlantGrowth>().StartGrow(this);
     }
     #endregion
 }
