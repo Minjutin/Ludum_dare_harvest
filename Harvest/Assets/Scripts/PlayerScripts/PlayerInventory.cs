@@ -15,7 +15,7 @@ public class PlayerInventory : MonoBehaviour
 
     void Awake()
     {
-        stats = this.GetComponent<PlayerStats>();
+        stats = FindObjectOfType<PlayerStats>();
     }
 
     //-------------------------------------------------------------
@@ -46,10 +46,11 @@ public class PlayerInventory : MonoBehaviour
         {
             for (int i = 0; i < inventorySize; i++)
             {
-                if (inventoryItems[i] != null) //Find the first array placement with no element and add the item.
+                if (!ThereIsItem(i)) //Find the first array placement with no element and add the item.
                 {
                     inventoryItems[i] = item; //add item
                     stats.ChangeSpeed(ItemsAmount()); //change speed
+                    PrintInventory();
                     break;
                 }
             }
@@ -59,7 +60,7 @@ public class PlayerInventory : MonoBehaviour
         }
 
 
-    } //Add item to the player's inventory.
+    } //Add item to the player's inventory. Must be used only when you're sure that the inventory isn't full.
 
     public void RemoveItem(int slot)
     {
@@ -72,6 +73,7 @@ public class PlayerInventory : MonoBehaviour
         { 
             inventoryItems[slot] = null; //make the slot null.
             stats.ChangeSpeed(ItemsAmount()); //Change speed.
+            PrintInventory();
         }
 
     } //Remove the chosen item in the inventory.
@@ -105,7 +107,7 @@ public class PlayerInventory : MonoBehaviour
     } //Return the amount of items currently in the inventory.
     public bool IsFull()
     {
-        if (ItemsAmount() == 3)
+        if (ItemsAmount() >= inventorySize)
         {
             return true;
         }
@@ -115,5 +117,15 @@ public class PlayerInventory : MonoBehaviour
     #endregion
 
     //-----------------------------------------------------------
+
+    //Only for Debug purposes
+    public void PrintInventory()
+    {
+
+        Debug.Log("Inventory placement "+1+": "+inventoryItems[0]+"\n" +
+            "Inventory placement " + 2 + ": " + inventoryItems[1]+"\n"+
+            "Inventory placement " + 3 + ": " + inventoryItems[2]);
+           
+    }
 }
 

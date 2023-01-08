@@ -7,4 +7,8 @@ using UnityEngine;
 public class Seed: InventoryItem
 {
     
+    public Seed()
+    {
+        itemName = "seed";
+    }
 }

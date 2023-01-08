@@ -11,5 +11,6 @@ public class Fruit: InventoryItem
     public Fruit(Enums.FruitType fType)
     {
         Type = fType;
+        itemName = "Fruit (" + fType + ")";
     }
 }

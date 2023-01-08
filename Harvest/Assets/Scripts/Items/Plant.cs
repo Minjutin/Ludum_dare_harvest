@@ -8,9 +8,9 @@ using UnityEngine;
 public class Plant : Item
 {
     public const int maxLevel = 2; //Max level of the plant / when plant can be harvested.
-
     public Enums.FruitType Type { get; private set; }
-    public int level {get; private set;}//Level of the plant. If big enough, plant can be
+
+    public int level {get; private set;}//Level of the plant. If big enough, plant can be harvested.
 
     public Plant()
     {
