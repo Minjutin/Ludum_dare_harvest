@@ -89,5 +89,7 @@ public class PlayerStats : MonoBehaviour
         {
             points += constants.manurePoints;
         }
+
+        Debug.Log("Points now = "+points);
     } //Give item to the God.
 }
