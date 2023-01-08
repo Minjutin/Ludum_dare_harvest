@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class TileDaddy
 {
-    
+    public Vector3 position;
 }
