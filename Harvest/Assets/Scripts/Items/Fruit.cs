@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Fruit: InventoryItem
 {
-    Enums.FruitType Type;
+    public Enums.FruitType Type { get; private set; }
 
     public Fruit(Enums.FruitType fType)
     {

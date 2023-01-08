@@ -6,5 +6,10 @@ using UnityEngine;
 
 public class SacrificeTile : TileDaddy
 {
-   
+    public Enums.God god { get; private set; }
+
+    public SacrificeTile(Enums.God god2)
+    {        
+        god = god2;
+    }
 }

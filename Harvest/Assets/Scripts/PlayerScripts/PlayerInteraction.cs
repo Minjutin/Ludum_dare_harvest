@@ -10,6 +10,7 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
     PlayerInventory inventory;
+    PlayerStats stats;
 
     //Currently chosen inventory slot (between 1-3)
     int chosenSlot = 0;
@@ -17,8 +18,8 @@ public class PlayerInteraction : MonoBehaviour
     private void Awake()
     {
         inventory = this.GetComponent<PlayerInventory>(); //Fetch inventory
+        stats = this.GetComponent<PlayerStats>();
     }
-
 
     #region Button detection
 
@@ -51,7 +52,9 @@ public class PlayerInteraction : MonoBehaviour
                     {
 
                         //------------------------ FERTILIZE PLANT ------------------------------------------------
-                        //Fertilize
+                       
+                        
+
                         //------------------------ FERTILIZE PLANT ------------------------------------------------
 
                     }
@@ -82,7 +85,10 @@ public class PlayerInteraction : MonoBehaviour
             //If tile is sacrifice tile, check if there is an item to be sacrifices.
             if (tile is SacrificeTile)
             {
-                SacrificeItem();
+                SacrificeTile stile = tile as SacrificeTile;
+
+                if(stats.god == stile.god)  //If god and sacrifice tile matches up.
+                    SacrificeItem();
             }
             //TODO check if you can sacrifice the fruit on the tile
             //if(you can sacrifice on this tile){
@@ -126,17 +132,7 @@ public class PlayerInteraction : MonoBehaviour
         if (inventory.ThereIsItem(chosenSlot))
         {
             InventoryItem item = inventory.GetItem(chosenSlot);
-
-            //TODO change the points.
-            if (item is Manure)
-            {
-                //points -amount
-            }
-            if (item is Fruit)
-            {
-                //if normal fruit +1, if favorite fruit +3, if needed fruit + 7
-            }
-
+            stats.GiveItem(item);
             inventory.RemoveItem(chosenSlot);
 
         }
@@ -187,7 +183,7 @@ public class PlayerInteraction : MonoBehaviour
             InventoryItem item = tile.item as InventoryItem;
 
             //If there is space in the inventory, remove the object.
-            if (!inventory.isFull())
+            if (!inventory.IsFull())
             {
                 inventory.AddItem(item); //Aadd item to inventory.
                 tile.RemoveItem(); //Remove the item from the tile.
@@ -204,7 +200,7 @@ public class PlayerInteraction : MonoBehaviour
             Plant plant = tile.item as Plant;
 
             //If there is space in the inventory, remove the object.
-            if (!inventory.isFull())
+            if (!inventory.IsFull())
             {
                 Enums.FruitType plantType = plant.Type;
                 inventory.AddItem(new Fruit(plantType)); //Add fruit.
