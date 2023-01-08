@@ -52,7 +52,9 @@ public class PlayerInteraction : MonoBehaviour
                     {
 
                         //------------------------ FERTILIZE PLANT ------------------------------------------------
-                        //Fertilize
+                       
+                        
+
                         //------------------------ FERTILIZE PLANT ------------------------------------------------
 
                     }
@@ -83,7 +85,10 @@ public class PlayerInteraction : MonoBehaviour
             //If tile is sacrifice tile, check if there is an item to be sacrifices.
             if (tile is SacrificeTile)
             {
-                SacrificeItem();
+                SacrificeTile stile = tile as SacrificeTile;
+
+                if(stats.god == stile.god)  //If god and sacrifice tile matches up.
+                    SacrificeItem();
             }
             //TODO check if you can sacrifice the fruit on the tile
             //if(you can sacrifice on this tile){
