@@ -12,13 +12,16 @@ public class PlayerInteraction : MonoBehaviour
     PlayerInventory inventory;
     PlayerStats stats;
 
+    [SerializeField] GameObject playerController;
+
     //Currently chosen inventory slot (between 1-3)
     int chosenSlot = 0;
 
     private void Awake()
     {
-        inventory = FindObjectOfType<PlayerInventory>(); //Fetch inventory
-        stats = FindObjectOfType<PlayerStats>();
+
+        inventory = playerController.GetComponent<PlayerInventory>(); //Fetch inventory
+        stats = playerController.GetComponent<PlayerStats>();
     }
 
     private void Start()

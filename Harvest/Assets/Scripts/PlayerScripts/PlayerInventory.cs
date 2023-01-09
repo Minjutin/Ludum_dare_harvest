@@ -15,7 +15,7 @@ public class PlayerInventory : MonoBehaviour
 
     void Awake()
     {
-        stats = FindObjectOfType<PlayerStats>();
+        stats = this.GetComponent<PlayerStats>();
     }
 
     //-------------------------------------------------------------
