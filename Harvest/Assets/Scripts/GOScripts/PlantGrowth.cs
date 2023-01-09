@@ -53,19 +53,15 @@ public class PlantGrowth : MonoBehaviour
         float growTimeLeft = growTime;
         while (true)
         {                      
-            Debug.Log("Time left" +growTimeLeft);
             if (growTimeLeft <= (growTime/Plant.maxLevel) && plant.level == 0)
             {
                 plant.LevelUp(); //Level up to level 2
                 //TODO change the sprite
-
-                Debug.Log("Level now" + plant.level);
             }
             
             if (growTimeLeft <= 0)
             {
-                plant.LevelUp();
-                Debug.Log("Level now" +plant.level);            
+                plant.LevelUp();          
                 //TODO change the sprite
                 break;
             }
