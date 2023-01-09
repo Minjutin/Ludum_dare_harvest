@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9281fb7760fcb92409b7befb5012b567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 4352986810962038237, guid: b908c40fa323cbf4bacf5380538ccf68, type: 3}
 --- !u!114 &4368551337536717705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,6 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f8e8ed2e3f049a49a31a683b7ab307d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  graphics: {fileID: 0}
   playerMoveSpeed: 10
   maxMoveSpeed: 5
   brakeSpeed: 4

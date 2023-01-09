@@ -154,7 +154,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7542709866972117546}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.74999994, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -202,12 +202,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9ae402bb042912f40be137ec5a25711d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cf6c1bc9ae76d304589b6d8a734c441f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.188, y: 3.308}
+  m_Size: {x: 1.0025, y: 1.5825}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -225,15 +225,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e351a501a6739743961740db27060fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bagLad:
-  - {fileID: 21300000, guid: 1b1a57b5f2fb8734b82eecedd7f0cfed, type: 3}
-  - {fileID: 21300000, guid: c5a603c936825c948b87c64ae8228c11, type: 3}
-  ram:
-  - {fileID: 21300000, guid: 9ae402bb042912f40be137ec5a25711d, type: 3}
-  - {fileID: 21300000, guid: 152f25c5faa33e2498154341d9154106, type: 3}
-  crow:
-  - {fileID: 21300000, guid: 9e3e664c23808364c90ed0fd4ab2c746, type: 3}
-  - {fileID: 21300000, guid: 90b549348b6b8b84a98d309e5dbd8f4c, type: 3}
-  waterBoi:
-  - {fileID: 21300000, guid: 50d5157bc88022940a2b12c250d8d3ff, type: 3}
-  - {fileID: 21300000, guid: 4340b3d76fd012a48823f8dcfadebdcd, type: 3}
+  bagLad_animations:
+  - {fileID: 2816095914753499673, guid: 1fb55ccc157d7de45a21676ab89ed655, type: 3}
+  - {fileID: 6289876916071678866, guid: 9f241bc4132e96445a927de8e61cf6ce, type: 3}
+  - {fileID: 6006480372711857347, guid: 2745041bdabbde342afa28f7e8aff48b, type: 3}
+  ramGal_animations:
+  - {fileID: 3115286988054649975, guid: a8d21338116dd734db46b3b49864a9ed, type: 3}
+  - {fileID: 881692530143015403, guid: 5186377033068ee45951375b50d3576a, type: 3}
+  - {fileID: 7540544822490307694, guid: eff0cb4b830f92845a7010607276d79e, type: 3}
+  scareCrow_animations:
+  - {fileID: 3281317563525588497, guid: ef2adf7cfb15c6d45b452dcef76c076b, type: 3}
+  - {fileID: 5695367012502418286, guid: 0c1ed6768b0718e48afaf65363a8d4db, type: 3}
+  - {fileID: 7155559192313042683, guid: fa0fb7e72133ea743802c72bacd14621, type: 3}
+  waterBoi_animations:
+  - {fileID: 8595114532329359766, guid: f7b8f4daf8f960047bee31eb0507840f, type: 3}
+  - {fileID: 8033364183461880796, guid: 2e884b2c129c2aa4382aaa957a2458c2, type: 3}
+  - {fileID: 7222120557323634976, guid: 08d5a7987f9e11e469f9792fec46b874, type: 3}

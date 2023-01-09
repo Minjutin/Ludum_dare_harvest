@@ -49,6 +49,7 @@ MonoBehaviour:
   speed: 0
   points: 0
   wantedFruit: 0
+  playerNumber: 2
   isWet: 0
   god: 0
 --- !u!114 &6063347635626826894
