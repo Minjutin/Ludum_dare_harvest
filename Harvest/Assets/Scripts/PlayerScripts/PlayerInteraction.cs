@@ -12,20 +12,21 @@ public class PlayerInteraction : MonoBehaviour
     PlayerInventory inventory;
     PlayerStats stats;
 
+    [SerializeField] GameObject playerController;
+
     //Currently chosen inventory slot (between 1-3)
     int chosenSlot = 0;
 
     private void Awake()
     {
-        inventory = FindObjectOfType<PlayerInventory>(); //Fetch inventory
-        stats = FindObjectOfType<PlayerStats>();
+
+        inventory = playerController.GetComponent<PlayerInventory>(); //Fetch inventory
+        stats = playerController.GetComponent<PlayerStats>();
     }
 
     private void Start()
     {
         //TEST
-        inventory.AddItem(new Seed());
-        inventory.AddItem(new Seed());
         inventory.AddItem(new Manure());
     }
 
@@ -70,7 +71,6 @@ public class PlayerInteraction : MonoBehaviour
                     //------------------------ COLLECT PLANT ---------------------------------------
                     else if (plant.level >= Plant.maxLevel)
                     {
-                        Debug.Log("Collect plant");
                         TryCollect(fTile);
                     }
                     //------------------------ COLLECT PLANT ---------------------------------------
@@ -82,7 +82,7 @@ public class PlayerInteraction : MonoBehaviour
                 //------------------------ PLANT SEED ------------------------------------------------
             }
             //If fertiled tile does not contain an item and player is holding a seed.
-            else if (!fTile.HasItem())
+            else if (!fTile.HasItem() && fTile.fertilityLevel != Enums.Fertility.F0)
             {
 
                 PlantSeed(fTile);
@@ -94,7 +94,6 @@ public class PlayerInteraction : MonoBehaviour
         //If tile is sacrifice tile, check if there is an item to be sacrifices.
         if (tile is SacrificeTile)
         {
-            Debug.Log("Sacrifice Tile");
             SacrificeTile stile = tile as SacrificeTile;
 
             if (stats.god == stile.god)  //If god and sacrifice tile matches up.
@@ -176,6 +175,8 @@ public class PlayerInteraction : MonoBehaviour
             {
                 Plant planted = new Plant();
                 tile.SetItem(planted); //Plant the plant to the tile.
+                tile.SpawnPlant(Instantiate(Resources.Load("Plant/Plant"), tile.position, Quaternion.identity) as GameObject);
+
                 inventory.RemoveItem(chosenSlot); //Delete item from the inventory
             }
             else
@@ -209,6 +210,8 @@ public class PlayerInteraction : MonoBehaviour
             {
                 inventory.AddItem(item); //Aadd item to inventory.
                 tile.RemoveItem(); //Remove the item from the tile.
+                Destroy(tile.itemGO);
+                tile.itemGO = null; // Remove indicator
             }
             else  {
                 //TODO inventory is full.
@@ -222,11 +225,13 @@ public class PlayerInteraction : MonoBehaviour
             Plant plant = tile.item as Plant;
 
             //If there is space in the inventory, remove the object.
-            if (!inventory.IsFull())
+            if (!inventory.IsFull() && plant.level >= Plant.maxLevel)
             {
                 Enums.FruitType plantType = plant.Type;
                 inventory.AddItem(new Fruit(plantType)); //Add fruit.
                 tile.RemoveItem(); //Remove the plant from the tile.
+                Destroy(tile.itemGO);
+                tile.itemGO = null; // Remove indicator
             }
             else
             {

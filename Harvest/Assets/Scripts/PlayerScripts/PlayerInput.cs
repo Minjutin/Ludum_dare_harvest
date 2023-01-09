@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
@@ -34,12 +32,13 @@ public class PlayerInput : MonoBehaviour
         tileManager = FindObjectOfType<TileManager>();
 
         // Get Player
-        playerMovement = FindObjectOfType<PlayerMovement>();
-        player = playerMovement.gameObject;
+        player = GameObject.Find("Player");
         if (!player) { Debug.Log("No Player Found!"); }
 
+        playerMovement = player.GetComponent<PlayerMovement>();
+
         // Find other references
-        playerInteraction = FindObjectOfType<PlayerInteraction>();
+        playerInteraction = player.GetComponent<PlayerInteraction>();
     }
 
     private void Update()
@@ -102,7 +101,7 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             playerInteraction.InteractionButtonPressed(
-                                    tileManager.GetTilePlayerIsOn(player.transform.position));
+                                    tileManager.GetTileCreatureIsOn(player.transform.position));
                                     // Above gets the tile
 
         }

@@ -14,7 +14,7 @@ public class Plant : Item
 
     public Plant()
     {
-        level = 0;
+        level = 0; //Level is 0 at first.
 
         //Randomize plant type
         int randType = Random.Range(0, 4);
@@ -39,7 +39,7 @@ public class Plant : Item
 
     }
 
-    void LevelUp()
+    public void LevelUp()
     {
         if(level < maxLevel)
         {

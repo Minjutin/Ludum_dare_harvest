@@ -70,7 +70,7 @@ public class TileManager : MonoBehaviour
                 {
                     // It's empty
                     // -> Put a random tile there
-                    SetRandomTileAt(x, y);
+                    //SetRandomTileAt(x, y);            // DEACTIVATED
                 }
             }
         }
@@ -112,23 +112,28 @@ public class TileManager : MonoBehaviour
 
     public void SetNewTileAt(tileType type, int x, int y)
     {
+        Vector3 pos = new Vector3(x, 0, y);
+
 
         // FERTILE
         if (type == tileType.fertile_0)
         {
             FertileTile fTile = new FertileTile(Enums.Fertility.F0);
+            fTile.position = pos;
             tileArray[x, y] = fTile;
             painter.PaintTileAt(x, y, fTile);
         }
         else if (type == tileType.fertile_1)
         {
             FertileTile fTile = new FertileTile(Enums.Fertility.F1);
+            fTile.position = pos;
             tileArray[x, y] = fTile;
             painter.PaintTileAt(x, y, fTile);
         }
         else if (type == tileType.fertile_2)
         {
             FertileTile fTile = new FertileTile(Enums.Fertility.F2);
+            fTile.position = pos;
             tileArray[x, y] = fTile;
             painter.PaintTileAt(x, y, fTile);
         }
@@ -137,29 +142,35 @@ public class TileManager : MonoBehaviour
         else if (type == tileType.water)
         {
             WaterTile wTile = new WaterTile();
+            wTile.position = pos;
             tileArray[x, y] = wTile;
-            painter.PaintTileAt(x, y, wTile);
+            //painter.PaintTileAt(x, y, wTile); // Already has a tile
         }
 
         // SACRIFICE
         else if (type == tileType.sacrifice)
         {
             SacrificeTile sTile = new SacrificeTile(Enums.God.God1);    // TODO: Different Gods
+            sTile.position = pos;
             tileArray[x, y] = sTile;
-            painter.PaintTileAt(x, y, sTile);
+            //painter.PaintTileAt(x, y, sTile); // Already has a tile
         }
     }
 
     private void SetRandomTileAt(int x, int y)
     {
+        Vector3 pos = new Vector3(x, 0, y);
+
         // Set a random tile in memory
-        int random = Random.Range(0, 4);
+        int random = Random.Range(0, 3);
 
         // FERTILE
         if (random == 0)
         {
             // Create the new Tile
             FertileTile fTile = new FertileTile(Enums.Fertility.F0);
+            // Set the position for the tile
+            fTile.position = pos;
             // Set the tile to memory
             tileArray[x, y] = fTile;
             // Paint
@@ -169,12 +180,14 @@ public class TileManager : MonoBehaviour
         {
             FertileTile fTile = new FertileTile(Enums.Fertility.F1);
             tileArray[x, y] = fTile;
+            fTile.position = pos;
             painter.PaintTileAt(x, y, fTile);
         }
         else if (random == 2)
         {
             FertileTile fTile = new FertileTile(Enums.Fertility.F2);
             tileArray[x, y] = fTile;
+            fTile.position = pos;
             painter.PaintTileAt(x, y, fTile);
         }
 
@@ -182,6 +195,7 @@ public class TileManager : MonoBehaviour
         else if (random == 3)
         {
             WaterTile wTile = new WaterTile();
+            wTile.position = pos;
             tileArray[x, y] = wTile;
             painter.PaintTileAt(x, y, wTile);
         }
@@ -190,7 +204,7 @@ public class TileManager : MonoBehaviour
 
 
     #region Tile INTERACTION
-    public TileDaddy GetTilePlayerIsOn(Vector3 playerPos)
+    public TileDaddy GetTileCreatureIsOn(Vector3 playerPos)
     {
         // ATTENTION!
         // Grid needs to be positioned -0.5 from origo in both X and Z axis
