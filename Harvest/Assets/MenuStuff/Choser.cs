@@ -16,8 +16,8 @@ public class Choser : MonoBehaviour
     int p1Hovering; //current god
     int p2Hovering;
 
-    int p1chosen;
-    int p2chosen;
+    int p1chosen = -1;
+    int p2chosen = -1;
 
     [SerializeField] GameObject[] gods = new GameObject[4];
 
@@ -40,7 +40,7 @@ public class Choser : MonoBehaviour
         //----------------------------PLAYER 1 -------------------------
 
         //If there is no god for player 1, you can move or lock a god
-        if (p1chosen == 0)
+        if (p1chosen == -1)
         {
             //Player1 MOVEMENT
             if (Input.GetKeyDown(KeyCode.A))
@@ -64,11 +64,11 @@ public class Choser : MonoBehaviour
         }
 
         //If there is god, you can remove your choice by another button.
-        else if(p1chosen != 0)
+        else if(p1chosen != -1)
         {
             if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E))
             {
-                p1chosen = 0;
+                p1chosen = -1;
             }
         }
 
@@ -76,7 +76,7 @@ public class Choser : MonoBehaviour
         //-----------------------------PLAYER 2 ---------------------
 
         //If there is no god for player 2, you can move or lock a god
-        if (p2chosen == 0)
+        if (p2chosen == -1)
         {
             //Move player
             if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -99,17 +99,17 @@ public class Choser : MonoBehaviour
         }
 
         //If there is god, you can remove your choice by another button.
-        else if (p2chosen != 0)
+        else if (p2chosen != -1)
         {
             if (Input.GetKeyDown(KeyCode.RightControl) || Input.GetKeyDown(KeyCode.RightShift))
             {
-                p2chosen = 0;
+                p2chosen = -1;
             }
         }
 
 
         //Start game when both god are chosen
-        if (p2chosen!=0 && p1chosen !=0)
+        if (p2chosen!=-1 && p1chosen !=-1)
         {
             Statics.p1God = editGod(p1chosen);
             Statics.p2God = editGod(p2chosen);
@@ -139,7 +139,7 @@ public class Choser : MonoBehaviour
 
         //If too many right
         if (p2Hovering > 3)
-            p2Hovering = 1;
+            p2Hovering = 0;
 
         //If too many left
         if (p2Hovering < 0)
