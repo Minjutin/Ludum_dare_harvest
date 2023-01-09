@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f78bc2567bad8a54dae357002a80561e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridRows: 30
-  gridColumns: 30
+  gridRows: 16
+  gridColumns: 16
 --- !u!114 &1684091709186877950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,6 +73,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 53f9213a8033ba84c88219c645327e5c, type: 2}
   - {fileID: 11400000, guid: 7876912d41c2a5e489bd61d5aad4991f, type: 2}
   - {fileID: 11400000, guid: bb2b4a8637bc04c4fae849d8738fa557, type: 2}
+  - {fileID: 11400000, guid: a38832d72acd330458c8adcc748a5c7a, type: 2}
   waterTile:
   - {fileID: 11400000, guid: 6c07abb28e49bc745817938180ed200d, type: 2}
   - {fileID: 11400000, guid: 85fb20e40d7d8704583b088318ccf92d, type: 2}

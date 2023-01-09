@@ -381,6 +381,7 @@ GameObject:
   - component: {fileID: 749351548}
   - component: {fileID: 749351547}
   - component: {fileID: 749351546}
+  - component: {fileID: 749351549}
   m_Layer: 0
   m_Name: Ram
   m_TagString: Untagged
@@ -430,7 +431,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &749351548
 MonoBehaviour:
@@ -446,10 +447,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 5
   aggroSpeed: 10
+  changeDirectionFrequency: 2
   timeBetweenPoops: 5
   aggroRadius: 3
+  aggroTrigger: {fileID: 749351549}
   knockBackPower: 5
   timeBeforePacification: 5
+--- !u!135 &749351549
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749351544}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &812027211 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 331805423267892713, guid: f6dbf047b17299842afdf32e19ee1303, type: 3}
@@ -1043,14 +1059,38 @@ PrefabInstance:
       propertyPath: tilemap
       value: 
       objectReference: {fileID: 1039124301}
-    - target: {fileID: 1684091709186877951, guid: fc376733f0778e144811a696362f18d5, type: 3}
-      propertyPath: gridRows
-      value: 16
+    - target: {fileID: 1684091709186877950, guid: fc376733f0778e144811a696362f18d5, type: 3}
+      propertyPath: fertile_0.Array.size
+      value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 1684091709186877951, guid: fc376733f0778e144811a696362f18d5, type: 3}
-      propertyPath: gridColumns
-      value: 16
-      objectReference: {fileID: 0}
+    - target: {fileID: 1684091709186877950, guid: fc376733f0778e144811a696362f18d5, type: 3}
+      propertyPath: fertile_0.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: a38832d72acd330458c8adcc748a5c7a, type: 2}
+    - target: {fileID: 1684091709186877950, guid: fc376733f0778e144811a696362f18d5, type: 3}
+      propertyPath: fertile_0.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: a38832d72acd330458c8adcc748a5c7a, type: 2}
+    - target: {fileID: 1684091709186877950, guid: fc376733f0778e144811a696362f18d5, type: 3}
+      propertyPath: fertile_0.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 53f9213a8033ba84c88219c645327e5c, type: 2}
+    - target: {fileID: 1684091709186877950, guid: fc376733f0778e144811a696362f18d5, type: 3}
+      propertyPath: fertile_0.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: a38832d72acd330458c8adcc748a5c7a, type: 2}
+    - target: {fileID: 1684091709186877950, guid: fc376733f0778e144811a696362f18d5, type: 3}
+      propertyPath: fertile_0.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: a38832d72acd330458c8adcc748a5c7a, type: 2}
+    - target: {fileID: 1684091709186877950, guid: fc376733f0778e144811a696362f18d5, type: 3}
+      propertyPath: fertile_0.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: a38832d72acd330458c8adcc748a5c7a, type: 2}
+    - target: {fileID: 1684091709186877950, guid: fc376733f0778e144811a696362f18d5, type: 3}
+      propertyPath: fertile_0.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: a38832d72acd330458c8adcc748a5c7a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc376733f0778e144811a696362f18d5, type: 3}
 --- !u!1001 &3707313969206939463
