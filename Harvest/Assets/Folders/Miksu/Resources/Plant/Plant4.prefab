@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 07e316c1b2b4932498ef21d9f49cf6da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 00f13a655a3a3074f846261894dfee7e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 8841140073590237339}
   - component: {fileID: 5740362070417877558}
   m_Layer: 0
-  m_Name: Plant
+  m_Name: Plant4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -175,6 +175,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderer: {fileID: 151442184141332879}
-  level1: {fileID: 21300000, guid: 07e316c1b2b4932498ef21d9f49cf6da, type: 3}
-  level2: {fileID: 21300000, guid: 130e5f68a0d5a4443b5e7bd604d5bf59, type: 3}
-  level3: {fileID: 21300000, guid: 9a11373a354141f42bd1166f39549ca4, type: 3}
+  level1: {fileID: 21300000, guid: 00f13a655a3a3074f846261894dfee7e, type: 3}
+  level2: {fileID: 21300000, guid: 7373c0efb3376c648a77039b24ca3354, type: 3}
+  level3: {fileID: 21300000, guid: 7f7d055c6cfcc1440932ad8b74425df8, type: 3}
