@@ -8,24 +8,30 @@ public class PlayerSpriteHolder : MonoBehaviour
     SpriteRenderer renderer;
 
 
-    [Header("Bag Lad Sprites")]
-    [SerializeField] Sprite[] bagLad;
+    [Header("Bag Lad Animations")]
+    [SerializeField] GameObject[] bagLad_animations;
 
     [Header("Ram Sprites")]
-    [SerializeField] Sprite[] ram;
+    [SerializeField] GameObject[] ramGal_animations;
 
     [Header("Scare Crow Sprites")]
-    [SerializeField] Sprite[] crow;
+    [SerializeField] GameObject[] scareCrow_animations;
 
     [Header("Water Boi Sprites")]
-    [SerializeField] Sprite[] waterBoi;
+    [SerializeField] GameObject[] waterBoi_animations;
 
     enum character
     {
         bagLad, ram, scareCrow, waterBoi
     }
     character currentCharacter;
-    Sprite[] currentSprites;
+    GameObject[] characterAnimations;
+    enum aniState
+    {
+        idle, walkBack, walkFront
+    }
+    GameObject[] animationsInUse;
+    GameObject currentAnimation;
 
     public void SetPlayerSprites(Enums.God godType)
     {
@@ -34,27 +40,27 @@ public class PlayerSpriteHolder : MonoBehaviour
             case Enums.God.God1:
 
                 currentCharacter = character.bagLad;
-                currentSprites = bagLad;
+                characterAnimations = bagLad_animations;
 
                 break;
             // =========================
             case Enums.God.God2:
                 currentCharacter = character.ram;
-                currentSprites = ram;
+                characterAnimations = ramGal_animations;
 
                 break;
 
             // =========================
             case Enums.God.God3:
                 currentCharacter = character.scareCrow;
-                currentSprites = crow;
+                characterAnimations = scareCrow_animations;
 
                 break;
 
             // =========================
             case Enums.God.God4:
                 currentCharacter = character.waterBoi;
-                currentSprites = waterBoi;
+                characterAnimations = waterBoi_animations;
 
                 break;
 
@@ -64,13 +70,38 @@ public class PlayerSpriteHolder : MonoBehaviour
                 break;
         }
 
+        InitializeAnimations();
+
         //StartCoroutine(IdleAnimation());
+    }
+
+    private void InitializeAnimations()
+    {
+        int i = 0;
+        foreach(GameObject animation in characterAnimations)
+        {
+            // Initialize and turn off
+            GameObject newAnimation = Instantiate(characterAnimations[i], transform);
+
+            animationsInUse[i] = newAnimation;
+
+            // Turn them off
+            newAnimation.SetActive(false);
+            Debug.Log("Cycle");
+            i++;
+        }
+
+        // Turn idle animation back on
+        animationsInUse[2].SetActive(true);
     }
 
     private void Awake()
     {
         // Get the SpriteRenderer
-        renderer = GetComponent<SpriteRenderer>();
+        //renderer = GetComponent<SpriteRenderer>();
+
+        // TEST
+        SetPlayerSprites(Enums.God.God1);
     }
 
 
@@ -81,7 +112,7 @@ public class PlayerSpriteHolder : MonoBehaviour
             yield return new WaitForSeconds(1f);
 
             // Cycle idle sprites
-            renderer.sprite = ram[Random.Range(0, ram.Length)];
+            //currentAnimations[Random.Range(0, ram.Length)];
         }
     }
 
