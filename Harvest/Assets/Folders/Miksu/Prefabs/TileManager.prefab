@@ -74,6 +74,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2b9e9aeadffaafb468c33922871679c8, type: 2}
   - {fileID: 11400000, guid: 654df671fd19d924588f4bac8b23e596, type: 2}
   - {fileID: 11400000, guid: 31bb356495f021a4a957db155b2e8a8d, type: 2}
+  - {fileID: 11400000, guid: 9d48afc66473e384c821c34ba11535d5, type: 2}
   waterTile:
   - {fileID: 11400000, guid: 9d48afc66473e384c821c34ba11535d5, type: 2}
   - {fileID: 11400000, guid: 5c6c160533dba244b9794ad32a01f171, type: 2}
