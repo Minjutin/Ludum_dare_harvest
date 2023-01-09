@@ -204,7 +204,7 @@ public class TileManager : MonoBehaviour
 
 
     #region Tile INTERACTION
-    public TileDaddy GetTilePlayerIsOn(Vector3 playerPos)
+    public TileDaddy GetTileCreatureIsOn(Vector3 playerPos)
     {
         // ATTENTION!
         // Grid needs to be positioned -0.5 from origo in both X and Z axis

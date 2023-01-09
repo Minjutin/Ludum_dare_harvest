@@ -102,7 +102,7 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             playerInteraction.InteractionButtonPressed(
-                                    tileManager.GetTilePlayerIsOn(player.transform.position));
+                                    tileManager.GetTileCreatureIsOn(player.transform.position));
                                     // Above gets the tile
 
         }
