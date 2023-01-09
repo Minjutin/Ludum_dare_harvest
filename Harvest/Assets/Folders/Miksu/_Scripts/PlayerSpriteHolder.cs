@@ -9,28 +9,28 @@ public class PlayerSpriteHolder : MonoBehaviour
 
 
     [Header("Bag Lad Animations")]
-    [SerializeField] GameObject[] bagLad_animations;
+    [SerializeField] List<GameObject> bagLad_animations;
 
     [Header("Ram Sprites")]
-    [SerializeField] GameObject[] ramGal_animations;
+    [SerializeField] List<GameObject> ramGal_animations;
 
     [Header("Scare Crow Sprites")]
-    [SerializeField] GameObject[] scareCrow_animations;
+    [SerializeField] List<GameObject> scareCrow_animations;
 
     [Header("Water Boi Sprites")]
-    [SerializeField] GameObject[] waterBoi_animations;
+    [SerializeField] List<GameObject> waterBoi_animations;
 
     enum character
     {
         bagLad, ram, scareCrow, waterBoi
     }
     character currentCharacter;
-    GameObject[] characterAnimations;
+    List<GameObject> characterAnimations = new List<GameObject>();
     enum aniState
     {
         idle, walkBack, walkFront
     }
-    GameObject[] animationsInUse;
+    List<GameObject> animationsInUse = new List<GameObject>();
     GameObject currentAnimation;
 
     public void SetPlayerSprites(Enums.God godType)
@@ -83,16 +83,15 @@ public class PlayerSpriteHolder : MonoBehaviour
             // Initialize and turn off
             GameObject newAnimation = Instantiate(characterAnimations[i], transform);
 
-            animationsInUse[i] = newAnimation;
+            animationsInUse.Add(newAnimation);
 
             // Turn them off
             newAnimation.SetActive(false);
-            Debug.Log("Cycle");
             i++;
         }
 
         // Turn idle animation back on
-        animationsInUse[2].SetActive(true);
+        animationsInUse[0].SetActive(true);
     }
 
     private void Awake()
@@ -101,7 +100,7 @@ public class PlayerSpriteHolder : MonoBehaviour
         //renderer = GetComponent<SpriteRenderer>();
 
         // TEST
-        SetPlayerSprites(Enums.God.God1);
+        //SetPlayerSprites(Enums.God.God1);
     }
 
 
