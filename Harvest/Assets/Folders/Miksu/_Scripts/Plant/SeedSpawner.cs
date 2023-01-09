@@ -28,7 +28,7 @@ public class SeedSpawner : MonoBehaviour
         if (tile.HasItem()) { return false; }
 
         // Cancel if fertility is too low
-        if (tile.fertilityLevel == Enums.Fertility.F0) { return false; }
+        //if (tile.fertilityLevel == Enums.Fertility.F0) { return false; }
 
         Vector3 pos = new Vector3(x, 0, y);
 
