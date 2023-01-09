@@ -70,7 +70,7 @@ public class TileManager : MonoBehaviour
                 {
                     // It's empty
                     // -> Put a random tile there
-                    SetRandomTileAt(x, y);
+                    //SetRandomTileAt(x, y);            // DEACTIVATED
                 }
             }
         }
