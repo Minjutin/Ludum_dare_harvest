@@ -9,9 +9,16 @@ public class Constants : MonoBehaviour
     [Header("Speed level speeds. Element 0=fastest, Element 3=slowest")]
     public float[] speedLevels = new float[4];
 
-
+    
     [Header("Points")]
-    public int wantedPoints;
-    public int favoritePoints;
-    public int fruitPoints, seedPoints, manurePoints;
+    public int wantedPoints = 6;
+    public int favoritePoints = 3;
+    public int fruitPoints =1, seedPoints, manurePoints=-5;
+
+    [Header("Normal plant grow speed (as seconds)")]
+    public float growSpeed = 5;
+
+    [Header("Grow time multipler")]
+    public float f1Multiple = 0.5f;    
+
 }
