@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject selectionScreen;
 
     // Start is called before the first frame update
-    void ExitGame()
+    public void ExitGame()
     {
         Application.Quit();
     }
