@@ -70,5 +70,10 @@ public class FertileTile : TileDaddy
         // Give Plant a reference to this tile
         itemGO.GetComponent<PlantGrowth>().StartGrow(this);
     }
+
+    public void SpawnManure(GameObject manure)
+    {
+        itemGO = manure;
+    }
     #endregion
 }
