@@ -198,6 +198,8 @@ MonoBehaviour:
   fruitPoints: 0
   seedPoints: 0
   manurePoints: 0
+  growSpeed: 5
+  f1Multiple: 0.5
 --- !u!4 &544824966
 Transform:
   m_ObjectHideFlags: 0

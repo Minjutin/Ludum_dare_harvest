@@ -14,6 +14,12 @@ public class PlantGrowth : MonoBehaviour
 
     bool isWatered = false;
 
+    [Header("Sprites")]
+    [SerializeField] SpriteRenderer renderer;
+    [SerializeField] Sprite level1;
+    [SerializeField] Sprite level2;
+    [SerializeField] Sprite level3;
+
     public void StartGrow(FertileTile tiley)
     {
         tile = tiley;
@@ -56,13 +62,16 @@ public class PlantGrowth : MonoBehaviour
             if (growTimeLeft <= (growTime/Plant.maxLevel) && plant.level == 0)
             {
                 plant.LevelUp(); //Level up to level 2
-                //TODO change the sprite
+                //Change the sprite
+                renderer.sprite = level2; if (!level2) { Debug.LogWarning("Sprite not assigned."); }
             }
             
             if (growTimeLeft <= 0)
             {
-                plant.LevelUp();          
-                //TODO change the sprite
+                plant.LevelUp();
+                //Change the sprite
+                renderer.sprite = level3; if (!level3) { Debug.LogWarning("Sprite not assigned."); }
+
                 break;
             }
 

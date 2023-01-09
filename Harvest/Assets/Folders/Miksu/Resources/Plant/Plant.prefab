@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2002091459026612465}
   - component: {fileID: 151442184141332879}
   m_Layer: 0
-  m_Name: eyeplant 1
+  m_Name: Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,3 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 593f4a9754e51ed44a9d53a7fb896aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  renderer: {fileID: 151442184141332879}
+  level1: {fileID: 21300000, guid: 07e316c1b2b4932498ef21d9f49cf6da, type: 3}
+  level2: {fileID: 21300000, guid: 130e5f68a0d5a4443b5e7bd604d5bf59, type: 3}
+  level3: {fileID: 21300000, guid: 9a11373a354141f42bd1166f39549ca4, type: 3}
