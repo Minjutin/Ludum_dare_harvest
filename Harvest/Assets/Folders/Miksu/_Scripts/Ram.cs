@@ -137,14 +137,14 @@ public class Ram : MonoBehaviour
     private void CheckDistanceToLake()
     {
         Vector3 difference = (water.gameObject.transform.position - transform.position);
-        Debug.Log("Difference: " + difference);
+        //Debug.Log("Difference: " + difference);
         float distance = difference.magnitude;
-        Debug.Log("Distance: " + distance);
+        //Debug.Log("Distance: " + distance);
 
         // If too much -> Turn TOWARDS lake
         if (distance >= maxDistanceFromLake)
         {
-            Debug.Log("Ram TOO FAR from lake");
+            //Debug.Log("Ram TOO FAR from lake");
             Debug.DrawLine(transform.position, water.gameObject.transform.position, Color.red, 2f);
             moveDirection = difference.normalized;
         }
@@ -152,7 +152,7 @@ public class Ram : MonoBehaviour
         // If too close -> Turn AWAY from lake
         else if (distance <= minDistanceFromLake)
         {
-            Debug.Log("Ram TOO CLOSE from lake");
+            //Debug.Log("Ram TOO CLOSE from lake");
             Debug.DrawLine(transform.position, water.gameObject.transform.position, Color.blue, 2f);
             moveDirection = -difference.normalized;
         }
