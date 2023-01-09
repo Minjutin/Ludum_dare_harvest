@@ -8,7 +8,6 @@ public class Constants : MonoBehaviour
 
     [Header("Speed level speeds. Element 0=fastest, Element 3=slowest")]
     public float[] speedLevels = new float[4];
-
     
     [Header("Points")]
     public int wantedPoints = 6;
@@ -19,6 +18,14 @@ public class Constants : MonoBehaviour
     public float growSpeed = 5;
 
     [Header("Grow time multipler")]
-    public float f1Multiple = 0.5f;    
+    public float f1Multiple = 0.5f;
+
+
+    public static float cameraRotation;
+
+    private void Awake()
+    {
+        cameraRotation = Camera.main.transform.eulerAngles.x;
+    }
 
 }
