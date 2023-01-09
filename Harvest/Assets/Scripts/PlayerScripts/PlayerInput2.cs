@@ -32,12 +32,13 @@ public class PlayerInput2 : MonoBehaviour
         tileManager = FindObjectOfType<TileManager>();
 
         // Get Player
-        playerMovement = FindObjectOfType<PlayerMovement>();
-        player = playerMovement.gameObject;
+        player = GameObject.Find("Player2");
         if (!player) { Debug.Log("No Player Found!"); }
 
+        playerMovement = player.GetComponent<PlayerMovement>();
+
         // Find other references
-        playerInteraction = FindObjectOfType<PlayerInteraction>();
+        playerInteraction = player.GetComponent<PlayerInteraction>();
     }
 
     private void Update()
@@ -70,19 +71,19 @@ public class PlayerInput2 : MonoBehaviour
 
         #region Keypress detection
         // Check W / Up
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.UpArrow))
         { ws_input += 1; }
 
         // Check S / Down
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.DownArrow))
         { ws_input += -1; }
 
         // Check A / Left
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.LeftArrow))
         { ad_input += -1; }
 
         // Check D / Right
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.RightArrow))
         { ad_input += 1; }
         #endregion
 
@@ -97,7 +98,7 @@ public class PlayerInput2 : MonoBehaviour
     private void GetInteractionInputs()
     {
         // Detect Keypress
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.RightControl))
         {
             playerInteraction.InteractionButtonPressed(
                                     tileManager.GetTilePlayerIsOn(player.transform.position));
@@ -109,7 +110,7 @@ public class PlayerInput2 : MonoBehaviour
     private void GetInventoryInput()
     {
         // Detect Keypress
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.RightShift))
         {
             // Change Inventory slot
             playerInteraction.ChangeSlot();

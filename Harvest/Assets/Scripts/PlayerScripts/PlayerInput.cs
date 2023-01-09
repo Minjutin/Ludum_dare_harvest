@@ -32,12 +32,13 @@ public class PlayerInput : MonoBehaviour
         tileManager = FindObjectOfType<TileManager>();
 
         // Get Player
-        playerMovement = FindObjectOfType<PlayerMovement>();
-        player = playerMovement.gameObject;
+        player = GameObject.Find("Player");
         if (!player) { Debug.Log("No Player Found!"); }
 
+        playerMovement = player.GetComponent<PlayerMovement>();
+
         // Find other references
-        playerInteraction = FindObjectOfType<PlayerInteraction>();
+        playerInteraction = player.GetComponent<PlayerInteraction>();
     }
 
     private void Update()
