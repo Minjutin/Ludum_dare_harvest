@@ -70,3 +70,6 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Harvest/Assets/Art/Void/void_0002.png.meta
+Harvest/Assets/Art/Void/void_0001.png.meta
+Harvest/Assets/Art/Void/void_0000.png.meta
