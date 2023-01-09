@@ -20,6 +20,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] Enums.FruitType wantedFruit;
 
     public int playerNumber;
+    PlayerSpriteHolder playerSprite;
 
     public bool isWet;
 
@@ -44,6 +45,14 @@ public class PlayerStats : MonoBehaviour
                 god = Statics.p2God;
                 break;
         }
+    }
+
+    private void Start()
+    {
+        // Set the Correct graphics for Player
+        playerSprite = GetComponent<PlayerInput>().playerMovement.graphics;
+        if (!playerSprite) { Debug.LogWarning("Can't find PlayerSpriteHolder for " + gameObject.name); }
+        playerSprite.SetPlayerSprites(god);
     }
 
     // Update is called once per frame

@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
 {
     #region PROPERTIES
     Rigidbody rb;
+    [HideInInspector]
+    public PlayerSpriteHolder graphics;
 
 
     public float playerMoveSpeed = 5f;
@@ -27,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        graphics = GetComponentInChildren<PlayerSpriteHolder>();
     }
     #endregion
 
