@@ -16,11 +16,16 @@ public class Ram : MonoBehaviour
     [SerializeField] float walkSpeed = 5f;
     [SerializeField] float aggroSpeed = 10f;
 
+    [Header("Moving")]
+    [SerializeField] float changeDirectionFrequency = 2f;
+
     [Header("Pooping")]
     [SerializeField] float timeBetweenPoops = 5f;
 
     [Header("RAMMING")]
+    bool pacifist = true;
     [SerializeField] float aggroRadius = 3f;
+    [SerializeField] SphereCollider aggroTrigger;
     [SerializeField] float knockBackPower = 5f;
     [Space]
     [SerializeField] float timeBeforePacification = 5f;
@@ -31,8 +36,10 @@ public class Ram : MonoBehaviour
     {
         tileManager = FindObjectOfType<TileManager>();
 
-        if (tileManager)
-        TryToPoop();
+        aggroTrigger.radius = aggroRadius;
+
+        StartManureTimer();
+        StartMoving();
     }
 
 
@@ -57,6 +64,11 @@ public class Ram : MonoBehaviour
         }
     }
 
+
+    public void StartManureTimer()
+    {
+        StartCoroutine(ManureTimer());
+    }
     IEnumerator ManureTimer()
     {
         while (true)
@@ -65,6 +77,41 @@ public class Ram : MonoBehaviour
 
             TryToPoop();
         }
+    }
+    #endregion
+
+    #region Moving
+    private void StartMoving()
+    {
+        StartCoroutine(MovingCoroutine());
+    }
+
+    IEnumerator MovingCoroutine()
+    {
+        
+        while (pacifist)
+        {
+            // Pick a direction
+            Vector3 randomDir = ChangeDirection();
+
+            ChangeDirection();
+
+            yield return new WaitForSeconds(changeDirectionFrequency);
+
+        }
+    }
+
+    private Vector3 ChangeDirection()
+    {
+        transform.RotateAround(transform.position, Vector3.up, Random.Range(-180, 180));
+        Quaternion rotation = transform.rotation;
+        // Reset GO rotation
+        //transform.rotation = Quaternion.identity;
+
+        Vector3 direction = rotation * Vector3.forward;
+        direction.Normalize();
+
+        return direction;
     }
     #endregion
 
