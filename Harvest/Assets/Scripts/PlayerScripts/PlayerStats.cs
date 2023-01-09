@@ -39,7 +39,7 @@ public class PlayerStats : MonoBehaviour
         switch (playerNumber)
         {
             case 1:
-                god = Statics.p1God;
+                god = Enums.God.God3;
                 break;
             case 2:
                 god = Statics.p2God;
@@ -85,6 +85,7 @@ public class PlayerStats : MonoBehaviour
             if (fruit.Type == wantedFruit) 
             {
                 points += constants.wantedPoints;
+                
             }
 
             //Fruits is god's favorite type
@@ -118,4 +119,6 @@ public class PlayerStats : MonoBehaviour
 
         Debug.Log("Points now = "+points);
     } //Give item to the God.
+
+    //----------------------- POINTS ----------------------------------------
 }
