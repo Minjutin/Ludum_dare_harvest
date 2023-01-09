@@ -19,6 +19,8 @@ public class PlayerStats : MonoBehaviour
     [Header("Wanted plant")]
     [SerializeField] Enums.FruitType wantedFruit;
 
+    public int playerNumber;
+
     public bool isWet;
 
     public Enums.God god;
@@ -31,6 +33,17 @@ public class PlayerStats : MonoBehaviour
     {
         constants = FindObjectOfType<Constants>(); //Find constants
         isWet = false;
+
+        //Fetch god from the statics.
+        switch (playerNumber)
+        {
+            case 1:
+                god = Statics.p1God;
+                break;
+            case 2:
+                god = Statics.p2God;
+                break;
+        }
     }
 
     // Update is called once per frame
