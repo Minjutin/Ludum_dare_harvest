@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9281fb7760fcb92409b7befb5012b567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
+  playerController: {fileID: 7865131342396249239, guid: 12ecbcd071a655349a20aea2ca4b5707, type: 3}
 --- !u!114 &6655890661115276800
 MonoBehaviour:
   m_ObjectHideFlags: 0

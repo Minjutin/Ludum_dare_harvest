@@ -50,7 +50,11 @@ public class PlayerStats : MonoBehaviour
     private void Start()
     {
         // Set the Correct graphics for Player
-        playerSprite = GetComponent<PlayerInput>().playerMovement.graphics;
+        if(playerNumber == 1)
+            playerSprite = GetComponent<PlayerInput>().playerMovement.graphics;
+        if(playerNumber == 2)
+            playerSprite = GetComponent<PlayerInput2>().playerMovement.graphics;
+
         if (!playerSprite) { Debug.LogWarning("Can't find PlayerSpriteHolder for " + gameObject.name); }
         playerSprite.SetPlayerSprites(god);
     }

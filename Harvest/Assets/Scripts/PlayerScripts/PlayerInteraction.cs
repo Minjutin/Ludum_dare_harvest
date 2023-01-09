@@ -24,12 +24,6 @@ public class PlayerInteraction : MonoBehaviour
         stats = playerController.GetComponent<PlayerStats>();
     }
 
-    private void Start()
-    {
-        //TEST
-        inventory.AddItem(new Manure());
-    }
-
     #region Button detection
 
     //If interaction button has been pressed.
