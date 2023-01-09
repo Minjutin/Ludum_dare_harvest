@@ -19,7 +19,6 @@ public class Choser : MonoBehaviour
     void Update()
     {
         
-        if()
 
     }
 }
