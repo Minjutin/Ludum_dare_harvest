@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInput2 : MonoBehaviour
 {
     #region PROPERTIES
 
@@ -100,7 +100,7 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             playerInteraction.InteractionButtonPressed(
-                                    tileManager.GetTileCreatureIsOn(player.transform.position));
+                                    tileManager.GetTilePlayerIsOn(player.transform.position));
                                     // Above gets the tile
 
         }
