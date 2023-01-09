@@ -37,28 +37,28 @@ public class PlayerSpriteHolder : MonoBehaviour
     {
         switch (godType)
         {
-            case Enums.God.God1:
+            case Enums.God.God4:
 
                 currentCharacter = character.bagLad;
                 characterAnimations = bagLad_animations;
 
                 break;
             // =========================
-            case Enums.God.God2:
+            case Enums.God.God3:
                 currentCharacter = character.ram;
                 characterAnimations = ramGal_animations;
 
                 break;
 
             // =========================
-            case Enums.God.God3:
+            case Enums.God.God1:
                 currentCharacter = character.scareCrow;
                 characterAnimations = scareCrow_animations;
 
                 break;
 
             // =========================
-            case Enums.God.God4:
+            case Enums.God.God2:
                 currentCharacter = character.waterBoi;
                 characterAnimations = waterBoi_animations;
 
