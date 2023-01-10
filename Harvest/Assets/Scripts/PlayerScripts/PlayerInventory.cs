@@ -10,12 +10,30 @@ public class PlayerInventory : MonoBehaviour
     //How many inventory items.
     const int inventorySize = 3;
 
+    GameObject inventory;
+    GameObject[] inventorySlots = new GameObject[3];
+    GameObject[] items = new GameObject[3];
+    Object[] sprites;
+
     //Initialize
     PlayerStats stats;
 
-    void Awake()
+    void Start()
     {
         stats = this.GetComponent<PlayerStats>();
+
+        inventory = this.GetComponent<PlayerInput>().player.transform.Find("Graphics").transform.Find("Inventory").gameObject;
+        inventorySlots[0] = inventory.transform.Find("Slot1").gameObject;
+        inventorySlots[1] = inventory.transform.Find("Slot2").gameObject;
+        inventorySlots[2] = inventory.transform.Find("Slot3").gameObject;
+
+        for(int i = 0; i<inventorySize; i++)
+        {
+            items[i] = inventorySlots[i].transform.Find("Item").gameObject;
+        }
+
+        sprites = Resources.LoadAll("InventorySprites", typeof(Sprite));
+
     }
 
     //-------------------------------------------------------------
@@ -49,8 +67,37 @@ public class PlayerInventory : MonoBehaviour
                 if (!ThereIsItem(i)) //Find the first array placement with no element and add the item.
                 {
                     inventoryItems[i] = item; //add item
+
+                    //Change sprite
+                    Sprite newSprite = sprites[0] as Sprite;
+
+                    #region What item
+                    if (item is Fruit)
+                    {
+                        Fruit fruit = item as Fruit;
+                        if(fruit.Type == Enums.FruitType.Fruit1)
+                            newSprite = sprites[0] as Sprite;
+                        if (fruit.Type == Enums.FruitType.Fruit2)
+                            newSprite = sprites[1] as Sprite;
+                        if (fruit.Type == Enums.FruitType.Fruit3)
+                            newSprite = sprites[2] as Sprite;
+                        if (fruit.Type == Enums.FruitType.Fruit4)
+                            newSprite = sprites[3] as Sprite;
+                    }
+                    else if(item is Manure)
+                        newSprite = sprites[4] as Sprite;
+                    else if(item is Seed)
+                        newSprite = sprites[5] as Sprite;
+                    else
+                    {
+                        Debug.LogWarning("Item is not a known inventory item");
+                    }
+                    #endregion
+
+                    items[i].GetComponent<SpriteRenderer>().sprite = newSprite;
+
                     stats.ChangeSpeed(ItemsAmount()); //change speed
-                    PrintInventory();
+                    //PrintInventory();
                     break;
                 }
             }
@@ -72,8 +119,9 @@ public class PlayerInventory : MonoBehaviour
         if (this.ThereIsItem(slot))
         { 
             inventoryItems[slot] = null; //make the slot null.
+            items[slot].GetComponent<SpriteRenderer>().sprite = null;
             stats.ChangeSpeed(ItemsAmount()); //Change speed.
-            PrintInventory();
+            //PrintInventory();
         }
 
     } //Remove the chosen item in the inventory.
@@ -83,6 +131,7 @@ public class PlayerInventory : MonoBehaviour
         for(int i = 0; i<3; i++)
         {
             inventoryItems[i] = null; //make the slot null.
+            items[i].GetComponent<SpriteRenderer>().sprite = null;
         }
         stats.ChangeSpeed(0);
     }
@@ -126,6 +175,22 @@ public class PlayerInventory : MonoBehaviour
             "Inventory placement " + 2 + ": " + inventoryItems[1]+"\n"+
             "Inventory placement " + 3 + ": " + inventoryItems[2]);
            
+    }
+
+    public void MakeChosen(int slot)
+    {
+        for(int i = 0; i<inventorySize; i++)
+        {
+
+            if (slot == i)
+            {
+                inventorySlots[i].GetComponent<SpriteRenderer>().sprite = sprites[7] as Sprite;
+            } else
+            {
+                inventorySlots[i].GetComponent<SpriteRenderer>().sprite = sprites[6] as Sprite;
+            }
+        }
+
     }
 }
 

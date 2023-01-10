@@ -107,8 +107,7 @@ public class PlayerInteraction : MonoBehaviour
         switch (chosenSlot)
         {
             case 0:
-                chosenSlot = 1;
-                
+                chosenSlot = 1;                
                 break;
             case 1:
                 chosenSlot = 2;
@@ -121,13 +120,14 @@ public class PlayerInteraction : MonoBehaviour
                 break;
         }
 
+        inventory.MakeChosen(chosenSlot);
         //Debug
-        if (inventory.ThereIsItem(chosenSlot))
-        {
-            Debug.Log("Item is now " + inventory.GetItem(chosenSlot).itemName);
-        }
-        else
-            Debug.Log("Slot " + chosenSlot + " is empty");
+        //if (inventory.ThereIsItem(chosenSlot))
+        //{
+        //    Debug.Log("Item is now " + inventory.GetItem(chosenSlot).itemName);
+        //}
+        //else
+        //    Debug.Log("Slot " + chosenSlot + " is empty");
 
     }
 
