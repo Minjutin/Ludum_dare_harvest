@@ -109,8 +109,9 @@ MonoBehaviour:
   graphics: {fileID: 0}
   playerMoveSpeed: 10
   maxMoveSpeed: 5
-  brakeSpeed: 4
-  brakeDrag: 3
+  brakeDrag: 8
+  moveDrag: 0.5
+  brakeAfterTime: 0.05
 --- !u!54 &1213809489
 Rigidbody:
   m_ObjectHideFlags: 0
