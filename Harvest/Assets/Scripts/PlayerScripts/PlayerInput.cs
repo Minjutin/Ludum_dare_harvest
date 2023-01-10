@@ -49,7 +49,6 @@ public class PlayerInput : MonoBehaviour
 
         //Find player
         playerInt = this.GetComponent<PlayerStats>().playerNumber;
-        Debug.Log(playerInt);
     }
 
     private void Update()

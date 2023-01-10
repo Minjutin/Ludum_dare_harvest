@@ -26,6 +26,8 @@ public class PlayerStats : MonoBehaviour
 
     public Enums.God god;
 
+    public GameObject UIelements;
+
     //Initializing 
 
     Constants constants;
@@ -52,7 +54,27 @@ public class PlayerStats : MonoBehaviour
         }
 
         if (!playerSprite) { Debug.LogWarning("Can't find PlayerSpriteHolder for " + gameObject.name); }
+
+        //Set things
         playerSprite.SetPlayerSprites(god);
+        switch (god) {
+            case Enums.God.God1:
+                UIelements = GameObject.Find("P1");
+                break;
+            case Enums.God.God2:
+                UIelements = GameObject.Find("P2");
+                break;
+            case Enums.God.God3:
+                UIelements = GameObject.Find("P3");
+                break;
+            case Enums.God.God4:
+                UIelements = GameObject.Find("P4");
+                break;
+            default:
+                Debug.Log("There is no god");
+                break;
+
+        }
     }
 
     // Update is called once per frame
@@ -113,8 +135,26 @@ public class PlayerStats : MonoBehaviour
             points += constants.manurePoints;
         }
 
-        Debug.Log("Points now = "+points);
+
+        //Let's display the pointsss.
+        RectTransform rt = UIelements.transform.Find("Fill").GetComponent<RectTransform>();
+        if (points > 30)
+        {
+            points = 30;
+        }
+        rt.sizeDelta = new Vector2((300*points)/constants.winPoints, rt.sizeDelta.y);
+        Debug.Log(points);
     } //Give item to the God.
 
+    public void CheckIfWon()
+    {
+        if (points >= constants.winPoints)
+        {
+            //TODO win condition.
+        }
+    }
+
     //----------------------- POINTS ----------------------------------------
+
+
 }

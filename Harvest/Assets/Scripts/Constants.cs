@@ -20,6 +20,8 @@ public class Constants : MonoBehaviour
     [Header("Grow time multipler")]
     public float f1Multiple = 0.5f;
 
+    [Header("Points to win")]
+    public int winPoints = 30;
 
     public static float cameraRotation;
 
