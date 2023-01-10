@@ -18,9 +18,13 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Braking")]
     [SerializeField]
-    private float brakeSpeed = 4f;
+    private float brakeDrag = 8f;
     [SerializeField]
-    private float brakeDrag = 3f;
+    private float moveDrag = 0.5f;
+    [SerializeField] [Range(0.05f,0.3f)]
+    private float brakeAfterTime = 0.05f;
+    private float timeSinceLastMoveInput = 0f;
+
 
     #endregion
 
@@ -30,18 +34,18 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         graphics = GetComponentInChildren<PlayerSpriteHolder>();
+
+        StartCoroutine(MoveInputChecker());
     }
     #endregion
-
-    private void FixedUpdate()
-    {
-        SetProperDrag();
-    }
 
     // Called from PlayerInputs
     public void MovePlayer(Vector3 moveInput)
     {
         HandleMovement(moveInput);
+
+        // Set the time for MoveInputChecker coroutine
+        timeSinceLastMoveInput = 0f;
     }
 
 
@@ -89,25 +93,31 @@ public class PlayerMovement : MonoBehaviour
     }
     #endregion
 
+    #region DRAG
     // Makes the stopping snappier, less slidier
-    private void SetProperDrag()
+
+    IEnumerator MoveInputChecker()
     {
-        // Check if the speed is under the brake limit
-        if (rb.velocity.magnitude <= brakeSpeed)
+        while(true)
         {
-            // Add Drag
-            //Debug.Log("Braking");
-            rb.drag = brakeDrag;
-        }
-        else
-        {
-            // Normal drag
-            rb.drag = 0.1f;
-            //Debug.Log("Speed: " + rb.velocity.magnitude);
+            yield return new WaitForSeconds(Time.fixedDeltaTime);
+
+            // If there has been enough time from last move input
+            if (timeSinceLastMoveInput < brakeAfterTime)
+            {
+                // Set Free Drag
+                rb.drag = moveDrag;
+
+                // Increment timer
+                timeSinceLastMoveInput += Time.fixedDeltaTime;
+            }
+            else // If TOO MUCH time has passed
+            {
+                // Set heavy drag
+                rb.drag = brakeDrag;
+            }
         }
     }
 
-    // TODO: IEnumerator for checking when
-    //       Player ceases the movement input
-    //       -> Put Drag up after a set time
+    #endregion
 }
