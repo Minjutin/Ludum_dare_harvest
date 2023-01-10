@@ -43,7 +43,10 @@ public class Ram : MonoBehaviour
     GameObject aggroTarget;
 
     [Header("RAMMING")]
+    [SerializeField] float rammingDistance = 1f;
     [SerializeField] float knockBackPower = 5f;
+    [SerializeField] float cooldownTimeAfterRamming = 3f;
+    bool readyToRam = true;
 
 
     #endregion
@@ -118,9 +121,10 @@ public class Ram : MonoBehaviour
 
             if (!aggroed)
             {
+                yield return new WaitForSeconds(changeDirectionFrequency);
+
 
                 // Pick a direction
-
                 moveDirection = ChangeDirection();
                 // Although check distance to lake too
                 CheckDistanceToLake();
@@ -128,7 +132,6 @@ public class Ram : MonoBehaviour
                 // Add some movetime
                 moveTime = Random.Range(minMoveTime, maxMoveTime);
 
-                yield return new WaitForSeconds(changeDirectionFrequency);
             }
             else
             {
@@ -141,7 +144,7 @@ public class Ram : MonoBehaviour
                 // Movetime
                 moveTime = Random.Range(minMoveTime, maxMoveTime);
 
-                yield return new WaitForSeconds(changeDirectionFrequency / 2f); // Divided by two
+                yield return new WaitForSeconds(0.3f);
             }
 
         }
@@ -217,7 +220,6 @@ public class Ram : MonoBehaviour
         }
     }
 
-
     #endregion
 
     #endregion
@@ -239,6 +241,9 @@ public class Ram : MonoBehaviour
 
     private void BeginAggro(GameObject target)
     {
+        // If not ready yet, cancel
+        if (!readyToRam) { return; }
+
         // Set target
         aggroTarget = target;
 
@@ -267,6 +272,9 @@ public class Ram : MonoBehaviour
             // Check if the aggrotime has time left
             if (currentAggroTimeLeft > 0)
             {
+                // Check if close enough to Target
+                //CheckIfTargetWithinRammingDistance(); // Handled by collision?
+
                 // Reduce time
                 currentAggroTimeLeft -= Time.deltaTime;
 
@@ -279,7 +287,7 @@ public class Ram : MonoBehaviour
             else
             {
                 // Aggro has ended..?
-                CheckIfAggroHasEnded();
+                CheckNeedToAggroAgain();
                 break;
             }
 
@@ -288,7 +296,7 @@ public class Ram : MonoBehaviour
         }
     }
 
-    private void CheckIfAggroHasEnded()
+    private void CheckNeedToAggroAgain()
     {
         // If a Player is within radius, reignite aggro
         Collider[] players = Physics.OverlapSphere(transform.position, aggroRadius);
@@ -332,6 +340,97 @@ public class Ram : MonoBehaviour
         //Debug.Log("Aggro has ended..");
         Debug.DrawLine(transform.position, aggroTarget.transform.position, Color.white, 1f);
 
+    }
+    #endregion
+
+    #region RAMMING
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Check if Player
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            // Stun them!
+            //collision.gameObject.GetComponent<PlayerMovement>().GetRammed(GetRamDirection(), knockBackPower);
+
+            // Move the Ram
+            //MoveOnRam(GetRamDirection());
+
+            RamTheTarget();
+        }
+    }
+
+    private void CheckIfTargetWithinRammingDistance()
+    {
+        float distance = (transform.position - aggroTarget.gameObject.transform.position).magnitude;
+
+        // Check if distance is within ramming distance
+        if (distance <= rammingDistance)
+        {
+            // Ram the Player
+            RamTheTarget();
+        }
+    }
+
+    private void RamTheTarget()
+    {
+        Vector3 ramDirection = GetRamDirection();
+
+        // Slam the player
+        aggroTarget.GetComponent<PlayerMovement>().GetRammed(ramDirection, knockBackPower);
+
+        // Move the Ram
+        //MoveOnRam(ramDirection);
+
+        // Enter cooldown
+        StartCoroutine(AfterRammingCooldownTimer());
+    }
+
+    private Vector3 GetRamDirection()
+    {
+        // Get the direction
+        Vector3 ramDirection = (aggroTarget.gameObject.transform.position - transform.position).normalized;
+
+        return ramDirection;
+    }
+
+    private void MoveOnRam(Vector3 ramDirection)
+    {
+        float distance = (transform.position - aggroTarget.gameObject.transform.position).magnitude;
+        Vector3 nextPos = transform.position + -ramDirection * distance * 0.5f;
+        Debug.Log("ramDirection: " + -ramDirection);
+
+        // Move the Ram
+        rb.MovePosition(nextPos);
+        //rb.velocity = nextPos;
+    }
+
+    IEnumerator AfterRammingCooldownTimer()
+    {
+        if (!readyToRam) { yield break; } // Another timer is already active...
+
+        moveTime = 0f;
+
+        readyToRam = false;
+
+        // End chasing
+        EndAggro();
+
+        float cooldownTimeLeft = cooldownTimeAfterRamming;
+
+        while (cooldownTimeLeft > 0f)
+        {
+            cooldownTimeLeft -= Time.deltaTime;
+
+            Debug.DrawLine(transform.position, aggroTarget.transform.position, Color.white, 0.1f);
+
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+
+        // Cooldown has ended
+        readyToRam = true;
+
+        // Check the need to aggro again
+        CheckNeedToAggroAgain();
     }
     #endregion
 }
