@@ -84,19 +84,28 @@ public class PlayerInput : MonoBehaviour
         {
             // Check W / Up
             if (Input.GetKey(KeyCode.W))
-            { ws_input += 1; }
+            {
+                animator.SetBool("Move", true);
+                animator.SetBool("Up", true); ws_input += 1;
+            }
 
             // Check S / Down
             if (Input.GetKey(KeyCode.S))
-            { ws_input += -1; }
+            { animator.SetBool("Move", true); animator.SetBool("Up", false); ws_input += -1; }
 
             // Check A / Left
             if (Input.GetKey(KeyCode.A))
-            { ad_input += -1; }
+            { animator.SetBool("Move", true); ad_input += -1; }
 
             // Check D / Right
             if (Input.GetKey(KeyCode.D))
-            { ad_input += 1; }
+            { animator.SetBool("Move", true); ad_input += 1; }
+
+            if (!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A)
+                && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
+            {
+                animator.SetBool("Up", false); animator.SetBool("Move", false);
+            }
         }
 
         if(playerInt == 2)
@@ -104,21 +113,27 @@ public class PlayerInput : MonoBehaviour
             // Check W / Up
             if (Input.GetKey(KeyCode.UpArrow))
             {
-                ws_input += 1;
-
+                animator.SetBool("Move", true);
+                animator.SetBool("Up", true); ws_input += 1;
             }
 
             // Check S / Down
             if (Input.GetKey(KeyCode.DownArrow))
-            { ws_input += -1; }
+            { animator.SetBool("Move", true); animator.SetBool("Up", false); ws_input += -1; }
 
             // Check A / Left
             if (Input.GetKey(KeyCode.LeftArrow))
-            { ad_input += -1; }
+            { animator.SetBool("Move", true); ad_input += -1; }
 
             // Check D / Right
             if (Input.GetKey(KeyCode.RightArrow))
-            { ad_input += 1; }
+            { animator.SetBool("Move", true); ad_input += 1; }
+
+            if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow)
+                && !Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow)){
+                animator.SetBool("Up", false); animator.SetBool("Move", false);
+            }
+
         }
 
         // Add the input values to the Movement Vector
