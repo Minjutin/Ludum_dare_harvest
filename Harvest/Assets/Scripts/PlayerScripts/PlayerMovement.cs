@@ -121,4 +121,17 @@ public class PlayerMovement : MonoBehaviour
     }
 
     #endregion
+
+    #region Getting Rammed
+    public void GetRammed(Vector3 hitDirection, float hitPower)
+    {
+        // Get pushed towards that direction
+        rb.velocity = hitDirection * hitPower;
+
+        //Debug.Log("Velocity: " + rb.velocity);
+
+        // Get stunned
+        // TODO
+    }
+    #endregion
 }
