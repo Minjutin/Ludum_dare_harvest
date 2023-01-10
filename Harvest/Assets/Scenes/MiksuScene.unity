@@ -1268,6 +1268,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ram
       objectReference: {fileID: 0}
+    - target: {fileID: 777887785633527040, guid: 43ed5edb78b33d74e86ee8ca4a9d0a7d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 777887785633527040, guid: 43ed5edb78b33d74e86ee8ca4a9d0a7d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 777887785633527040, guid: 43ed5edb78b33d74e86ee8ca4a9d0a7d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 777887785633527040, guid: 43ed5edb78b33d74e86ee8ca4a9d0a7d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.359
+      objectReference: {fileID: 0}
+    - target: {fileID: 777887785633527043, guid: 43ed5edb78b33d74e86ee8ca4a9d0a7d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43ed5edb78b33d74e86ee8ca4a9d0a7d, type: 3}
 --- !u!1001 &1684091709094786422
