@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 //This very spagetthis code will show you what you wanna choose.
 
@@ -110,7 +111,7 @@ public class Choser : MonoBehaviour
 
         //Start game when both god are chosen
         if (p2chosen!=-1 && p1chosen !=-1)
-        {
+        {  
             Statics.p1God = editGod(p1chosen);
             Statics.p2God = editGod(p2chosen);
             SceneManager.LoadScene(1);
@@ -120,6 +121,10 @@ public class Choser : MonoBehaviour
 
     public void MoveP1(int direction)
     {
+        if (p1Hovering!= p2Hovering){
+            gods[p1Hovering].GetComponent<Image>().color = new Color(0, 0, 0, 1);
+        }
+
         p1Hovering = p1Hovering + direction;
 
         //If too many right
@@ -131,10 +136,16 @@ public class Choser : MonoBehaviour
             p1Hovering = 3;
 
         p1.transform.position = new Vector3(gods[p1Hovering].transform.position.x, p1.transform.position.y, p1.transform.position.z);
+        gods[p1Hovering].GetComponent<Image>().color = new Color(1, 1, 1, 1);
     }
 
     public void MoveP2(int direction)
     {
+        if (p1Hovering != p2Hovering)
+        {
+            gods[p2Hovering].GetComponent<Image>().color = new Color(0, 0, 0, 1);
+        }
+
         p2Hovering = p2Hovering + direction;
 
         //If too many right
@@ -146,6 +157,7 @@ public class Choser : MonoBehaviour
             p2Hovering = 3;
 
         p2.transform.position = new Vector3(gods[p2Hovering].transform.position.x, p2.transform.position.y, p2.transform.position.z);
+        gods[p2Hovering].GetComponent<Image>().color = new Color(1, 1, 1, 1);
     }
 
     public Enums.God editGod(int what)
