@@ -44,7 +44,7 @@ public class PlayerStats : MonoBehaviour
                 break;
             case 2:
                 god = Statics.p2God;
-                playerSprite = GetComponent<PlayerInput2>().playerMovement.graphics;
+                playerSprite = GetComponent<PlayerInput>().playerMovement.graphics;
                 break;
             default:
                 Debug.Log("Player number " + playerNumber + " is invalid.");

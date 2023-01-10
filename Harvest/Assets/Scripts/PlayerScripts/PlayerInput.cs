@@ -10,11 +10,14 @@ public class PlayerInput : MonoBehaviour
     TileManager tileManager;
 
     [Header("Player GameObject")]
-    [HideInInspector]
-    public GameObject player;
+    [SerializeField]public GameObject player;
+    int playerInt;
 
     [HideInInspector]
     public PlayerMovement playerMovement;
+
+    //Animator controller
+    Animator animator;
 
     // Player Gameplay
     PlayerInteraction playerInteraction;
@@ -34,13 +37,19 @@ public class PlayerInput : MonoBehaviour
         tileManager = FindObjectOfType<TileManager>();
 
         // Get Player
-        player = GameObject.Find("Player");
         if (!player) { Debug.Log("No Player Found!"); }
 
         playerMovement = player.GetComponent<PlayerMovement>();
 
         // Find other references
         playerInteraction = player.GetComponent<PlayerInteraction>();
+
+        //Find animator
+        animator = player.transform.Find("Graphics").transform.Find("SpriteHolder").GetComponent<Animator>();
+
+        //Find player
+        playerInt = this.GetComponent<PlayerStats>().playerNumber;
+        Debug.Log(playerInt);
     }
 
     private void Update()
@@ -71,23 +80,46 @@ public class PlayerInput : MonoBehaviour
         float ws_input = 0;
         float ad_input = 0;
 
-        #region Keypress detection
-        // Check W / Up
-        if (Input.GetKey(KeyCode.W))
-        { ws_input += 1; }
+        if(playerInt == 1)
+        {
+            // Check W / Up
+            if (Input.GetKey(KeyCode.W))
+            { ws_input += 1; }
 
-        // Check S / Down
-        if (Input.GetKey(KeyCode.S))
-        { ws_input += -1; }
+            // Check S / Down
+            if (Input.GetKey(KeyCode.S))
+            { ws_input += -1; }
 
-        // Check A / Left
-        if (Input.GetKey(KeyCode.A))
-        { ad_input += -1; }
+            // Check A / Left
+            if (Input.GetKey(KeyCode.A))
+            { ad_input += -1; }
 
-        // Check D / Right
-        if (Input.GetKey(KeyCode.D))
-        { ad_input += 1; }
-        #endregion
+            // Check D / Right
+            if (Input.GetKey(KeyCode.D))
+            { ad_input += 1; }
+        }
+
+        if(playerInt == 2)
+        {
+            // Check W / Up
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                ws_input += 1;
+
+            }
+
+            // Check S / Down
+            if (Input.GetKey(KeyCode.DownArrow))
+            { ws_input += -1; }
+
+            // Check A / Left
+            if (Input.GetKey(KeyCode.LeftArrow))
+            { ad_input += -1; }
+
+            // Check D / Right
+            if (Input.GetKey(KeyCode.RightArrow))
+            { ad_input += 1; }
+        }
 
         // Add the input values to the Movement Vector
         moveInput = new Vector3(ad_input, 0f, ws_input);
@@ -99,24 +131,53 @@ public class PlayerInput : MonoBehaviour
 
     private void GetInteractionInputs()
     {
-        // Detect Keypress
-        if (Input.GetKeyDown(KeyCode.E))
+        if(playerInt == 1)
         {
-            playerInteraction.InteractionButtonPressed(
-                                    tileManager.GetTileCreatureIsOn(player.transform.position));
-                                    // Above gets the tile
-
+            // Detect Keypress
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                playerInteraction.InteractionButtonPressed(
+                                        tileManager.GetTileCreatureIsOn(player.transform.position));
+                // Above gets the tile
+            }
         }
+
+        if(playerInt == 2)
+        {
+            // Detect Keypress
+            if (Input.GetKeyDown(KeyCode.RightControl))
+            {
+                playerInteraction.InteractionButtonPressed(
+                                        tileManager.GetTileCreatureIsOn(player.transform.position));
+                // Above gets the tile
+
+            }
+        }
+
     }
 
     private void GetInventoryInput()
     {
-        // Detect Keypress
-        if (Input.GetKeyDown(KeyCode.Q))
+        if(playerInt == 1)
         {
-            // Change Inventory slot
-            playerInteraction.ChangeSlot();
+            // Detect Keypress
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                // Change Inventory slot
+                playerInteraction.ChangeSlot();
+            }
         }
+
+        if(playerInt == 2)
+        {
+            // Detect Keypress
+            if (Input.GetKeyDown(KeyCode.RightShift))
+            {
+                // Change Inventory slot
+                playerInteraction.ChangeSlot();
+            }
+        }
+
     }
     #endregion
 
