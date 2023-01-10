@@ -6,61 +6,68 @@ public class PlayerSpriteHolder : MonoBehaviour
 {
     // Refs
     SpriteRenderer renderer;
+    Animator animator;
 
+    [Header("Bag Lad Animator")]
+    //[SerializeField] List<GameObject> bagLad_animations;
+    [SerializeField] RuntimeAnimatorController bagLad_animator;
 
-    [Header("Bag Lad Animations")]
-    [SerializeField] List<GameObject> bagLad_animations;
+    [Header("Ram Animator")]
+    //[SerializeField] List<GameObject> ramGal_animations;
+    [SerializeField] RuntimeAnimatorController ramGal_animator;
 
-    [Header("Ram Sprites")]
-    [SerializeField] List<GameObject> ramGal_animations;
+    [Header("Scare Crow Animator")]
+    //[SerializeField] List<GameObject> scareCrow_animations;
+    [SerializeField] RuntimeAnimatorController scareCrow_animator;
 
-    [Header("Scare Crow Sprites")]
-    [SerializeField] List<GameObject> scareCrow_animations;
-
-    [Header("Water Boi Sprites")]
-    [SerializeField] List<GameObject> waterBoi_animations;
+    [Header("Water Boi Animator")]
+    //[SerializeField] List<GameObject> waterBoi_animations;
+    [SerializeField] RuntimeAnimatorController waterBoi_animator;
 
     enum character
     {
         bagLad, ram, scareCrow, waterBoi
     }
     character currentCharacter;
-    List<GameObject> characterAnimations = new List<GameObject>();
-    enum aniState
-    {
-        idle, walkBack, walkFront
-    }
-    List<GameObject> animationsInUse = new List<GameObject>();
-    GameObject currentAnimation;
+
+    //List<GameObject> characterAnimations = new List<GameObject>();
+    //enum aniState
+    //{
+    //    idle, walkBack, walkFront
+    //}
+    //List<GameObject> animationsInUse = new List<GameObject>();
+    //GameObject currentAnimation;
 
     public void SetPlayerSprites(Enums.God godType)
     {
+        animator = this.GetComponent<Animator>();
+
         switch (godType)
         {
             case Enums.God.God4:
 
                 currentCharacter = character.bagLad;
-                characterAnimations = bagLad_animations;
+                animator.runtimeAnimatorController = bagLad_animator;
 
                 break;
             // =========================
             case Enums.God.God3:
                 currentCharacter = character.ram;
-                characterAnimations = ramGal_animations;
+                animator.runtimeAnimatorController = ramGal_animator;
 
                 break;
 
             // =========================
             case Enums.God.God1:
                 currentCharacter = character.scareCrow;
-                characterAnimations = scareCrow_animations;
+                animator.runtimeAnimatorController = scareCrow_animator;
 
                 break;
 
             // =========================
             case Enums.God.God2:
                 currentCharacter = character.waterBoi;
-                characterAnimations = waterBoi_animations;
+                animator.runtimeAnimatorController = waterBoi_animator;
 
                 break;
 
@@ -70,29 +77,29 @@ public class PlayerSpriteHolder : MonoBehaviour
                 break;
         }
 
-        InitializeAnimations();
+        //InitializeAnimations();
 
         //StartCoroutine(IdleAnimation());
     }
 
-    private void InitializeAnimations()
-    {
-        int i = 0;
-        foreach(GameObject animation in characterAnimations)
-        {
-            // Initialize and turn off
-            GameObject newAnimation = Instantiate(characterAnimations[i], transform);
+    //private void InitializeAnimations()
+    //{
+    //    int i = 0;
+    //    foreach(GameObject animation in characterAnimations)
+    //    {
+    //        // Initialize and turn off
+    //        GameObject newAnimation = Instantiate(characterAnimations[i], transform);
 
-            animationsInUse.Add(newAnimation);
+    //        animationsInUse.Add(newAnimation);
 
-            // Turn them off
-            newAnimation.SetActive(false);
-            i++;
-        }
+    //        // Turn them off
+    //        newAnimation.SetActive(false);
+    //        i++;
+    //    }
 
-        // Turn idle animation back on
-        animationsInUse[0].SetActive(true);
-    }
+    //    // Turn idle animation back on
+    //    animationsInUse[0].SetActive(true);
+    //}
 
     private void Awake()
     {
@@ -104,16 +111,16 @@ public class PlayerSpriteHolder : MonoBehaviour
     }
 
 
-    IEnumerator IdleAnimation()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(1f);
+    //IEnumerator IdleAnimation()
+    //{
+    //    while (true)
+    //    {
+    //        yield return new WaitForSeconds(1f);
 
-            // Cycle idle sprites
-            //currentAnimations[Random.Range(0, ram.Length)];
-        }
-    }
+    //        // Cycle idle sprites
+    //        //currentAnimations[Random.Range(0, ram.Length)];
+    //    }
+    //}
 
 
 }
