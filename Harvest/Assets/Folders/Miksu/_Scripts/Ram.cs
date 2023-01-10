@@ -17,6 +17,7 @@ public class Ram : MonoBehaviour
     [Header("Speeds")]
     [SerializeField] float walkSpeed = 5f;
     [SerializeField] float aggroSpeed = 10f;
+    float currentSpeed;
 
     [Header("Moving")]
     Vector3 moveDirection = Vector3.forward;
@@ -33,13 +34,20 @@ public class Ram : MonoBehaviour
     [Header("Pooping")]
     [SerializeField] float timeBetweenPoops = 5f;
 
-    [Header("RAMMING")]
-    bool pacifist = true;
+    [Header("Aggroing")]
     [SerializeField] float aggroRadius = 3f;
     [SerializeField] SphereCollider aggroTrigger;
-    [SerializeField] float knockBackPower = 5f;
     [Space]
-    [SerializeField] float timeBeforePacification = 5f;
+    [SerializeField] float pursueTime = 5f;
+    bool aggroed = false;
+    GameObject aggroTarget;
+
+    [Header("RAMMING")]
+    [SerializeField] float rammingDistance = 1f;
+    [SerializeField] float knockBackPower = 5f;
+    [SerializeField] float cooldownTimeAfterRamming = 3f;
+    bool readyToRam = true;
+
 
     #endregion
 
@@ -96,6 +104,10 @@ public class Ram : MonoBehaviour
     #region Moving
     private void StartMoving()
     {
+        // Initialize currentSpeed
+        currentSpeed = walkSpeed;
+
+        // Start Movement Coroutines
         StartCoroutine(TurningCoroutine());
         StartCoroutine(MovingCoroutine());
     }
@@ -104,19 +116,36 @@ public class Ram : MonoBehaviour
     IEnumerator TurningCoroutine()
     {
 
-        while (pacifist)
+        while (true)
         {
-            // Pick a direction
-            //Vector3 randomDir = ChangeDirection();
 
-            moveDirection = ChangeDirection();
-            // Although check distance to lake too
-            CheckDistanceToLake();
+            if (!aggroed)
+            {
+                yield return new WaitForSeconds(changeDirectionFrequency);
 
-            // Add some movetime
-            moveTime = Random.Range(minMoveTime, maxMoveTime);
 
-            yield return new WaitForSeconds(changeDirectionFrequency);
+                // Pick a direction
+                moveDirection = ChangeDirection();
+                // Although check distance to lake too
+                CheckDistanceToLake();
+
+                // Add some movetime
+                moveTime = Random.Range(minMoveTime, maxMoveTime);
+
+            }
+            else
+            {
+                // AGGROED
+
+                // -> Keep turning towards Player
+                if (aggroTarget != null)
+                { moveDirection = ChangeDirectionTowards(aggroTarget.transform.position); }
+
+                // Movetime
+                moveTime = Random.Range(minMoveTime, maxMoveTime);
+
+                yield return new WaitForSeconds(0.3f);
+            }
 
         }
     }
@@ -160,7 +189,7 @@ public class Ram : MonoBehaviour
 
     private Vector3 ChangeDirectionTowards(Vector3 pos)
     {
-        Vector3 dir = transform.position - pos;
+        Vector3 dir = pos - transform.position;
         dir.Normalize();
         return dir;
     }
@@ -170,12 +199,14 @@ public class Ram : MonoBehaviour
     #region MOVING
     IEnumerator MovingCoroutine()
     {
-        while (pacifist)
+        yield return new WaitForSeconds(Random.Range(0.5f, 2f));
+
+        while (true)
         {
             if (moveTime > 0)
             {
                 // Get next pos
-                Vector3 nextPos = transform.position + moveDirection * walkSpeed * Time.deltaTime;
+                Vector3 nextPos = transform.position + moveDirection * currentSpeed * Time.deltaTime;
 
                 // Move Forward
                 rb.MovePosition(nextPos);
@@ -189,12 +220,217 @@ public class Ram : MonoBehaviour
         }
     }
 
+    #endregion
 
     #endregion
 
+    #region AGGROING
+
+    // Aggro Trigger
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            //Debug.Log("Colliding with Player!");
+            Debug.DrawLine(transform.position, other.gameObject.transform.position, Color.magenta, 0.2f);
+
+            BeginAggro(other.gameObject);
+        }
+    }
+
+    private void BeginAggro(GameObject target)
+    {
+        // If not ready yet, cancel
+        if (!readyToRam) { return; }
+
+        // Set target
+        aggroTarget = target;
+
+        // Activate Aggro state
+        aggroed = true;
+
+        // Set aggro Speed
+        currentSpeed = aggroSpeed;
+
+        // Turn Instantly
+        moveTime = 3f;
+        moveDirection = ChangeDirectionTowards(target.transform.position);
+
+        // Start Aggro timer
+        StartCoroutine(AggroTimer());
+
+        //Debug.Log("Aggro begins!");
+    }
+
+    IEnumerator AggroTimer()
+    {
+        float currentAggroTimeLeft = pursueTime;
+
+        while (aggroed)
+        {
+            // Check if the aggrotime has time left
+            if (currentAggroTimeLeft > 0)
+            {
+                // Check if close enough to Target
+                //CheckIfTargetWithinRammingDistance(); // Handled by collision?
+
+                // Reduce time
+                currentAggroTimeLeft -= Time.deltaTime;
+
+                // Show AggroLine
+                float distance = (transform.position - aggroTarget.transform.position).magnitude;
+                if (distance <= aggroRadius) { Debug.DrawLine(transform.position, aggroTarget.transform.position, Color.red, 0.2f); }
+                else { Debug.DrawLine(transform.position, aggroTarget.transform.position, Color.yellow, 0.2f); }
+                
+            }
+            else
+            {
+                // Aggro has ended..?
+                CheckNeedToAggroAgain();
+                break;
+            }
+
+            // Wait
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+    }
+
+    private void CheckNeedToAggroAgain()
+    {
+        // If a Player is within radius, reignite aggro
+        Collider[] players = Physics.OverlapSphere(transform.position, aggroRadius);
+        GameObject candidate = null;
+        foreach (Collider player in players)
+        {
+            if (player.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                // Check if it was the current Target
+                if (player == aggroTarget)
+                {
+                    // Remain aggroed, Keep chasing the SAME Player
+                    BeginAggro(player.gameObject);
+                    candidate = null;
+                    break;
+                }
+                // Else choose them
+                candidate = player.gameObject;
+            }
+        }
+
+        if (candidate != null)
+        {
+            // Remain Aggroed
+            BeginAggro(candidate);
+        }
+        else
+        {
+            EndAggro();
+        }
+    }
+
+    private void EndAggro()
+    {
+        // Set as false
+        aggroed = false;
+
+        // Reset to walkSpeed
+        currentSpeed = walkSpeed;
+
+        //Debug.Log("Aggro has ended..");
+        Debug.DrawLine(transform.position, aggroTarget.transform.position, Color.white, 1f);
+
+    }
     #endregion
 
     #region RAMMING
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Check if Player
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            // Stun them!
+            //collision.gameObject.GetComponent<PlayerMovement>().GetRammed(GetRamDirection(), knockBackPower);
 
+            // Move the Ram
+            //MoveOnRam(GetRamDirection());
+
+            RamTheTarget();
+        }
+    }
+
+    private void CheckIfTargetWithinRammingDistance()
+    {
+        float distance = (transform.position - aggroTarget.gameObject.transform.position).magnitude;
+
+        // Check if distance is within ramming distance
+        if (distance <= rammingDistance)
+        {
+            // Ram the Player
+            RamTheTarget();
+        }
+    }
+
+    private void RamTheTarget()
+    {
+        Vector3 ramDirection = GetRamDirection();
+
+        // Slam the player
+        aggroTarget.GetComponent<PlayerMovement>().GetRammed(ramDirection, knockBackPower);
+
+        // Move the Ram
+        //MoveOnRam(ramDirection);
+
+        // Enter cooldown
+        StartCoroutine(AfterRammingCooldownTimer());
+    }
+
+    private Vector3 GetRamDirection()
+    {
+        // Get the direction
+        Vector3 ramDirection = (aggroTarget.gameObject.transform.position - transform.position).normalized;
+
+        return ramDirection;
+    }
+
+    private void MoveOnRam(Vector3 ramDirection)
+    {
+        float distance = (transform.position - aggroTarget.gameObject.transform.position).magnitude;
+        Vector3 nextPos = transform.position + -ramDirection * distance * 0.5f;
+        Debug.Log("ramDirection: " + -ramDirection);
+
+        // Move the Ram
+        rb.MovePosition(nextPos);
+        //rb.velocity = nextPos;
+    }
+
+    IEnumerator AfterRammingCooldownTimer()
+    {
+        if (!readyToRam) { yield break; } // Another timer is already active...
+
+        moveTime = 0f;
+
+        readyToRam = false;
+
+        // End chasing
+        EndAggro();
+
+        float cooldownTimeLeft = cooldownTimeAfterRamming;
+
+        while (cooldownTimeLeft > 0f)
+        {
+            cooldownTimeLeft -= Time.deltaTime;
+
+            Debug.DrawLine(transform.position, aggroTarget.transform.position, Color.white, 0.1f);
+
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+
+        // Cooldown has ended
+        readyToRam = true;
+
+        // Check the need to aggro again
+        CheckNeedToAggroAgain();
+    }
     #endregion
 }
