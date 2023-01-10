@@ -27,12 +27,11 @@ public class Choser : MonoBehaviour
         p1 = GameObject.Find("Indicator1");
         p2 = GameObject.Find("Indicator2");
 
-        p1Hovering = 0;
-        p2Hovering = 0;
+        p1Hovering = 1;
+        p2Hovering = 1;
 
-        p1.transform.position = new Vector3(gods[p1Hovering].transform.position.x, p1.transform.position.y, p1.transform.position.z);
-
-        p2.transform.position = new Vector3(gods[p1Hovering].transform.position.x, p2.transform.position.y, p2.transform.position.z);
+        MoveP1(-1);
+        MoveP2(-1);
     }
 
     // Update is called once per frame
