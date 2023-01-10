@@ -46,4 +46,9 @@ public class Plant : Item
             level++;
         }
     }
+
+    public void FullLevel()
+    {
+        level = maxLevel;
+    }
 }

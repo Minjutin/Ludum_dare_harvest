@@ -265,7 +265,8 @@ public class PlayerInteraction : MonoBehaviour
         Plant plant = tile.item as Plant;
         if(inventory.GetItem(chosenSlot) is Manure)
         {
-            //TODO make plant grow 
+            plant.FullLevel();
+            inventory.RemoveItem(chosenSlot);
         }
     }
     #endregion

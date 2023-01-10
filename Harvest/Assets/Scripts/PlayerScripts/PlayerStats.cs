@@ -139,9 +139,10 @@ public class PlayerStats : MonoBehaviour
         //Let's display the pointsss.
         RectTransform rt = UIelements.transform.Find("Fill").GetComponent<RectTransform>();
         if (points > 30)
-        {
             points = 30;
-        }
+        if (points < 0)
+            points = 0;
+
         rt.sizeDelta = new Vector2((300*points)/constants.winPoints, rt.sizeDelta.y);
         Debug.Log(points);
     } //Give item to the God.

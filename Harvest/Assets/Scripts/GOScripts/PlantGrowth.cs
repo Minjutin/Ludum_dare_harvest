@@ -58,7 +58,13 @@ public class PlantGrowth : MonoBehaviour
     {
         float growTimeLeft = growTime;
         while (true)
-        {                      
+        {       
+            if(plant.level == Plant.maxLevel)
+            {
+                renderer.sprite = level3; if (!level3) { Debug.LogWarning("Sprite not assigned."); };
+                break;
+            }
+
             if (growTimeLeft <= (growTime/Plant.maxLevel) && plant.level == 0)
             {
                 plant.LevelUp(); //Level up to level 2
@@ -75,9 +81,9 @@ public class PlantGrowth : MonoBehaviour
                 break;
             }
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.25f);
 
-            growTimeLeft--;
+            growTimeLeft = growTimeLeft-0.25f;
         }
         
     }
