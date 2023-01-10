@@ -150,7 +150,19 @@ public class TileManager : MonoBehaviour
         // SACRIFICE
         else if (type == tileType.sacrifice)
         {
-            SacrificeTile sTile = new SacrificeTile(Enums.God.God1);    // TODO: Different Gods
+            SacrificeTile sTile; 
+
+            if(x<gridRows/2 && y<gridColumns/2)
+                sTile = new SacrificeTile(Enums.God.God3); //Left-down altar
+
+            else if(x<gridRows/2 && y>=gridColumns/2)
+                sTile = new SacrificeTile(Enums.God.God1); //Left-up altar
+
+            else if (x >= gridRows / 2 && y < gridColumns / 2) 
+                sTile = new SacrificeTile(Enums.God.God4); //Right-down altar
+            else 
+                sTile = new SacrificeTile(Enums.God.God2); //Right-up altar
+
             sTile.position = pos;
             tileArray[x, y] = sTile;
             //painter.PaintTileAt(x, y, sTile); // Already has a tile

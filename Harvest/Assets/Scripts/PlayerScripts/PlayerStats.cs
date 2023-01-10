@@ -30,30 +30,26 @@ public class PlayerStats : MonoBehaviour
 
     Constants constants;
 
-    public void Awake()
+    private void Start()
     {
         constants = FindObjectOfType<Constants>(); //Find constants
         isWet = false;
 
-        //Fetch god from the statics.
+        // Set the Correct god & graphics for Player
         switch (playerNumber)
         {
             case 1:
                 god = Statics.p1God;
+                playerSprite = GetComponent<PlayerInput>().playerMovement.graphics;
                 break;
             case 2:
                 god = Statics.p2God;
+                playerSprite = GetComponent<PlayerInput2>().playerMovement.graphics;
+                break;
+            default:
+                Debug.Log("Player number " + playerNumber + " is invalid.");
                 break;
         }
-    }
-
-    private void Start()
-    {
-        // Set the Correct graphics for Player
-        if(playerNumber == 1)
-            playerSprite = GetComponent<PlayerInput>().playerMovement.graphics;
-        if(playerNumber == 2)
-            playerSprite = GetComponent<PlayerInput2>().playerMovement.graphics;
 
         if (!playerSprite) { Debug.LogWarning("Can't find PlayerSpriteHolder for " + gameObject.name); }
         playerSprite.SetPlayerSprites(god);
@@ -85,6 +81,7 @@ public class PlayerStats : MonoBehaviour
             if (fruit.Type == wantedFruit) 
             {
                 points += constants.wantedPoints;
+                
             }
 
             //Fruits is god's favorite type
@@ -118,4 +115,6 @@ public class PlayerStats : MonoBehaviour
 
         Debug.Log("Points now = "+points);
     } //Give item to the God.
+
+    //----------------------- POINTS ----------------------------------------
 }

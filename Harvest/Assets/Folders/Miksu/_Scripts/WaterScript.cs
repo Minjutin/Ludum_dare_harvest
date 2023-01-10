@@ -24,7 +24,7 @@ public class WaterScript : MonoBehaviour
         if (player)
         {
             // Get wet
-            Debug.Log("Splish splash!");
+            //Debug.Log("Splish splash!");
         }
     }
 

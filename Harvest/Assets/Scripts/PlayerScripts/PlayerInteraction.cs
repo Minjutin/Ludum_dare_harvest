@@ -169,7 +169,26 @@ public class PlayerInteraction : MonoBehaviour
             {
                 Plant planted = new Plant();
                 tile.SetItem(planted); //Plant the plant to the tile.
-                tile.SpawnPlant(Instantiate(Resources.Load("Plant/Plant"), tile.position, Quaternion.identity) as GameObject);
+
+                switch (planted.Type)
+                {
+                    case Enums.FruitType.Fruit1:
+                        tile.SpawnPlant(Instantiate(Resources.Load("Plant/Plant1"), tile.position, Quaternion.identity) as GameObject);
+                        break;
+                    case Enums.FruitType.Fruit2:
+                        tile.SpawnPlant(Instantiate(Resources.Load("Plant/Plant2"), tile.position, Quaternion.identity) as GameObject);
+                        break;
+                    case Enums.FruitType.Fruit3:
+                        tile.SpawnPlant(Instantiate(Resources.Load("Plant/Plant3"), tile.position, Quaternion.identity) as GameObject);
+                        break;
+                    case Enums.FruitType.Fruit4:
+                        tile.SpawnPlant(Instantiate(Resources.Load("Plant/Plant4"), tile.position, Quaternion.identity) as GameObject);
+                        break;
+                    default:
+                        Debug.LogWarning("Plant doesn't have a type for some reason. That's no cool.");
+                        break;
+                }
+
 
                 inventory.RemoveItem(chosenSlot); //Delete item from the inventory
             }

@@ -10,8 +10,10 @@ public class PlayerInput2 : MonoBehaviour
     TileManager tileManager;
 
     [Header("Player GameObject")]
+    [HideInInspector]
     public GameObject player;
 
+    [HideInInspector]
     public PlayerMovement playerMovement;
 
     // Player Gameplay
