@@ -271,7 +271,10 @@ public class Ram : MonoBehaviour
                 currentAggroTimeLeft -= Time.deltaTime;
 
                 // Show AggroLine
-                Debug.DrawLine(transform.position, aggroTarget.transform.position, Color.red, 0.2f);
+                float distance = (transform.position - aggroTarget.transform.position).magnitude;
+                if (distance <= aggroRadius) { Debug.DrawLine(transform.position, aggroTarget.transform.position, Color.red, 0.2f); }
+                else { Debug.DrawLine(transform.position, aggroTarget.transform.position, Color.yellow, 0.2f); }
+                
             }
             else
             {
@@ -327,6 +330,7 @@ public class Ram : MonoBehaviour
         currentSpeed = walkSpeed;
 
         //Debug.Log("Aggro has ended..");
+        Debug.DrawLine(transform.position, aggroTarget.transform.position, Color.white, 1f);
 
     }
     #endregion
