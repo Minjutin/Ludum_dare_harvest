@@ -43,7 +43,7 @@ public class PlayerPoints : MonoBehaviour
             if (fruit.Type == wantedFruit)
             {
                 points += constants.wantedPoints;
-                NewWanted();
+                StartCoroutine(NewWanted());
 
             }
 
@@ -112,11 +112,13 @@ public class PlayerPoints : MonoBehaviour
                 break;
         }
         bubble = goGod.transform.Find("Graphics").Find("SpeechBubble").Find("Item").gameObject;
-        NewWanted();
+
+        StartCoroutine(NewWanted());
     }
 
-    public void NewWanted()
+    IEnumerator NewWanted()
     {
+        yield return new WaitForSeconds(0.2f);
         int randFruit = Random.Range(0, 4);
         Sprite fruitSprite = fruitPics[randFruit] as Sprite;
 
