@@ -11,6 +11,7 @@ public class PlayerInteraction : MonoBehaviour
 {
     PlayerInventory inventory;
     PlayerStats stats;
+    PlayerPoints points;
 
     [SerializeField] GameObject playerController;
 
@@ -22,6 +23,7 @@ public class PlayerInteraction : MonoBehaviour
 
         inventory = playerController.GetComponent<PlayerInventory>(); //Fetch inventory
         stats = playerController.GetComponent<PlayerStats>();
+        points = playerController.GetComponent<PlayerPoints>();
     }
 
     #region Button detection
@@ -146,7 +148,7 @@ public class PlayerInteraction : MonoBehaviour
         if (inventory.ThereIsItem(chosenSlot))
         {
             InventoryItem item = inventory.GetItem(chosenSlot);
-            stats.GiveItem(item);
+            points.GiveItem(item);
             inventory.RemoveItem(chosenSlot);
 
         }
