@@ -20,12 +20,13 @@ public class RoundTimer : MonoBehaviour
     [Tooltip("How often the clock updates")]
     [SerializeField]
     float clockUpdateFrequency = 0.1f;
-    [Header("Height/Radius")]
+    [Header("Handle Length/Radius")]
     [SerializeField] float startRadius = 24f;
     [SerializeField] float endRadius = 24f;
     float currentRadius;
 
     [Header("Round Timer")]
+    [Tooltip("Round time in seconds.")]
     [SerializeField] float roundTime = 180f;
     float roundTimeLeft;
     #endregion
