@@ -35,6 +35,7 @@ public class PlayerStats : MonoBehaviour
     private void Start()
     {
         constants = FindObjectOfType<Constants>(); //Find constants
+        endSprites = Resources.LoadAll("EndScenes", typeof(Sprite));
         isWet = false;
 
         // Set the Correct god & graphics for Player
@@ -135,33 +136,47 @@ public class PlayerStats : MonoBehaviour
             points += constants.manurePoints;
         }
 
-
-        //Let's display the pointsss.
-        RectTransform rt = UIelements.transform.Find("Fill").GetComponent<RectTransform>();
-        if (points > 30)
-            points = 30;
+        //Make points so it's better
+        if (points > constants.winPoints)
+            points = constants.winPoints;
         if (points < 0)
             points = 0;
-
+        //Let's display the pointsss.
+        RectTransform rt = UIelements.transform.Find("Fill").GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2((300*points)/constants.winPoints, rt.sizeDelta.y);
-        Debug.Log(points);
+
+        CheckIfWon();
     } //Give item to the God.
+
+    Object[] endSprites;
 
     public void CheckIfWon()
     {
         if (points >= constants.winPoints)
         {
+            Sprite spriteNow;
+
             switch (god)
             {
                 case Enums.God.God1:
+                    spriteNow = endSprites[0] as Sprite;  
                     break;
                 case Enums.God.God2:
+                    spriteNow = endSprites[1] as Sprite;
                     break;
                 case Enums.God.God3:
+                    spriteNow = endSprites[2] as Sprite;
                     break;
                 case Enums.God.God4:
+                    spriteNow = endSprites[3] as Sprite;
+                    break;
+                default:
+                    spriteNow = endSprites[0] as Sprite;
+                    Debug.LogError("There is no god");
                     break;
             }
+
+            UIelements.transform.parent.parent.GetComponent<EndGame>().OpenEnding(spriteNow);
         }
     }
 
