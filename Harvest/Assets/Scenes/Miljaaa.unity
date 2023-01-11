@@ -3899,6 +3899,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2
       objectReference: {fileID: 0}
+    - target: {fileID: 6655890661115276800, guid: a03eef446e997074299adfbeaed49203, type: 3}
+      propertyPath: moveDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655890661115276800, guid: a03eef446e997074299adfbeaed49203, type: 3}
+      propertyPath: brakeDrag
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655890661115276800, guid: a03eef446e997074299adfbeaed49203, type: 3}
+      propertyPath: playerMoveSpeed
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a03eef446e997074299adfbeaed49203, type: 3}
 --- !u!1001 &1363059064
@@ -5729,6 +5741,18 @@ PrefabInstance:
     - target: {fileID: 6269256524656728626, guid: a03eef446e997074299adfbeaed49203, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655890661115276800, guid: a03eef446e997074299adfbeaed49203, type: 3}
+      propertyPath: moveDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655890661115276800, guid: a03eef446e997074299adfbeaed49203, type: 3}
+      propertyPath: brakeDrag
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655890661115276800, guid: a03eef446e997074299adfbeaed49203, type: 3}
+      propertyPath: playerMoveSpeed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6674695012034485799, guid: a03eef446e997074299adfbeaed49203, type: 3}
       propertyPath: m_Sprite
