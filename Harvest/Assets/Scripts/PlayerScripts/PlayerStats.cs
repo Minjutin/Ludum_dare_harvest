@@ -13,12 +13,6 @@ public class PlayerStats : MonoBehaviour
     [Header("Current speed.")]
     [SerializeField] float speed;
 
-    [Header("Current points.")]
-    [SerializeField] int points;
-
-    [Header("Wanted plant")]
-    [SerializeField] Enums.FruitType wantedFruit;
-
     public int playerNumber;
     PlayerSpriteHolder playerSprite;
 
@@ -26,15 +20,16 @@ public class PlayerStats : MonoBehaviour
 
     public Enums.God god;
 
-    public GameObject UIelements;
-
     //Initializing 
 
     Constants constants;
+    PlayerPoints points;
 
     private void Start()
     {
         constants = FindObjectOfType<Constants>(); //Find constants
+        points = this.GetComponent<PlayerPoints>();
+
         isWet = false;
 
         // Set the Correct god & graphics for Player
@@ -53,22 +48,24 @@ public class PlayerStats : MonoBehaviour
                 break;
         }
 
+        points.InitializePoints(god);
+
         if (!playerSprite) { Debug.LogWarning("Can't find PlayerSpriteHolder for " + gameObject.name); }
 
         //Set things
         playerSprite.SetPlayerSprites(god);
         switch (god) {
             case Enums.God.God1:
-                UIelements = GameObject.Find("P1");
+                points.UIelements = GameObject.Find("P1");
                 break;
             case Enums.God.God2:
-                UIelements = GameObject.Find("P2");
+                points.UIelements = GameObject.Find("P2");
                 break;
             case Enums.God.God3:
-                UIelements = GameObject.Find("P3");
+                points.UIelements = GameObject.Find("P3");
                 break;
             case Enums.God.God4:
-                UIelements = GameObject.Find("P4");
+                points.UIelements = GameObject.Find("P4");
                 break;
             default:
                 Debug.Log("There is no god");
@@ -87,85 +84,5 @@ public class PlayerStats : MonoBehaviour
 
         //TODO change speed in the movement script to be speed.
     } //Change speed.
-
-    //----------------------- POINTS ----------------------------------------
-
-    public void GiveItem(InventoryItem item)
-    {
-        //If player gives god a fruit.
-        if(item is Fruit)
-        {
-            Fruit fruit = item as Fruit;
-
-            //Check the points you get from this fruit. ONLY ONE KIND OF POINTS CAN BE GIVEN.
-
-            //Fruit is wanted.
-            if (fruit.Type == wantedFruit) 
-            {
-                points += constants.wantedPoints;
-                
-            }
-
-            //Fruits is god's favorite type
-            else if (fruit.Type == Enums.FruitType.Fruit1 && god == Enums.God.God1
-                || fruit.Type == Enums.FruitType.Fruit2 && god == Enums.God.God2
-                || fruit.Type == Enums.FruitType.Fruit3 && god == Enums.God.God3
-                || fruit.Type == Enums.FruitType.Fruit4 && god == Enums.God.God4
-            )
-            {
-                points += constants.favoritePoints;
-            }
-
-            //Otherwise
-            else
-            {
-                points += constants.fruitPoints;
-            }
-        }
-        
-        //If player gives god a seed.
-        if(item is Seed)
-        {
-            points += constants.seedPoints;
-        }
-
-        //If player gives god poop.
-        if(item is Manure)
-        {
-            points += constants.manurePoints;
-        }
-
-
-        //Let's display the pointsss.
-        RectTransform rt = UIelements.transform.Find("Fill").GetComponent<RectTransform>();
-        if (points > 30)
-            points = 30;
-        if (points < 0)
-            points = 0;
-
-        rt.sizeDelta = new Vector2((300*points)/constants.winPoints, rt.sizeDelta.y);
-        Debug.Log(points);
-    } //Give item to the God.
-
-    public void CheckIfWon()
-    {
-        if (points >= constants.winPoints)
-        {
-            switch (god)
-            {
-                case Enums.God.God1:
-                    break;
-                case Enums.God.God2:
-                    break;
-                case Enums.God.God3:
-                    break;
-                case Enums.God.God4:
-                    break;
-            }
-        }
-    }
-
-    //----------------------- POINTS ----------------------------------------
-
 
 }
