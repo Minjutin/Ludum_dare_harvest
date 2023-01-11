@@ -22,29 +22,37 @@ public class Ram : MonoBehaviour
     [Header("Moving")]
     Vector3 moveDirection = Vector3.forward;
     float moveTime = 1f;
+    [Tooltip("How often the Ram changes directions.")]
     [SerializeField] float changeDirectionFrequency = 2f;
     [Space]
-    [Tooltip("How long the Ram moves after turning")]
+    [Tooltip("How long the Ram moves after turning. Randomized between the Min and Max values.")]
     [SerializeField] float maxMoveTime = 2f;
+    [Tooltip("How long the Ram moves after turning. Randomized between the Min and Max values.")]
     [SerializeField] float minMoveTime = 0.5f;
-    [Header("Distance from lake")]
+    [Tooltip("Distance from lake. The Ram turns back if too far from the Lake")]
     [SerializeField] float maxDistanceFromLake = 3f;
+    [Tooltip("Distance from lake. The Ram turns back if too close to the Lake")]
     [SerializeField] float minDistanceFromLake = 1f;
 
     [Header("Pooping")]
+    [Tooltip("How often the Ram tries to 'fertilize' the ground. Requires empty fertile tile.")]
     [SerializeField] float timeBetweenPoops = 5f;
 
     [Header("Aggroing")]
+    [Tooltip("Distance that triggers the aggro. Will stay aggroed while anybody is inside.")]
     [SerializeField] float aggroRadius = 3f;
     [SerializeField] SphereCollider aggroTrigger;
     [Space]
+    [Tooltip("After leaving the AggroRadius, how long the Ram will pursue Player.")]
     [SerializeField] float pursueTime = 5f;
     bool aggroed = false;
     GameObject aggroTarget;
 
+    /*[SerializeField]*/ float rammingDistance = 1f; // Unused. Collider checks this.
     [Header("RAMMING")]
-    [SerializeField] float rammingDistance = 1f;
+    [Tooltip("How hard the Ram pushes the Player")]
     [SerializeField] float knockBackPower = 5f;
+    [Tooltip("The Ram enters a aggro-cooldown after ramming. How long it takes for the Ram to be able to aggro again.")]
     [SerializeField] float cooldownTimeAfterRamming = 3f;
     bool readyToRam = true;
 
