@@ -43,17 +43,17 @@ public class Choser : MonoBehaviour
         if (p1chosen == -1)
         {
             //Player1 MOVEMENT
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(Statics.p1left))
             {
                 MoveP1(-1);
             }
-            else if (Input.GetKeyDown(KeyCode.D))
+            else if (Input.GetKeyDown(Statics.p1right))
             {
                 MoveP1(1);
             }
 
             //Player1 GET ITEM
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(Statics.p1interaction) || Input.GetKeyDown(Statics.p1inventory))
             {
                 if (p1Hovering != p2chosen)
                 {
@@ -66,7 +66,7 @@ public class Choser : MonoBehaviour
         //If there is god, you can remove your choice by another button.
         else if(p1chosen != -1)
         {
-            if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(Statics.p1interaction) || Input.GetKeyDown(Statics.p1inventory))
             {
                 p1chosen = -1;
             }
@@ -79,16 +79,16 @@ public class Choser : MonoBehaviour
         if (p2chosen == -1)
         {
             //Move player
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(Statics.p2left))
             {
                 MoveP2(-1);
             }
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            else if (Input.GetKeyDown(Statics.p2right))
             {
                 MoveP2(1);
             }
 
-            if (Input.GetKeyDown(KeyCode.RightControl))
+            if (Input.GetKeyDown(Statics.p2interaction) || Input.GetKeyDown(Statics.p2inventory))
             {
                 if(p2Hovering != p1chosen)
                 {
@@ -101,7 +101,7 @@ public class Choser : MonoBehaviour
         //If there is god, you can remove your choice by another button.
         else if (p2chosen != -1)
         {
-            if (Input.GetKeyDown(KeyCode.RightControl) || Input.GetKeyDown(KeyCode.RightShift))
+            if (Input.GetKeyDown(Statics.p2interaction) || Input.GetKeyDown(Statics.p2inventory))
             {
                 p2chosen = -1;
             }
