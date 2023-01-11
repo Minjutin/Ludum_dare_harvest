@@ -12,6 +12,7 @@ public class RoundTimer : MonoBehaviour
     [Tooltip("The angle the Handles start from at the beginning of the round")]
     [SerializeField] float startOffAngle = 90f;
     float currentAngle;
+    [Tooltip("How often the clock updates")]
     [SerializeField]
     float clockUpdateFrequency = 0.1f;
 
@@ -46,6 +47,7 @@ public class RoundTimer : MonoBehaviour
 
     private void MoveHandles(float percentage)
     {
+        // Update current angle
         currentAngle = startOffAngle * percentage;
 
         // Move Handles
@@ -57,10 +59,7 @@ public class RoundTimer : MonoBehaviour
     #region Round Timing
     IEnumerator RoundCountdown()
     {
-        // Get the right values
-
-
-
+        // The clock runs until the time has run out
         while (roundTimeLeft > 0f)
         {
             // Reduce the roundtime
@@ -71,6 +70,9 @@ public class RoundTimer : MonoBehaviour
 
             yield return new WaitForSeconds(clockUpdateFrequency);
         }
+
+        // Time has run out, end round
+        EndRound();
     }
 
     private float GetPercentageLeft(float left, float original)
@@ -78,6 +80,15 @@ public class RoundTimer : MonoBehaviour
         float percentage = left / original;
 
         return percentage;
+    }
+    #endregion
+
+    #region Round ENDING
+    private void EndRound()
+    {
+        Debug.Log("Round has ended.");
+
+        // TODO: Functionality
     }
     #endregion
 }
