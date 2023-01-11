@@ -151,7 +151,17 @@ public class PlayerStats : MonoBehaviour
     {
         if (points >= constants.winPoints)
         {
-            //TODO win condition.
+            switch (god)
+            {
+                case Enums.God.God1:
+                    break;
+                case Enums.God.God2:
+                    break;
+                case Enums.God.God3:
+                    break;
+                case Enums.God.God4:
+                    break;
+            }
         }
     }
 
