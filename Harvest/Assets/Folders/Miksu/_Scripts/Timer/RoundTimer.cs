@@ -8,13 +8,22 @@ public class RoundTimer : MonoBehaviour
     [Header("References")]
     [SerializeField] GameObject handle_Left;
     [SerializeField] GameObject handle_Right;
+    [SerializeField] GameObject leftIndicator;
+    [SerializeField] GameObject rightIndicator;
+    [Tooltip("Visualizes the Path the Star & Moon take. Use with SHORT round times.")]
+    [SerializeField] bool debugDrawPath = false;
     [Space]
+    [Header("Handles")]
     [Tooltip("The angle the Handles start from at the beginning of the round")]
     [SerializeField] float startOffAngle = 90f;
     float currentAngle;
     [Tooltip("How often the clock updates")]
     [SerializeField]
     float clockUpdateFrequency = 0.1f;
+    [Header("Height/Radius")]
+    [SerializeField] float startRadius = 24f;
+    [SerializeField] float endRadius = 24f;
+    float currentRadius;
 
     [Header("Round Timer")]
     [SerializeField] float roundTime = 180f;
@@ -43,6 +52,7 @@ public class RoundTimer : MonoBehaviour
         handle_Right.transform.localRotation = Quaternion.Euler(new Vector3(0f, 0f, -startOffAngle));
 
         currentAngle = startOffAngle;
+        currentRadius = startRadius;
     }
 
     private void MoveHandles(float percentage)
@@ -53,6 +63,19 @@ public class RoundTimer : MonoBehaviour
         // Move Handles
         handle_Left.transform.localRotation = Quaternion.Euler(new Vector3(0f, 0f, currentAngle));
         handle_Right.transform.localRotation = Quaternion.Euler(new Vector3(0f, 0f, -currentAngle));
+    }
+
+    private void AdjustHandleLength(float percentage)
+    {
+        // Update current Radius
+        float invertedPercentage = 1f - percentage;
+        float difference = startRadius - endRadius;
+        currentRadius = startRadius - (difference * invertedPercentage);
+
+
+        // Adjust Handle Indicator Lengths (distance from the axle)
+        leftIndicator.transform.localPosition = new Vector3(0f, currentRadius);
+        rightIndicator.transform.localPosition = new Vector3(0f, currentRadius);
     }
     #endregion
 
@@ -66,7 +89,13 @@ public class RoundTimer : MonoBehaviour
             roundTimeLeft -= clockUpdateFrequency;
 
             // Move the Moon and Start
-            MoveHandles(GetPercentageLeft(roundTimeLeft, roundTime));
+            float percentageLeft = GetPercentageLeft(roundTimeLeft, roundTime);
+            MoveHandles(percentageLeft);
+            AdjustHandleLength(percentageLeft);
+
+
+            // Debug Draw Handles for better visualization
+            if (debugDrawPath) { DebugDrawPath(percentageLeft); }
 
             yield return new WaitForSeconds(clockUpdateFrequency);
         }
@@ -91,4 +120,16 @@ public class RoundTimer : MonoBehaviour
         // TODO: Functionality
     }
     #endregion
+
+    private void DebugDrawPath(float percentage)
+    {
+        // Don't draw it every frame
+        // --> Draw if every 5 percentage of the way
+        float testValue = Mathf.RoundToInt(percentage * 100f);
+
+        if (testValue % 10 == 0)
+        {
+            Instantiate(rightIndicator, rightIndicator.transform.position, rightIndicator.transform.rotation);
+        }
+    }
 }
