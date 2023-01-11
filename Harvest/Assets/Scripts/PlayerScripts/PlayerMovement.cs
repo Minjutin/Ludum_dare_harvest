@@ -10,19 +10,23 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public PlayerSpriteHolder graphics;
 
-
+    [Tooltip("Acceleration of Player when moving. With higher values Player achieves max speed faster.")]
     public float playerMoveSpeed = 5f;
+    [Tooltip("Maximum Speed Limit of Player. This will not be exceeded.")]
     [SerializeField]
     private float maxMoveSpeed = 5f;
 
 
     [Header("Braking")]
+    [Tooltip("RigidBody's Drag when stopping movement input. With higher values Player stops 'sliding' sooner.")]
     [SerializeField]
     private float brakeDrag = 8f;
+    [Tooltip("RigidBody's Drag when receiving movement input. Slows the acceleration process.")]
     [SerializeField]
     private float moveDrag = 0.5f;
+    [Tooltip("After stopping movement input, TIME it takes for the BrakeDrag to activate")]
     [SerializeField]
-    [Range(0.05f, 0.3f)]
+    [Range(0.01f, 0.3f)]
     private float brakeAfterTime = 0.05f;
     private float timeSinceLastMoveInput = 0f;
 
