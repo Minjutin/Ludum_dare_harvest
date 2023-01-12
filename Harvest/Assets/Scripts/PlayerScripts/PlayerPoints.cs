@@ -141,7 +141,7 @@ public class PlayerPoints : MonoBehaviour
                 break;
 
         }
-        Debug.Log("New wanted is " + wantedFruit);
+        //Debug.Log("New wanted is " + wantedFruit);
         bubble.GetComponent<SpriteRenderer>().sprite = fruitSprite;
     }
     #endregion
