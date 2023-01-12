@@ -9,6 +9,9 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    // References
+    TileManager tileManager;
+
     [HideInInspector]
     public PlayerInventory inventory;
     PlayerStats stats;
@@ -21,6 +24,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Awake()
     {
+        tileManager = FindObjectOfType<TileManager>();
 
         inventory = playerController.GetComponent<PlayerInventory>(); //Fetch inventory
         stats = playerController.GetComponent<PlayerStats>();
@@ -248,7 +252,7 @@ public class PlayerInteraction : MonoBehaviour
                 tile.RemoveItem(); //Remove the plant from the tile.
 
                 // Reduce tile fertility AND change graphics
-                FindObjectOfType<TileManager>().ReduceTileFertility(transform.position);
+                tileManager.ReduceTileFertility(transform.position);
 
                 Destroy(tile.itemGO);
                 tile.itemGO = null; // Remove indicator

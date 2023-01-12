@@ -50,6 +50,7 @@ public class Ram : MonoBehaviour
 
     /*[SerializeField]*/ float rammingDistance = 1f; // Unused. Collider checks this.
     [Header("RAMMING")]
+    [SerializeField] float stunTime = 1f;
     [Tooltip("How hard the Ram pushes the Player")]
     [SerializeField] float knockBackPower = 5f;
     [Tooltip("The Ram enters a aggro-cooldown after ramming. How long it takes for the Ram to be able to aggro again.")]
@@ -385,6 +386,9 @@ public class Ram : MonoBehaviour
 
         // Slam the player
         aggroTarget.GetComponent<PlayerMovement>().GetRammed(ramDirection, knockBackPower);
+
+        // Stun the Player too
+        aggroTarget.GetComponent<PlayerStun>().GetStunned(stunTime);
 
         // Move the Ram
         //MoveOnRam(ramDirection);

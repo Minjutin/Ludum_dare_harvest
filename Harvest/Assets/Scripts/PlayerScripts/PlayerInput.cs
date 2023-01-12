@@ -26,6 +26,9 @@ public class PlayerInput : MonoBehaviour
     // Moving
     Vector3 moveInput = Vector3.zero;
 
+    [Space]
+    public bool stunLocked = false;
+
     #endregion
 
 
@@ -63,6 +66,7 @@ public class PlayerInput : MonoBehaviour
     #region INPUTS
     private void ListenForInputs()
     {
+        
         GetMoveInputs();
 
         GetInventoryInput();
@@ -74,6 +78,12 @@ public class PlayerInput : MonoBehaviour
 
         // Reset Movement Vector
         moveInput = Vector3.zero;
+
+
+        // Cancel if stunLocked
+        if (stunLocked) { return; }
+
+
 
         // Get the WASD inputs
         float ws_input = 0;

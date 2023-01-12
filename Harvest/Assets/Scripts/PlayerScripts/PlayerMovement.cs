@@ -29,8 +29,6 @@ public class PlayerMovement : MonoBehaviour
     [Range(0.01f, 0.3f)]
     private float brakeAfterTime = 0.05f;
     private float timeSinceLastMoveInput = 0f;
-
-
     #endregion
 
 
@@ -47,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     // Called from PlayerInputs
     public void MovePlayer(Vector3 moveInput)
     {
+
         HandleMovement(moveInput);
 
         // Set the time for MoveInputChecker coroutine

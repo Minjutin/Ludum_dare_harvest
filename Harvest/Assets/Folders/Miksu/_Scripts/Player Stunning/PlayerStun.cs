@@ -8,6 +8,8 @@ public class PlayerStun : MonoBehaviour
     PlayerInventory playerInventory;
     PlayerInteraction playerInteraction;
 
+    [SerializeField] float stunTime = 1f;
+
     [Header("Knockback Power")]
     [SerializeField] float stunKnockBackPower = 15f;
 
@@ -60,7 +62,36 @@ public class PlayerStun : MonoBehaviour
         // Ram them
         pMove.GetRammed(hitDir, stunKnockBackPower);
 
-        Debug.Log(otherPlayer.name + " got stunned!");
+        // Actually stun them
+        otherPlayer.GetComponent<PlayerStun>().GetStunned(stunTime);
+    }
+
+    public void GetStunned(float stunDuration)
+    {
+        // Activate the Stun Timer
+        StartCoroutine(StunTimer());
+    }
+
+    IEnumerator StunTimer()
+    {
+        // Get playerInput
+        PlayerInput input = playerInventory.GetComponent<PlayerInput>();
+
+        Debug.Log("Begin stun");
+
+        // Check if already stunLocked
+        if (input.stunLocked != true)
+        {
+            // Stunlock them
+            input.stunLocked = true;
+
+            // Wait for the stunTime
+            yield return new WaitForSeconds(stunTime);
+
+            // End the stunlock
+            input.stunLocked = false;
+        Debug.Log("END stun");
+        }
     }
     #endregion
 }
