@@ -128,7 +128,7 @@ public class Choser : MonoBehaviour
 
         //If too many right
         if (p1Hovering > 3)
-            p1Hovering = 1;
+            p1Hovering = 0;
 
         //If too many left
         if (p1Hovering < 0)
