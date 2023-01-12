@@ -1055,51 +1055,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b908c40fa323cbf4bacf5380538ccf68, type: 3}
---- !u!1001 &1869444978
+--- !u!1001 &1934546416
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5425370907726280386, guid: 0b0a98d96ec84014daecfd50da91fafa, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 9.99
-      objectReference: {fileID: 0}
-    - target: {fileID: 5425370907726280386, guid: 0b0a98d96ec84014daecfd50da91fafa, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 9.99
-      objectReference: {fileID: 0}
-    - target: {fileID: 5425370907726280386, guid: 0b0a98d96ec84014daecfd50da91fafa, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 9.99
-      objectReference: {fileID: 0}
-    - target: {fileID: 5425370907726280387, guid: 0b0a98d96ec84014daecfd50da91fafa, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5425370907726280387, guid: 0b0a98d96ec84014daecfd50da91fafa, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5425370908160889015, guid: 0b0a98d96ec84014daecfd50da91fafa, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 9.99
-      objectReference: {fileID: 0}
-    - target: {fileID: 5425370908160889015, guid: 0b0a98d96ec84014daecfd50da91fafa, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 9.99
-      objectReference: {fileID: 0}
-    - target: {fileID: 5425370908160889015, guid: 0b0a98d96ec84014daecfd50da91fafa, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 9.99
-      objectReference: {fileID: 0}
-    - target: {fileID: 5425370908160889016, guid: 0b0a98d96ec84014daecfd50da91fafa, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5425370908160889016, guid: 0b0a98d96ec84014daecfd50da91fafa, type: 3}
-      propertyPath: m_WasSpriteAssigned
+    - target: {fileID: 628344701009029441, guid: 0b0a98d96ec84014daecfd50da91fafa, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5425370909617113329, guid: 0b0a98d96ec84014daecfd50da91fafa, type: 3}
@@ -1107,8 +1071,8 @@ PrefabInstance:
       value: Timer
       objectReference: {fileID: 0}
     - target: {fileID: 5425370909617113330, guid: 0b0a98d96ec84014daecfd50da91fafa, type: 3}
-      propertyPath: debugDrawPath
-      value: 0
+      propertyPath: roundTime
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 5425370909617113331, guid: 0b0a98d96ec84014daecfd50da91fafa, type: 3}
       propertyPath: m_RootOrder

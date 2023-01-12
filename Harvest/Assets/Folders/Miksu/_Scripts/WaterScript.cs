@@ -17,7 +17,7 @@ public class WaterScript : MonoBehaviour
         collider.radius = sphereRadius;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         PlayerWet player;
         player = other.GetComponent<PlayerWet>();  // TODO: Change to PlayerWetter etc.
@@ -27,7 +27,6 @@ public class WaterScript : MonoBehaviour
             //Debug.Log("Splish splash!");
         }
     }
-
 
     private void OnDrawGizmos()
     {
