@@ -253,10 +253,35 @@ public class TileManager : MonoBehaviour
 
     }
 
-    #endregion
-
     public TileDaddy GetTileAt(int x, int y)
     {
         return tileArray[x, y];
+    }
+
+    #endregion
+
+    public void ReduceTileFertility(Vector3 pos)
+    {
+        // Get the Tile
+        TileDaddy dTile = GetTileCreatureIsOn(pos);
+
+        // Get the pos in Vector3Int
+        int x = Mathf.RoundToInt(pos.x);
+        int y = Mathf.RoundToInt(pos.z);
+
+        FertileTile fTile = dTile as FertileTile;
+
+        // Get the fertility level
+        if (fTile.fertilityLevel == Enums.Fertility.F2)
+        {
+            // Set it to Fertility 1
+            SetNewTileAt(tileType.fertile_1, x, y);
+        }
+        else if (fTile.fertilityLevel == Enums.Fertility.F1)
+        {
+            // Set it to Fertility 0
+            SetNewTileAt(tileType.fertile_0, x, y);
+        }
+
     }
 }

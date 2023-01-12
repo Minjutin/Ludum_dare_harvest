@@ -247,7 +247,8 @@ public class PlayerInteraction : MonoBehaviour
                 inventory.AddItem(new Fruit(plantType)); //Add fruit.
                 tile.RemoveItem(); //Remove the plant from the tile.
 
-                //TODO change tile fertility AND graphics
+                // Reduce tile fertility AND change graphics
+                FindObjectOfType<TileManager>().ReduceTileFertility(transform.position);
 
                 Destroy(tile.itemGO);
                 tile.itemGO = null; // Remove indicator
