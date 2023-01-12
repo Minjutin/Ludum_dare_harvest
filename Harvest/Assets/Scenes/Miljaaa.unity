@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 544824965}
   - component: {fileID: 544824967}
   m_Layer: 0
-  m_Name: Constant
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -411,7 +411,7 @@ MonoBehaviour:
   fruitPoints: 1
   seedPoints: 0
   manurePoints: -5
-  growSpeed: 5
+  growSpeed: 10
   f1Multiple: 0.5
   winPoints: 20
 --- !u!4 &544824966
