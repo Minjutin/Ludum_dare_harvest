@@ -6,6 +6,8 @@ public class PlayerWet : MonoBehaviour
 {
     [SerializeField] float maxWetTime = 10f; //In seconds
     [SerializeField] float tileCheckTimer = 0.2f;
+
+    [SerializeField] GameObject soakAnimation;
     
     float wetTime;
     bool wetterIsOn = false;
@@ -30,6 +32,8 @@ public class PlayerWet : MonoBehaviour
     IEnumerator Wetter()
     {
         wetterIsOn = true;
+
+        soakAnimation.SetActive(true);
 
         while (true)
         {
@@ -60,5 +64,7 @@ public class PlayerWet : MonoBehaviour
         }
 
         wetterIsOn = false;
+
+        soakAnimation.SetActive(false);
     }
 }
