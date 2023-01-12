@@ -18,7 +18,7 @@ public class PlayerStun : MonoBehaviour
     {
         // Get references
         playerInteraction = GetComponent<PlayerInteraction>();
-        //playerInventory = playerInteraction.
+        playerInventory = playerInteraction.inventory;
     }
     #endregion
 
@@ -36,12 +36,15 @@ public class PlayerStun : MonoBehaviour
     private void CollideWithPlayer(GameObject otherPlayer)
     {
         // Check inventory size
-        // TODO
+        int otherItemsAmount = otherPlayer.GetComponent<PlayerInteraction>().inventory.ItemsAmount();
+        int yourItemsAmount = playerInventory.ItemsAmount();
 
         // If it is higher than your inventory...
-
-        // --> STUN the other Player
-        StunOtherPlayer(otherPlayer);
+        if (yourItemsAmount <= otherItemsAmount)
+        {
+            // --> STUN the other Player
+            StunOtherPlayer(otherPlayer);
+        }
     }
     #endregion
 
