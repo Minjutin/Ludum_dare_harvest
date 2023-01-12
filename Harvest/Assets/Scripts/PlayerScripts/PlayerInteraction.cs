@@ -9,7 +9,8 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    PlayerInventory inventory;
+    [HideInInspector]
+    public PlayerInventory inventory;
     PlayerStats stats;
     PlayerPoints points;
 
