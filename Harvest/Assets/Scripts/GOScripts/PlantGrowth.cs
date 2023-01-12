@@ -16,6 +16,8 @@ public class PlantGrowth : MonoBehaviour
 
     [Header("Sprites")]
     [SerializeField] SpriteRenderer renderer;
+    [SerializeField] GameObject warning;
+
     [SerializeField] Sprite level1;
     [SerializeField] Sprite level2;
     [SerializeField] Sprite level3;
@@ -38,16 +40,15 @@ public class PlantGrowth : MonoBehaviour
         }
         else
             Debug.LogError("Tile does not contain Plant item even though it has Plant gameobject");
-
-        StartCoroutine(Growth());
     }
 
     //When the plant has been watered, start the coroutine.
-    public void Watered()
+    public void Water()
     {
         if (!isWatered) //Water the plant only if the plant is not already watered.
         {
             isWatered = true;
+            warning.SetActive(false);
             StartCoroutine(Growth());
         }
 

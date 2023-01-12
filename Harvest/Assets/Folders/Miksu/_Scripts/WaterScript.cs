@@ -19,11 +19,11 @@ public class WaterScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerMovement player;
-        player = other.GetComponent<PlayerMovement>();  // TODO: Change to PlayerWetter etc.
+        PlayerWet player;
+        player = other.GetComponent<PlayerWet>();  // TODO: Change to PlayerWetter etc.
         if (player)
         {
-            // Get wet
+            player.GetWet();
             //Debug.Log("Splish splash!");
         }
     }

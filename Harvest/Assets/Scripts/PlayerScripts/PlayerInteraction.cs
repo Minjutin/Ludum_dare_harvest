@@ -246,6 +246,9 @@ public class PlayerInteraction : MonoBehaviour
                 Enums.FruitType plantType = plant.Type;
                 inventory.AddItem(new Fruit(plantType)); //Add fruit.
                 tile.RemoveItem(); //Remove the plant from the tile.
+
+                //TODO change tile fertility AND graphics
+
                 Destroy(tile.itemGO);
                 tile.itemGO = null; // Remove indicator
             }
