@@ -104,10 +104,10 @@ public class TileManager : MonoBehaviour
     #endregion
 
     #region Tile CHANGING
-    public TileDaddy ReadTile(int xPos, int yPos)
+    public TileDaddy ReadTile(int x, int y)
     {
         // Get the Tile at x,y location
-        return tileArray[xPos, yPos];
+        return tileArray[x, y];
     }
 
     public void SetNewTileAt(tileType type, int x, int y)
@@ -227,6 +227,9 @@ public class TileManager : MonoBehaviour
         int x = Mathf.RoundToInt(playerPos.x);
         int y = Mathf.RoundToInt(playerPos.z); // translates Z pos to Y
 
+        if (!CheckTileExistance(x, y)) { return null; }
+
+        #region Old
         //Debug.Log("Player Real  Pos: " + playerPos);
         //Debug.Log("Player ROUND Pos: " + x + " " + y);
         //if (tileArray[x, y] is FertileTile)
@@ -247,6 +250,7 @@ public class TileManager : MonoBehaviour
         //{
         //    Debug.Log("SACRIFICE");
         //}
+        #endregion
 
         // Return TileDaddy type
         return tileArray[x, y];
@@ -255,7 +259,24 @@ public class TileManager : MonoBehaviour
 
     public TileDaddy GetTileAt(int x, int y)
     {
+        if (!CheckTileExistance(x,y)) { return null; }
+
         return tileArray[x, y];
+    }
+
+    private bool CheckTileExistance(int x, int y)
+    {
+        Debug.Log("Tile location: " + x + "," + y);
+
+        // Check if the Tile exists
+        if (x < 0) { return false; }
+        if (x > gridColumns) { return false; }
+        if (y < 0) { return false; }
+        if (y > gridRows) { return false; }
+
+
+        // Otherwise, return true
+        return true;
     }
 
     #endregion
