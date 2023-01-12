@@ -3694,6 +3694,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Timer
       objectReference: {fileID: 0}
+    - target: {fileID: 5425370909617113330, guid: 0b0a98d96ec84014daecfd50da91fafa, type: 3}
+      propertyPath: roundTime
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5425370909617113331, guid: 0b0a98d96ec84014daecfd50da91fafa, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -3984,6 +3988,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6269256524656728626, guid: a03eef446e997074299adfbeaed49203, type: 3}
   m_PrefabInstance: {fileID: 5201007898699554197}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1038955706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038955700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c22b7c50244333f41a4fee9356032f8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stunKnockBackPower: 15
 --- !u!1 &1074126388
 GameObject:
   m_ObjectHideFlags: 0
@@ -4479,6 +4496,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ram
       objectReference: {fileID: 0}
+    - target: {fileID: 777887784582995301, guid: 43ed5edb78b33d74e86ee8ca4a9d0a7d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43ed5edb78b33d74e86ee8ca4a9d0a7d, type: 3}
 --- !u!1 &1503231265
@@ -4774,6 +4795,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6269256524656728626, guid: a03eef446e997074299adfbeaed49203, type: 3}
   m_PrefabInstance: {fileID: 1355890376}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1685414855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685414849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c22b7c50244333f41a4fee9356032f8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stunKnockBackPower: 15
 --- !u!1 &1714534701
 GameObject:
   m_ObjectHideFlags: 0
