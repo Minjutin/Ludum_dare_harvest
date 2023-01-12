@@ -157,6 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 834f2c64a85ce764fbb35313d437ea61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxWetTime: 2
+  tileCheckTimer: 0.2
 --- !u!1 &8172581618596859347
 GameObject:
   m_ObjectHideFlags: 0

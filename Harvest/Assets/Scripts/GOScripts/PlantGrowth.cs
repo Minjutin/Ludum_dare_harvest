@@ -16,6 +16,8 @@ public class PlantGrowth : MonoBehaviour
 
     [Header("Sprites")]
     [SerializeField] SpriteRenderer renderer;
+    [SerializeField] GameObject warning;
+
     [SerializeField] Sprite level1;
     [SerializeField] Sprite level2;
     [SerializeField] Sprite level3;
@@ -46,6 +48,7 @@ public class PlantGrowth : MonoBehaviour
         if (!isWatered) //Water the plant only if the plant is not already watered.
         {
             isWatered = true;
+            warning.SetActive(false);
             StartCoroutine(Growth());
         }
 
