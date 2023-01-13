@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graphics: {fileID: 0}
-  playerMoveSpeed: 5
+  playerMoveSpeed: 3
   maxMoveSpeed: 5
   brakeDrag: 10
   moveDrag: 0
