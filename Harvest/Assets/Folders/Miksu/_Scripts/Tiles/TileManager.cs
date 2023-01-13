@@ -266,7 +266,7 @@ public class TileManager : MonoBehaviour
 
     private bool CheckTileExistance(int x, int y)
     {
-        Debug.Log("Tile location: " + x + "," + y);
+        //Debug.Log("Tile location: " + x + "," + y);
 
         // Check if the Tile exists
         if (x < 0) { return false; }
