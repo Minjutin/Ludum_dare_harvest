@@ -6,7 +6,7 @@ using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] GameObject selectionScreen;
+    [SerializeField] GameObject tutorialScreen;
     [SerializeField] GameObject selector, play, exit;
 
     GameObject currentObject;
@@ -82,6 +82,6 @@ public class MainMenu : MonoBehaviour
     // Update is called once per frame
     public void OpenSelection()
     {
-        selectionScreen.SetActive(true);
+        tutorialScreen.SetActive(true);
     }
 }

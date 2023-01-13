@@ -52,12 +52,13 @@ public class Choser : MonoBehaviour
                 MoveP1(1);
             }
 
-            //Player1 GET ITEM
+            //Player1 LOCK YOUR CHOICE
             if (Input.GetKeyDown(Statics.p1interaction) || Input.GetKeyDown(Statics.p1inventory))
             {
                 if (p1Hovering != p2chosen)
                 {
                     p1chosen = p1Hovering;
+                    p1.SetActive(false);
                 }
 
             }
@@ -69,6 +70,7 @@ public class Choser : MonoBehaviour
             if (Input.GetKeyDown(Statics.p1interaction) || Input.GetKeyDown(Statics.p1inventory))
             {
                 p1chosen = -1;
+                p1.SetActive(true);
             }
         }
 
@@ -93,6 +95,7 @@ public class Choser : MonoBehaviour
                 if(p2Hovering != p1chosen)
                 {
                     p2chosen = p2Hovering;
+                    p2.SetActive(false);
                 }
                 
             }
@@ -104,6 +107,7 @@ public class Choser : MonoBehaviour
             if (Input.GetKeyDown(Statics.p2interaction) || Input.GetKeyDown(Statics.p2inventory))
             {
                 p2chosen = -1;
+                p2.SetActive(true);
             }
         }
 
@@ -134,7 +138,7 @@ public class Choser : MonoBehaviour
         if (p1Hovering < 0)
             p1Hovering = 3;
 
-        p1.transform.position = new Vector3(gods[p1Hovering].transform.position.x, p1.transform.position.y, p1.transform.position.z);
+        p1.transform.position = new Vector3(gods[p1Hovering].transform.position.x-8, p1.transform.position.y, p1.transform.position.z);
         gods[p1Hovering].GetComponent<Image>().color = new Color(1, 1, 1, 1);
     }
 
@@ -155,7 +159,7 @@ public class Choser : MonoBehaviour
         if (p2Hovering < 0)
             p2Hovering = 3;
 
-        p2.transform.position = new Vector3(gods[p2Hovering].transform.position.x, p2.transform.position.y, p2.transform.position.z);
+        p2.transform.position = new Vector3(gods[p2Hovering].transform.position.x+10, p2.transform.position.y, p2.transform.position.z);
         gods[p2Hovering].GetComponent<Image>().color = new Color(1, 1, 1, 1);
     }
 
