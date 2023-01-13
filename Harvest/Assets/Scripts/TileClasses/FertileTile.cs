@@ -34,7 +34,7 @@ public class FertileTile : TileDaddy
             Debug.LogWarning("Tile already contains an item, but you're trying to give it a new item.");
         }
 
-        if(setItem is Plant || setItem is Seed || setItem is Manure)
+        if(setItem is Plant || setItem is Seed || setItem is Manure || setItem is Fruit)
         {
             item = setItem;
 

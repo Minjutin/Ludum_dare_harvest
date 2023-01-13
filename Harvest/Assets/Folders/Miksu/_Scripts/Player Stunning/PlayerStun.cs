@@ -10,15 +10,18 @@ public class PlayerStun : MonoBehaviour
     PlayerInventory playerInventory;
     PlayerInteraction playerInteraction;
 
-    [Tooltip("How long the OTHER Player will remain stunned")]
+    [Header("Being stunned")]
+    [Tooltip("How long the Player will remain stunned")]
     [SerializeField] float stunTime = 1f;
 
+
     [Header("Knockback Power")]
+    [Tooltip("The Power this Player will RAM other players with")]
     [SerializeField] float stunKnockBackPower = 15f;
 
-    [Header("Item Fly Distance")]
-    [Tooltip("How far the items will fly on getting stunned.")]
-    [SerializeField] float itemFlyDistance = 2f;
+    [Header("Item Drop Distance")]
+    [Tooltip("How far the items will fly on getting stunned. Ramming direction x Distance = center of 3x3 Drop-Grid.")]
+    [SerializeField] float itemDropDistance = 2f;
 
     #endregion
 
@@ -111,16 +114,16 @@ public class PlayerStun : MonoBehaviour
     #region Drop Items
     private void DropItemsOnStun(Vector3 hitDirection)
     {
+
         // Get a list of the tiles near Player
         List<TileDaddy> nearTiles = GetAvailableTiles(hitDirection);
 
         // Get another list for empty tiles
         List<TileDaddy> emptyTiles = GetEmptyTiles(nearTiles);
 
-        // Add inventory items there
+        // Drop inventory items there
         DropInventoryItemsOnGround(emptyTiles);
 
-        // Remove them from inventory
     }
 
     private List<TileDaddy> GetAvailableTiles(Vector3 hitDir)
@@ -128,7 +131,7 @@ public class PlayerStun : MonoBehaviour
         Vector3 curPos = transform.position;
 
         // Adjust Drop Position towards Hit Direction
-        Vector3 dropPos = curPos + (hitDir * itemFlyDistance);
+        Vector3 dropPos = curPos + (hitDir * itemDropDistance);
 
 
         // Get Player pos
@@ -201,27 +204,87 @@ public class PlayerStun : MonoBehaviour
         int numberOfItems = playerInventory.ItemsAmount();
 
         if (numberOfItems == 0) { return; }
-        if (tiles.Count == 0)   { return; }
+        //if (tiles.Count == 0) { return; }
 
         // Choose random tiles up to the amount of inventory items
-        int amountOfTilesSelected = Mathf.Min(playerInventory.ItemsAmount(),tiles.Count);
+        int amountOfTilesSelected = Mathf.Min(playerInventory.ItemsAmount(), tiles.Count);
 
         List<FertileTile> dropTiles = new List<FertileTile>();
 
-        for(int i = 0; i < amountOfTilesSelected; i++)
+        for (int i = 0; i < amountOfTilesSelected; i++)
         {
             // Select a tile at random
             FertileTile candidate = tiles[Random.Range(0, tiles.Count)] as FertileTile;
 
-            // If not already in the list, add it
-
+            // If not, add it to the pile
             dropTiles.Add(candidate);
+
+            // Remove from the old list
+            tiles.Remove(candidate);
         }
 
+        // Get the list of Items
+        List<InventoryItem> items = playerInventory.GetAllItems();
+
+        //playerInventory.PrintInventory();
+
         // Add ITEMS to the tiles
+        for (int y = 0; y < amountOfTilesSelected; y++)
+        {
+            // Allocate 1 item to each of the randomly selected tiles
+            dropTiles[y].SetItem(items[y]);
 
+            // Give tiles the items
+            SetCorrectItem(items[y], dropTiles[y]);
+        }
 
-        // Remove them from inventory
+        // Empty Player Inventory regardless of how many tiles were present
+        playerInventory.DropAll();
+    }
+
+    private void SetCorrectItem(InventoryItem item, FertileTile tile)
+    {
+        // SEEDS
+        if (item is Seed)
+        {
+            GameObject seed = Instantiate(Resources.Load("Seed"), tile.position, Quaternion.identity) as GameObject;
+            tile.itemGO = seed;
+        }
+
+        // FRUITS
+        if (item is Fruit)
+        {
+            // What kind of fruit
+            if ((item as Fruit).Type == Enums.FruitType.Fruit1)
+            {
+                // Set it as Fruit
+                GameObject fruit = Instantiate(Resources.Load("Fruits/FruitGO1"), tile.position, Quaternion.identity) as GameObject;
+                tile.itemGO = fruit;
+            }
+            else if ((item as Fruit).Type == Enums.FruitType.Fruit2)
+            {
+                GameObject fruit = Instantiate(Resources.Load("Fruits/FruitGO2"), tile.position, Quaternion.identity) as GameObject;
+                tile.itemGO = fruit;
+            }
+            else if ((item as Fruit).Type == Enums.FruitType.Fruit3)
+            {
+                GameObject fruit = Instantiate(Resources.Load("Fruits/FruitGO3"), tile.position, Quaternion.identity) as GameObject;
+                tile.itemGO = fruit;
+            }
+            else if ((item as Fruit).Type == Enums.FruitType.Fruit3)
+            {
+                GameObject fruit = Instantiate(Resources.Load("Fruits/FruitGO4"), tile.position, Quaternion.identity) as GameObject;
+                tile.itemGO = fruit;
+            }
+        }
+
+        // MANURE
+        if (item is Manure)
+        {
+            // Set it as Manure
+            GameObject manure = Instantiate(Resources.Load("Manure"), tile.position, Quaternion.identity) as GameObject;
+            tile.itemGO = manure;
+        }
     }
     #endregion
 }

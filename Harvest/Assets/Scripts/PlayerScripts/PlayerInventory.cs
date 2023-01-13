@@ -27,7 +27,7 @@ public class PlayerInventory : MonoBehaviour
         inventorySlots[1] = inventory.transform.Find("Slot2").gameObject;
         inventorySlots[2] = inventory.transform.Find("Slot3").gameObject;
 
-        for(int i = 0; i<inventorySize; i++)
+        for (int i = 0; i < inventorySize; i++)
         {
             items[i] = inventorySlots[i].transform.Find("Item").gameObject;
         }
@@ -40,7 +40,7 @@ public class PlayerInventory : MonoBehaviour
 
     //Check, use, add and remove items.
     #region Using inventory
-    
+
     //Array of items in the inventory
     InventoryItem[] inventoryItems = new InventoryItem[inventorySize];
 
@@ -57,6 +57,19 @@ public class PlayerInventory : MonoBehaviour
     {
         return inventoryItems[slot];
     } //Get inventory item.
+
+    // Returns a list of all items
+    public List<InventoryItem> GetAllItems()
+    {
+        List<InventoryItem> allItems = new List<InventoryItem>();
+
+        foreach (InventoryItem item in inventoryItems)
+        {
+            allItems.Add(item);
+        }
+
+        return allItems;
+    }
 
     public void AddItem(InventoryItem item)
     {
@@ -75,7 +88,7 @@ public class PlayerInventory : MonoBehaviour
                     if (item is Fruit)
                     {
                         Fruit fruit = item as Fruit;
-                        if(fruit.Type == Enums.FruitType.Fruit1)
+                        if (fruit.Type == Enums.FruitType.Fruit1)
                             newSprite = sprites[0] as Sprite;
                         if (fruit.Type == Enums.FruitType.Fruit2)
                             newSprite = sprites[1] as Sprite;
@@ -84,9 +97,9 @@ public class PlayerInventory : MonoBehaviour
                         if (fruit.Type == Enums.FruitType.Fruit4)
                             newSprite = sprites[3] as Sprite;
                     }
-                    else if(item is Manure)
+                    else if (item is Manure)
                         newSprite = sprites[4] as Sprite;
-                    else if(item is Seed)
+                    else if (item is Seed)
                         newSprite = sprites[5] as Sprite;
                     else
                     {
@@ -102,7 +115,8 @@ public class PlayerInventory : MonoBehaviour
                 }
             }
         }
-        else {
+        else
+        {
             Debug.LogError("Inventory is full but you're trying to collect an item.");
         }
 
@@ -111,13 +125,13 @@ public class PlayerInventory : MonoBehaviour
 
     public void RemoveItem(int slot)
     {
-        if(slot < 0 ||slot > 3)
+        if (slot < 0 || slot > 3)
         {
-            Debug.LogError("There is no inventory slot "+slot);
+            Debug.LogError("There is no inventory slot " + slot);
         }
 
         if (this.ThereIsItem(slot))
-        { 
+        {
             inventoryItems[slot] = null; //make the slot null.
             items[slot].GetComponent<SpriteRenderer>().sprite = null;
             stats.ChangeSpeed(ItemsAmount()); //Change speed.
@@ -128,7 +142,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void DropAll()
     {
-        for(int i = 0; i<3; i++)
+        for (int i = 0; i < 3; i++)
         {
             inventoryItems[i] = null; //make the slot null.
             items[i].GetComponent<SpriteRenderer>().sprite = null;
@@ -171,21 +185,22 @@ public class PlayerInventory : MonoBehaviour
     public void PrintInventory()
     {
 
-        Debug.Log("Inventory placement "+1+": "+inventoryItems[0]+"\n" +
-            "Inventory placement " + 2 + ": " + inventoryItems[1]+"\n"+
+        Debug.Log("Inventory placement " + 1 + ": " + inventoryItems[0] + "\n" +
+            "Inventory placement " + 2 + ": " + inventoryItems[1] + "\n" +
             "Inventory placement " + 3 + ": " + inventoryItems[2]);
-           
+
     }
 
     public void MakeChosen(int slot)
     {
-        for(int i = 0; i<inventorySize; i++)
+        for (int i = 0; i < inventorySize; i++)
         {
 
             if (slot == i)
             {
                 inventorySlots[i].GetComponent<SpriteRenderer>().sprite = sprites[7] as Sprite;
-            } else
+            }
+            else
             {
                 inventorySlots[i].GetComponent<SpriteRenderer>().sprite = sprites[6] as Sprite;
             }
