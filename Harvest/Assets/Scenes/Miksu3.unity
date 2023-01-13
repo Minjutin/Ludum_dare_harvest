@@ -546,6 +546,10 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 199926613}
+    - target: {fileID: 1685414856, guid: a03eef446e997074299adfbeaed49203, type: 3}
+      propertyPath: itemFlyDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1331964127855636970, guid: a03eef446e997074299adfbeaed49203, type: 3}
       propertyPath: m_RootOrder
       value: 12

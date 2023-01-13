@@ -388,7 +388,7 @@ public class Ram : MonoBehaviour
         aggroTarget.GetComponent<PlayerMovement>().GetRammed(ramDirection, knockBackPower);
 
         // Stun the Player too
-        aggroTarget.GetComponent<PlayerStun>().GetStunned(stunTime);
+        aggroTarget.GetComponent<PlayerStun>().GetStunned(stunTime, ramDirection);
 
         // Move the Ram
         //MoveOnRam(ramDirection);

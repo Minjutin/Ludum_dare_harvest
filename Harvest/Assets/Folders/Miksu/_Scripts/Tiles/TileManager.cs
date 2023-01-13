@@ -150,17 +150,17 @@ public class TileManager : MonoBehaviour
         // SACRIFICE
         else if (type == tileType.sacrifice)
         {
-            SacrificeTile sTile; 
+            SacrificeTile sTile;
 
-            if(x<gridRows/2 && y<gridColumns/2)
+            if (x < gridRows / 2 && y < gridColumns / 2)
                 sTile = new SacrificeTile(Enums.God.God3); //Left-down altar
 
-            else if(x<gridRows/2 && y>=gridColumns/2)
+            else if (x < gridRows / 2 && y >= gridColumns / 2)
                 sTile = new SacrificeTile(Enums.God.God1); //Left-up altar
 
-            else if (x >= gridRows / 2 && y < gridColumns / 2) 
+            else if (x >= gridRows / 2 && y < gridColumns / 2)
                 sTile = new SacrificeTile(Enums.God.God4); //Right-down altar
-            else 
+            else
                 sTile = new SacrificeTile(Enums.God.God2); //Right-up altar
 
             sTile.position = pos;
@@ -259,7 +259,7 @@ public class TileManager : MonoBehaviour
 
     public TileDaddy GetTileAt(int x, int y)
     {
-        if (!CheckTileExistance(x,y)) { return null; }
+        if (!CheckTileExistance(x, y)) { return null; }
 
         return tileArray[x, y];
     }
@@ -270,9 +270,9 @@ public class TileManager : MonoBehaviour
 
         // Check if the Tile exists
         if (x < 0) { return false; }
-        if (x > gridColumns) { return false; }
+        if (x > gridColumns - 1) { return false; }
         if (y < 0) { return false; }
-        if (y > gridRows) { return false; }
+        if (y > gridRows - 1) { return false; }
 
 
         // Otherwise, return true

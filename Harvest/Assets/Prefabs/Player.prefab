@@ -281,7 +281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stunTime: 1
   stunKnockBackPower: 15
-  itemFlyDistance: 5
+  itemFlyDistance: 2
 --- !u!1 &8172581618596859347
 GameObject:
   m_ObjectHideFlags: 0

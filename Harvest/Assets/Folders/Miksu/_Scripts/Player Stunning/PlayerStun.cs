@@ -17,8 +17,8 @@ public class PlayerStun : MonoBehaviour
     [SerializeField] float stunKnockBackPower = 15f;
 
     [Header("Item Fly Distance")]
-    [Tooltip("How far behind the other Player's inventory will fly on stun")]
-    [SerializeField] float itemFlyDistance = 5f;
+    [Tooltip("How far the items will fly on getting stunned.")]
+    [SerializeField] float itemFlyDistance = 2f;
 
     #endregion
 
@@ -72,17 +72,17 @@ public class PlayerStun : MonoBehaviour
         pMove.GetRammed(hitDir, stunKnockBackPower);
 
         // Actually stun them
-        PlayerStun otherStun = otherPlayer.GetComponent<PlayerStun>();
-        otherStun.GetStunned(stunTime);
+        otherPlayer.GetComponent<PlayerStun>().GetStunned(stunTime, hitDir);
 
-        // Make them drop their items
-        otherStun.DropItemsOnStun(hitDir);
     }
 
-    public void GetStunned(float stunDuration)
+    public void GetStunned(float stunDuration, Vector3 hitDir)
     {
         // Activate the Stun Timer
         StartCoroutine(StunTimer(stunDuration));
+
+        // Drop your items
+        DropItemsOnStun(hitDir);
     }
 
     IEnumerator StunTimer(float stunDuration)
@@ -115,7 +115,7 @@ public class PlayerStun : MonoBehaviour
         List<TileDaddy> nearTiles = GetAvailableTiles(hitDirection);
 
         // Get another list for empty tiles
-
+        List<TileDaddy> emptyTiles = GetEmptyTiles(nearTiles);
         // Add inventory items there
 
         // Remove them from inventory
@@ -126,10 +126,7 @@ public class PlayerStun : MonoBehaviour
         Vector3 curPos = transform.position;
 
         // Adjust Drop Position towards Hit Direction
-        Vector3 dropPos = curPos + (hitDir * 5f);
-        Debug.Log("Hit Dir: " + hitDir);
-        Debug.Log("Fly: " + itemFlyDistance);
-        Debug.Log("FlyDistance Vector: " + (hitDir * itemFlyDistance));
+        Vector3 dropPos = curPos + (hitDir * itemFlyDistance);
 
 
         // Get Player pos
@@ -148,8 +145,6 @@ public class PlayerStun : MonoBehaviour
                 {
                     availableTiles.Add(tileManager.GetTileAt(_x + x, _y + y));
 
-                    //Debug.Log("Available tile found at: " + (_x + x) + "," + (_y +y));
-                    Debug.DrawRay(new Vector3(_x + x, 0, _y + y), Vector3.up, Color.green, 0.2f);
                 }
             }
         }
@@ -160,22 +155,42 @@ public class PlayerStun : MonoBehaviour
 
     private List<TileDaddy> GetEmptyTiles(List<TileDaddy> tiles)
     {
+        if (tiles == null) { return null; }
+
+        //Debug.Log("Tiles amount: " + tiles.Count);
+
         List<TileDaddy> emptyTiles = new List<TileDaddy>();
 
         // Get tiles around that center coordinate
         foreach (TileDaddy tile in tiles)
         {
-            int x = (int)tile.position.x;
-            int y = (int)tile.position.y;
+            //Debug.Log("TIle pos: " + tile.position);
 
             // If tile is valid (exists), add it to the list
-            if (!(tileManager.GetTileAt(x, y) as FertileTile).HasItem())
+            if (tile is FertileTile)
             {
-                // Doesn't have an item, add it
-                emptyTiles.Add(tile);
-            }
-        }
 
+                int x = Mathf.RoundToInt(tile.position.x);
+                int y = Mathf.RoundToInt(tile.position.z);
+
+                //if (!(tileManager.GetTileAt(x, y) as FertileTile).HasItem())
+                if (!(tile as FertileTile).HasItem())
+                {
+
+                    // Doesn't have an item, add it
+                    emptyTiles.Add(tile);
+
+                    //Debug.Log("Available tile found at: " + (_x + x) + "," + (_y +y));
+                    Debug.DrawRay(new Vector3(x, 0, y), Vector3.up, Color.green, 0.5f);
+
+                }
+                else
+                {
+                    Debug.DrawRay(new Vector3(x, 0, y), Vector3.up, Color.red, 0.7f);
+                }
+            }
+
+        }
         // Return list of available tiles
         return emptyTiles;
     }
