@@ -166,7 +166,6 @@ GameObject:
   - component: {fileID: 1213809489}
   - component: {fileID: 8633868487395713932}
   - component: {fileID: 5163290693463965861}
-  - component: {fileID: 1038955707}
   - component: {fileID: 1685414856}
   m_Layer: 6
   m_Name: Player
@@ -268,20 +267,6 @@ MonoBehaviour:
   maxWetTime: 2
   tileCheckTimer: 0.2
   soakAnimation: {fileID: 1027559468}
---- !u!114 &1038955707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6269256524656728626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c22b7c50244333f41a4fee9356032f8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stunTime: 1
-  stunKnockBackPower: 15
 --- !u!114 &1685414856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,6 +281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stunTime: 1
   stunKnockBackPower: 15
+  itemFlyDistance: 5
 --- !u!1 &8172581618596859347
 GameObject:
   m_ObjectHideFlags: 0

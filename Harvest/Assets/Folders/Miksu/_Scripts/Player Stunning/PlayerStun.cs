@@ -16,6 +16,10 @@ public class PlayerStun : MonoBehaviour
     [Header("Knockback Power")]
     [SerializeField] float stunKnockBackPower = 15f;
 
+    [Header("Item Fly Distance")]
+    [Tooltip("How far behind the other Player's inventory will fly on stun")]
+    [SerializeField] float itemFlyDistance = 5f;
+
     #endregion
 
     #region Setup
@@ -108,7 +112,7 @@ public class PlayerStun : MonoBehaviour
     private void DropItemsOnStun(Vector3 hitDirection)
     {
         // Get a list of the tiles near Player
-        List<TileDaddy> nearTiles = GetAvailableTiles();
+        List<TileDaddy> nearTiles = GetAvailableTiles(hitDirection);
 
         // Get another list for empty tiles
 
@@ -117,25 +121,34 @@ public class PlayerStun : MonoBehaviour
         // Remove them from inventory
     }
 
-    private List<TileDaddy> GetAvailableTiles()
+    private List<TileDaddy> GetAvailableTiles(Vector3 hitDir)
     {
+        Vector3 curPos = transform.position;
+
+        // Adjust Drop Position towards Hit Direction
+        Vector3 dropPos = curPos + (hitDir * 5f);
+        Debug.Log("Hit Dir: " + hitDir);
+        Debug.Log("Fly: " + itemFlyDistance);
+        Debug.Log("FlyDistance Vector: " + (hitDir * itemFlyDistance));
+
+
         // Get Player pos
-        int x = Mathf.RoundToInt(transform.position.x);
-        int y = Mathf.RoundToInt(transform.position.z);
+        int x = Mathf.RoundToInt(dropPos.x);
+        int y = Mathf.RoundToInt(dropPos.z);
 
         List<TileDaddy> availableTiles = new List<TileDaddy>();
 
         // Get tiles around that center coordinate
-        for (int _x = -1; _x < 1; _x++)
+        for (int _x = -1; _x < 2; _x++)
         {
-            for (int _y = -1; _y < 1; _y++)
+            for (int _y = -1; _y < 2; _y++)
             {
                 // If tile is valid (exists), add it to the list
                 if (tileManager.CheckTileExistance(_x + x, _y + y))
                 {
                     availableTiles.Add(tileManager.GetTileAt(_x + x, _y + y));
 
-                    Debug.Log("Available tile found at: " + (_x + x) + "," + (_y +y));
+                    //Debug.Log("Available tile found at: " + (_x + x) + "," + (_y +y));
                     Debug.DrawRay(new Vector3(_x + x, 0, _y + y), Vector3.up, Color.green, 0.2f);
                 }
             }
