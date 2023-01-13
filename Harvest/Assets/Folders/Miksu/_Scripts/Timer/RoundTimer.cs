@@ -29,6 +29,8 @@ public class RoundTimer : MonoBehaviour
     [Tooltip("Round time in seconds.")]
     [SerializeField] float roundTime = 180f;
     float roundTimeLeft;
+
+    EndGame endGame;
     #endregion
 
     #region Setup
@@ -36,6 +38,7 @@ public class RoundTimer : MonoBehaviour
     {
         // Set the correct amount of time
         roundTimeLeft = roundTime;
+        endGame = FindObjectOfType<EndGame>();
 
         SetupHandles();
 
@@ -116,9 +119,7 @@ public class RoundTimer : MonoBehaviour
     #region Round ENDING
     private void EndRound()
     {
-        Debug.Log("Round has ended.");
-
-        // TODO: Functionality
+        endGame.EndEverything();
     }
     #endregion
 

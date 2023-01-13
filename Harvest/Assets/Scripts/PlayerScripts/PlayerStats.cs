@@ -23,7 +23,7 @@ public class PlayerStats : MonoBehaviour
     //Initializing 
 
     Constants constants;
-    PlayerPoints points;
+    public PlayerPoints points;
 
     private void Start()
     {

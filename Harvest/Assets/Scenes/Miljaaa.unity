@@ -654,6 +654,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 777887784582995297, guid: 43ed5edb78b33d74e86ee8ca4a9d0a7d, type: 3}
+      propertyPath: timeBetweenPoops
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 777887784582995300, guid: 43ed5edb78b33d74e86ee8ca4a9d0a7d, type: 3}
       propertyPath: m_RootOrder
       value: 22
@@ -1444,7 +1448,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1731840609, guid: fc376733f0778e144811a696362f18d5, type: 3}
       propertyPath: timeBetweenSpawns
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1684091709186877937, guid: fc376733f0778e144811a696362f18d5, type: 3}
       propertyPath: m_Name
