@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
         // DOT MODIFIER
         // -> Move faster when going the direction Player is facing
         // --> Less moving when turning
-        float finalSpeed = playerMoveSpeed * Mathf.Max(0.4f, dot * dot);
+        float finalSpeed = playerMoveSpeed * Mathf.Max(0.4f, dot * dot) * 10f;
 
         // Add Force to Player RB
         rb.AddForce(direction * finalSpeed, ForceMode.Force);

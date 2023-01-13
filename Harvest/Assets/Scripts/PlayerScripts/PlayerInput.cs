@@ -58,6 +58,10 @@ public class PlayerInput : MonoBehaviour
     {
         ListenForInputs();
 
+    }
+
+    private void FixedUpdate()
+    {
         // Execute Movement Inputs
         ExecuteInputs();
     }

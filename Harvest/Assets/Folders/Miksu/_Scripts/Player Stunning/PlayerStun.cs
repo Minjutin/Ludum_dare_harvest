@@ -116,7 +116,9 @@ public class PlayerStun : MonoBehaviour
 
         // Get another list for empty tiles
         List<TileDaddy> emptyTiles = GetEmptyTiles(nearTiles);
+
         // Add inventory items there
+        DropInventoryItemsOnGround(emptyTiles);
 
         // Remove them from inventory
     }
@@ -176,8 +178,7 @@ public class PlayerStun : MonoBehaviour
                 //if (!(tileManager.GetTileAt(x, y) as FertileTile).HasItem())
                 if (!(tile as FertileTile).HasItem())
                 {
-
-                    // Doesn't have an item, add it
+                    // Doesn't have an item, add it to the list
                     emptyTiles.Add(tile);
 
                     //Debug.Log("Available tile found at: " + (_x + x) + "," + (_y +y));
@@ -197,7 +198,28 @@ public class PlayerStun : MonoBehaviour
 
     private void DropInventoryItemsOnGround(List<TileDaddy> tiles)
     {
-        // Add them to the tiles
+        int numberOfItems = playerInventory.ItemsAmount();
+
+        if (numberOfItems == 0) { return; }
+        if (tiles.Count == 0)   { return; }
+
+        // Choose random tiles up to the amount of inventory items
+        int amountOfTilesSelected = Mathf.Min(playerInventory.ItemsAmount(),tiles.Count);
+
+        List<FertileTile> dropTiles = new List<FertileTile>();
+
+        for(int i = 0; i < amountOfTilesSelected; i++)
+        {
+            // Select a tile at random
+            FertileTile candidate = tiles[Random.Range(0, tiles.Count)] as FertileTile;
+
+            // If not already in the list, add it
+
+            dropTiles.Add(candidate);
+        }
+
+        // Add ITEMS to the tiles
+
 
         // Remove them from inventory
     }
