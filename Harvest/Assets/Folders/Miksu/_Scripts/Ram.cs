@@ -66,6 +66,8 @@ public class Ram : MonoBehaviour
         water = FindObjectOfType<WaterScript>();
         rb = GetComponent<Rigidbody>();
 
+        timeBetweenPoops = FindObjectOfType<Constants>().poopTime;
+
         aggroTrigger.radius = aggroRadius;
 
         StartManureTimer();

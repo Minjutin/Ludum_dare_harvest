@@ -17,6 +17,10 @@ public class Constants : MonoBehaviour
     [Header("Normal plant grow speed (as seconds)")]
     public float growSpeed = 5;
 
+    [Header("Seed and poop spawn time")]
+    public float seedTime = 2;
+    public float poopTime = 2;
+
     [Header("Grow time multipler")]
     public float f1Multiple = 0.5f;
 

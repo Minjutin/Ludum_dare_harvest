@@ -8,12 +8,13 @@ public class SeedSpawner : MonoBehaviour
 
     [Header("Spawning")]
     public bool spawningOn = true;
-    [SerializeField]
+
     float timeBetweenSpawns = 1f;
 
     private void Start()
     {
         tileManager = FindObjectOfType<TileManager>();
+        timeBetweenSpawns = FindObjectOfType<Constants>().seedTime;
 
         // Start coroutine for spawning
         StartSpawning();
@@ -58,21 +59,29 @@ public class SeedSpawner : MonoBehaviour
         {
             yield return wait;
 
-            // Pick a random tile
-            int rand_X = Random.Range(0, gridRows);
-            int rand_Y = Random.Range(0, gridColumns);
+            bool success = false;
 
-            TileDaddy candidate = tileManager.GetTileAt(rand_X, rand_Y);
-            candidate = candidate as FertileTile;
-            if (candidate is FertileTile)
+            //Do till time ends.
+            while (!success)
             {
-                // Try to spawn a seed
-                bool success;
-                success = TrySpawnSeedAt(rand_X, rand_Y, candidate as FertileTile);
 
-                //if (!success) { Debug.Log("Failed to spawn plant at: (" + rand_X + "," + rand_Y + ")"); }
+                // Pick a random tile
+                int rand_X = Random.Range(0, gridRows);
+                int rand_Y = Random.Range(0, gridColumns);
 
+                TileDaddy candidate = tileManager.GetTileAt(rand_X, rand_Y);
+                candidate = candidate as FertileTile;
+ 
+                if (candidate is FertileTile)
+                {
+                    // Try to spawn a seed
+                    success = TrySpawnSeedAt(rand_X, rand_Y, candidate as FertileTile);
+                }
+
+                yield return new WaitForSeconds(0.01f);
             }
+
+            
 
 
         }

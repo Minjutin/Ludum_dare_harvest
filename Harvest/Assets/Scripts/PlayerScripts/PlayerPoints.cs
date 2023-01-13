@@ -21,7 +21,6 @@ public class PlayerPoints : MonoBehaviour
 
     private void Start()
     {
-        endSprites = Resources.LoadAll("EndScenes", typeof(Sprite));
         
         stats = this.GetComponent<PlayerStats>();
         constants = FindObjectOfType<Constants>();
@@ -116,6 +115,11 @@ public class PlayerPoints : MonoBehaviour
         StartCoroutine(NewWanted());
     }
 
+    public int GetPoints()
+    {
+        return points;
+    }
+
     IEnumerator NewWanted()
     {
         yield return new WaitForSeconds(0.2f);
@@ -146,34 +150,12 @@ public class PlayerPoints : MonoBehaviour
     }
     #endregion
 
-    Object[] endSprites;
     public void CheckIfWon()
     {
         if (points >= constants.winPoints)
         {
-            Sprite spriteNow;
-
-            switch (stats.god)
-            {
-                case Enums.God.God1:
-                    spriteNow = endSprites[0] as Sprite;
-                    break;
-                case Enums.God.God2:
-                    spriteNow = endSprites[1] as Sprite;
-                    break;
-                case Enums.God.God3:
-                    spriteNow = endSprites[2] as Sprite;
-                    break;
-                case Enums.God.God4:
-                    spriteNow = endSprites[3] as Sprite;
-                    break;
-                default:
-                    spriteNow = endSprites[0] as Sprite;
-                    Debug.LogError("There is no god");
-                    break;
-            }
-
-            UIelements.transform.parent.parent.GetComponent<EndGame>().OpenEnding(spriteNow);
+            UIelements.transform.parent.parent.GetComponent<EndGame>().EndEverything();
         }
     }
+
 }
