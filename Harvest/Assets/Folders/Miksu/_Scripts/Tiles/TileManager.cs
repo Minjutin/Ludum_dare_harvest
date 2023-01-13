@@ -264,7 +264,7 @@ public class TileManager : MonoBehaviour
         return tileArray[x, y];
     }
 
-    private bool CheckTileExistance(int x, int y)
+    public bool CheckTileExistance(int x, int y)
     {
         //Debug.Log("Tile location: " + x + "," + y);
 

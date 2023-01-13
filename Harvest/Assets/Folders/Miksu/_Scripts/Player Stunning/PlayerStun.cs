@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerStun : MonoBehaviour
 {
     #region Properties
+    TileManager tileManager;
+
     PlayerInventory playerInventory;
     PlayerInteraction playerInteraction;
 
@@ -20,6 +22,8 @@ public class PlayerStun : MonoBehaviour
     private void Start()
     {
         // Get references
+        tileManager = FindObjectOfType<TileManager>();
+
         playerInteraction = GetComponent<PlayerInteraction>();
         playerInventory = playerInteraction.inventory;
     }
@@ -64,7 +68,11 @@ public class PlayerStun : MonoBehaviour
         pMove.GetRammed(hitDir, stunKnockBackPower);
 
         // Actually stun them
-        otherPlayer.GetComponent<PlayerStun>().GetStunned(stunTime);
+        PlayerStun otherStun = otherPlayer.GetComponent<PlayerStun>();
+        otherStun.GetStunned(stunTime);
+
+        // Make them drop their items
+        otherStun.DropItemsOnStun(hitDir);
     }
 
     public void GetStunned(float stunDuration)
@@ -78,7 +86,7 @@ public class PlayerStun : MonoBehaviour
         // Get playerInput
         PlayerInput input = playerInventory.GetComponent<PlayerInput>();
 
-        Debug.Log("Begin stun");
+        //Debug.Log("Begin stun");
 
         // Check if already stunLocked
         if (input.stunLocked != true)
@@ -91,8 +99,79 @@ public class PlayerStun : MonoBehaviour
 
             // End the stunlock
             input.stunLocked = false;
-            Debug.Log("END stun");
+            //Debug.Log("END stun");
         }
+    }
+    #endregion
+
+    #region Drop Items
+    private void DropItemsOnStun(Vector3 hitDirection)
+    {
+        // Get a list of the tiles near Player
+        List<TileDaddy> nearTiles = GetAvailableTiles();
+
+        // Get another list for empty tiles
+
+        // Add inventory items there
+
+        // Remove them from inventory
+    }
+
+    private List<TileDaddy> GetAvailableTiles()
+    {
+        // Get Player pos
+        int x = Mathf.RoundToInt(transform.position.x);
+        int y = Mathf.RoundToInt(transform.position.z);
+
+        List<TileDaddy> availableTiles = new List<TileDaddy>();
+
+        // Get tiles around that center coordinate
+        for (int _x = -1; _x < 1; _x++)
+        {
+            for (int _y = -1; _y < 1; _y++)
+            {
+                // If tile is valid (exists), add it to the list
+                if (tileManager.CheckTileExistance(_x + x, _y + y))
+                {
+                    availableTiles.Add(tileManager.GetTileAt(_x + x, _y + y));
+
+                    Debug.Log("Available tile found at: " + (_x + x) + "," + (_y +y));
+                    Debug.DrawRay(new Vector3(_x + x, 0, _y + y), Vector3.up, Color.green, 0.2f);
+                }
+            }
+        }
+
+        // Return list of available tiles
+        return availableTiles;
+    }
+
+    private List<TileDaddy> GetEmptyTiles(List<TileDaddy> tiles)
+    {
+        List<TileDaddy> emptyTiles = new List<TileDaddy>();
+
+        // Get tiles around that center coordinate
+        foreach (TileDaddy tile in tiles)
+        {
+            int x = (int)tile.position.x;
+            int y = (int)tile.position.y;
+
+            // If tile is valid (exists), add it to the list
+            if (!(tileManager.GetTileAt(x, y) as FertileTile).HasItem())
+            {
+                // Doesn't have an item, add it
+                emptyTiles.Add(tile);
+            }
+        }
+
+        // Return list of available tiles
+        return emptyTiles;
+    }
+
+    private void DropInventoryItemsOnGround(List<TileDaddy> tiles)
+    {
+        // Add them to the tiles
+
+        // Remove them from inventory
     }
     #endregion
 }
