@@ -12,10 +12,14 @@ public class TutorialScript : MonoBehaviour
 
     Image thisSprite;
 
+    PlayMenuSounds click;
+
     // Update is called once per frame
     private void Start()
     {
         thisSprite = transform.Find("Background").gameObject.GetComponent<Image>();
+
+        click = Camera.main.GetComponent<PlayMenuSounds>();
     }
 
     void Update()
@@ -23,6 +27,8 @@ public class TutorialScript : MonoBehaviour
         //Continue if any interaction button is pressed
         if (Input.GetKeyDown(Statics.p2interaction) || Input.GetKeyDown(Statics.p2inventory) || Input.GetKeyDown(Statics.p1interaction) || Input.GetKeyDown(Statics.p1inventory) || Input.GetKeyDown(KeyCode.Space))
         {
+            click.PlayClick();
+            
 
             //If there are any tutorial slides left
             if(currentSlide < slides.Count - 1)

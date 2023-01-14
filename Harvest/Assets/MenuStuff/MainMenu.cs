@@ -54,10 +54,14 @@ public class MainMenu : MonoBehaviour
             selector.transform.position = newPos;
         }
         
+        
+
         //If any interaction button is pressed
         if(Input.GetKeyDown(Statics.p2interaction) || Input.GetKeyDown(Statics.p2inventory) ||Input.GetKeyDown(Statics.p1interaction) ||Input.GetKeyDown(Statics.p1inventory) || Input.GetKeyDown(KeyCode.Space))
         {
-            
+
+            Camera.main.GetComponent<PlayMenuSounds>().PlayClick();
+
             if(currentObject == play)
             {
                 OpenSelection();

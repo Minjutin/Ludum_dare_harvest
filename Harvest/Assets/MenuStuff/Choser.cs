@@ -21,9 +21,11 @@ public class Choser : MonoBehaviour
     int p2chosen = -1;
 
     [SerializeField] GameObject[] gods = new GameObject[4];
-
+    PlayMenuSounds sound;
     private void Start()
     {
+        sound = Camera.main.GetComponent<PlayMenuSounds>();
+
         p1 = GameObject.Find("Indicator1");
         p2 = GameObject.Find("Indicator2");
 
@@ -32,6 +34,7 @@ public class Choser : MonoBehaviour
 
         MoveP1(-1);
         MoveP2(-1);
+
     }
 
     // Update is called once per frame
@@ -55,6 +58,8 @@ public class Choser : MonoBehaviour
             //Player1 LOCK YOUR CHOICE
             if (Input.GetKeyDown(Statics.p1interaction) || Input.GetKeyDown(Statics.p1inventory))
             {
+                sound.PlayChoose();
+
                 if (p1Hovering != p2chosen)
                 {
                     p1chosen = p1Hovering;
@@ -67,8 +72,11 @@ public class Choser : MonoBehaviour
         //If there is god, you can remove your choice by another button.
         else if(p1chosen != -1)
         {
+
             if (Input.GetKeyDown(Statics.p1interaction) || Input.GetKeyDown(Statics.p1inventory))
             {
+                sound.PlayChoose();
+
                 p1chosen = -1;
                 p1.SetActive(true);
             }
@@ -92,7 +100,9 @@ public class Choser : MonoBehaviour
 
             if (Input.GetKeyDown(Statics.p2interaction) || Input.GetKeyDown(Statics.p2inventory))
             {
-                if(p2Hovering != p1chosen)
+                sound.PlayChoose();
+
+                if (p2Hovering != p1chosen)
                 {
                     p2chosen = p2Hovering;
                     p2.SetActive(false);
@@ -104,8 +114,11 @@ public class Choser : MonoBehaviour
         //If there is god, you can remove your choice by another button.
         else if (p2chosen != -1)
         {
+
             if (Input.GetKeyDown(Statics.p2interaction) || Input.GetKeyDown(Statics.p2inventory))
             {
+                sound.PlayChoose();
+
                 p2chosen = -1;
                 p2.SetActive(true);
             }
