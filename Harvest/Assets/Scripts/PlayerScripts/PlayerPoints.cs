@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerPoints : MonoBehaviour
 {
+    GameObject player;
 
     [Header("Current points.")]
     [SerializeField] int points;
@@ -26,6 +27,8 @@ public class PlayerPoints : MonoBehaviour
         constants = FindObjectOfType<Constants>();
 
         fruitPics = Resources.LoadAll("InventorySprites",typeof(Sprite));
+
+        player = GetComponent<PlayerInput>().player;
     }
 
     #region POINTS
@@ -44,6 +47,8 @@ public class PlayerPoints : MonoBehaviour
                 points += constants.wantedPoints;
                 StartCoroutine(NewWanted());
 
+                GameObject seed = Instantiate(Resources.Load(GetFruit(fruit.Type)), GetRandomPos(player), Quaternion.identity) as GameObject;
+                seed.GetComponent<Sacrifice>().PlayAnimation(Sacrifice.animation.fruit);
             }
 
             //Fruits is god's favorite type
@@ -54,12 +59,16 @@ public class PlayerPoints : MonoBehaviour
             )
             {
                 points += constants.favoritePoints;
+                GameObject seed = Instantiate(Resources.Load(GetFruit(fruit.Type)), GetRandomPos(player), Quaternion.identity) as GameObject;
+                seed.GetComponent<Sacrifice>().PlayAnimation(Sacrifice.animation.fruit);
             }
 
             //Otherwise
             else
             {
                 points += constants.fruitPoints;
+                GameObject seed = Instantiate(Resources.Load(GetFruit(fruit.Type)), GetRandomPos(player), Quaternion.identity) as GameObject;
+                seed.GetComponent<Sacrifice>().PlayAnimation(Sacrifice.animation.fruit);
             }
         }
 
@@ -67,12 +76,16 @@ public class PlayerPoints : MonoBehaviour
         if (item is Seed)
         {
             points += constants.seedPoints;
+            GameObject seed = Instantiate(Resources.Load("Sacrifice/Sac_Seed"), GetRandomPos(player), Quaternion.identity) as GameObject;
+            seed.GetComponent<Sacrifice>().PlayAnimation(Sacrifice.animation.seed);
         }
 
         //If player gives god poop.
         if (item is Manure)
         {
             points += constants.manurePoints;
+            GameObject manure = Instantiate(Resources.Load("Sacrifice/Sac_Manure"), GetRandomPos(player), Quaternion.identity) as GameObject;
+            manure.GetComponent<Sacrifice>().PlayAnimation(Sacrifice.animation.manure);
         }
 
         //Make points so it's better
@@ -158,4 +171,40 @@ public class PlayerPoints : MonoBehaviour
         }
     }
 
+
+    #region Helper Functions
+    private Vector3 GetRandomPos(GameObject p)
+    {
+        Vector3 pos = p.transform.position;
+
+        // Randomize the placement a little bit
+        pos = new Vector3(pos.x + Random.Range(-1f, 1f),
+                            pos.y + Random.Range(1f, 2f),
+                              pos.z + Random.Range(0f, 1f));
+
+        return pos;
+    }
+
+    private string GetFruit(Enums.FruitType fruit)
+    {
+        if (fruit == Enums.FruitType.Fruit1)
+        {
+            return "Sacrifice/Sac_Fruit 1";
+        }
+        else if (fruit == Enums.FruitType.Fruit2)
+        {
+            return "Sacrifice/Sac_Fruit 2";
+        }
+        else if (fruit == Enums.FruitType.Fruit3)
+        {
+            return "Sacrifice/Sac_Fruit 3";
+        }
+        else if (fruit == Enums.FruitType.Fruit4)
+        {
+            return "Sacrifice/Sac_Fruit 4";
+        }
+
+        return null;
+    }
+    #endregion
 }

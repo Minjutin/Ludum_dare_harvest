@@ -20,18 +20,22 @@ public class Sacrifice : MonoBehaviour
                 break;
 
             case animation.favourite:
+                animator.Play("Sacrifice_Float");
 
                 break;
 
             case animation.wanted:
+                animator.Play("Sacrifice_Float");
 
                 break;
 
             case animation.seed:
+                animator.Play("Sacrifice_Float");
 
                 break;
 
             case animation.manure:
+                animator.Play("Sacrifice_Float");
 
                 break;
 
