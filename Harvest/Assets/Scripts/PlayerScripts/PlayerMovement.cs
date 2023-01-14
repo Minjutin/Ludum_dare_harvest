@@ -169,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetFallDrag()
     {
-        Debug.Log("Falling");
+        //Debug.Log("Falling");
         rb.drag = 0f;
 
         // Add some fall force too
