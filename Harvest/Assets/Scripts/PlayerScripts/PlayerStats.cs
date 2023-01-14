@@ -25,6 +25,23 @@ public class PlayerStats : MonoBehaviour
     Constants constants;
     public PlayerPoints points;
 
+    private void Awake()
+    {
+        // Set the correct God
+        switch (playerNumber)
+        {
+            case 1:
+                god = Statics.p1God;
+                break;
+            case 2:
+                god = Statics.p2God;
+                break;
+            default:
+                Debug.Log("Player number " + playerNumber + " is invalid.");
+                break;
+        }
+    }
+
     private void Start()
     {
         constants = FindObjectOfType<Constants>(); //Find constants
@@ -36,11 +53,11 @@ public class PlayerStats : MonoBehaviour
         switch (playerNumber)
         {
             case 1:
-                god = Statics.p1God;
+                //god = Statics.p1God;
                 playerSprite = GetComponent<PlayerInput>().playerMovement.graphics;
                 break;
             case 2:
-                god = Statics.p2God;
+                //god = Statics.p2God;
                 playerSprite = GetComponent<PlayerInput>().playerMovement.graphics;
                 break;
             default:

@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     #region PROPERTIES
+    PlayerSpawner spawner;
+
     Rigidbody rb;
     [HideInInspector]
     public PlayerSpriteHolder graphics;
@@ -43,6 +45,11 @@ public class PlayerMovement : MonoBehaviour
         graphics = GetComponentInChildren<PlayerSpriteHolder>();
 
         StartCoroutine(MoveInputChecker());
+    }
+
+    private void Start()
+    {
+        spawner = FindObjectOfType<PlayerSpawner>();
     }
     #endregion
 
@@ -114,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
             yield return new WaitForSeconds(Time.fixedDeltaTime);
 
             // Check if falling
-            if (CheckIfFalling()) { SetFallDrag(); continue; }
+            if (CheckIfFalling()) { SetFallDrag(); CheckIfFallenFarEnough(); continue; }
 
             // If there has been enough time from last move input
             if (timeSinceLastMoveInput < brakeAfterTime)
@@ -167,6 +174,11 @@ public class PlayerMovement : MonoBehaviour
 
         // Add some fall force too
         rb.AddForce(Vector3.down * 2f, ForceMode.Force);
+    }
+
+    private void CheckIfFallenFarEnough()
+    {
+        spawner.RespawnPlayer(gameObject);
     }
     #endregion
 }
