@@ -547,6 +547,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 777887784582995297, guid: 43ed5edb78b33d74e86ee8ca4a9d0a7d, type: 3}
+      propertyPath: walkSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 777887784582995297, guid: 43ed5edb78b33d74e86ee8ca4a9d0a7d, type: 3}
+      propertyPath: aggroSpeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 777887784582995300, guid: 43ed5edb78b33d74e86ee8ca4a9d0a7d, type: 3}
       propertyPath: m_RootOrder
       value: 22

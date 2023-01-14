@@ -220,7 +220,7 @@ public class Ram : MonoBehaviour
             if (moveTime > 0)
             {
                 // Get next pos
-                Vector3 nextPos = transform.position + moveDirection * currentSpeed * Time.deltaTime;
+                Vector3 nextPos = transform.position + moveDirection * currentSpeed * Time.fixedDeltaTime;
 
                 // Move Forward
                 rb.MovePosition(nextPos);
@@ -229,7 +229,7 @@ public class Ram : MonoBehaviour
                 moveTime -= Time.deltaTime;
             }
 
-            yield return new WaitForSeconds(Time.deltaTime);
+            yield return new WaitForSeconds(Time.fixedDeltaTime);
 
         }
     }

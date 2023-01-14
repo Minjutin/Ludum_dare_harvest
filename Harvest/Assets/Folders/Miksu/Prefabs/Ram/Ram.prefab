@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f27a675127d7dae47968d385367a448a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 5
-  aggroSpeed: 10
+  walkSpeed: 1
+  aggroSpeed: 3
   changeDirectionFrequency: 2
   maxMoveTime: 2
   minMoveTime: 0.5
