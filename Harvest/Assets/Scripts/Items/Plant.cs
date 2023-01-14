@@ -12,6 +12,8 @@ public class Plant : Item
 
     public int level {get; private set;}//Level of the plant. If big enough, plant can be harvested.
 
+    public bool isFertilized = false;
+
     public Plant()
     {
         level = 0; //Level is 0 at first.

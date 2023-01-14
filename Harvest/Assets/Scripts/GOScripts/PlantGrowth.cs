@@ -60,6 +60,11 @@ public class PlantGrowth : MonoBehaviour
         float growTimeLeft = growTime;
         while (true)
         {       
+            if(plant.isFertilized == true)
+            {
+                plant.FullLevel();
+            }
+
             if(plant.level == Plant.maxLevel)
             {
                 renderer.sprite = level3; if (!level3) { Debug.LogWarning("Sprite not assigned."); };

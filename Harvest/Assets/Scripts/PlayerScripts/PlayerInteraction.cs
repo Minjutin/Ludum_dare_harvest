@@ -297,7 +297,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             audioPlayer.PlayPlant(); //Play sound
 
-            plant.FullLevel();
+            plant.isFertilized = true;
             inventory.RemoveItem(chosenSlot);
         }
     }
