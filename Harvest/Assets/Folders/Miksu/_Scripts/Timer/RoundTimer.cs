@@ -27,7 +27,7 @@ public class RoundTimer : MonoBehaviour
 
     [Header("Round Timer")]
     [Tooltip("Round time in seconds.")]
-    [SerializeField] float roundTime = 180f;
+    [SerializeField] float roundTime = 120f;
     float roundTimeLeft;
 
     EndGame endGame;
@@ -86,6 +86,12 @@ public class RoundTimer : MonoBehaviour
     #region Round Timing
     IEnumerator RoundCountdown()
     {
+       SpriteRenderer back = GameObject.Find("Backgroun").GetComponent<SpriteRenderer>();
+
+        ////Background colour updater
+        //float updateEvery = roundTime / 255;
+        //float updateLeft = updateEvery;
+
         // The clock runs until the time has run out
         while (roundTimeLeft > 0f)
         {
@@ -97,6 +103,14 @@ public class RoundTimer : MonoBehaviour
             MoveHandles(percentageLeft);
             AdjustHandleLength(percentageLeft);
 
+
+            ////Make backgroun black
+            //updateLeft = updateLeft- clockUpdateFrequency;
+            //if (updateLeft < 0)
+            //{
+            //    back.color = new Color(1, 1, 1, back.color.a - 0.004f);
+            //    updateLeft=updateEvery;
+            //}
 
             // Debug Draw Handles for better visualization
             if (debugDrawPath) { DebugDrawPath(percentageLeft); }

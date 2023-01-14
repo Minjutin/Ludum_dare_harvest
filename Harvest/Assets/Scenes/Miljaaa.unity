@@ -537,6 +537,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91ea6e704f9bdeb49a84101d1c07aaa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1211482326 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1913132243773693338, guid: 6d54305e3b6970c4fb021363472553af, type: 3}
+  m_PrefabInstance: {fileID: 1913132243229033246}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1211482332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211482326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1df48eb035d2fb4887784fd4c4ffbf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seconds: 0
 --- !u!1001 &1355890376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -918,7 +936,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5425370909617113330, guid: 0b0a98d96ec84014daecfd50da91fafa, type: 3}
       propertyPath: roundTime
-      value: 120
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5425370909617113330, guid: 0b0a98d96ec84014daecfd50da91fafa, type: 3}
+      propertyPath: clockUpdateFrequency
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 5425370909617113331, guid: 0b0a98d96ec84014daecfd50da91fafa, type: 3}
       propertyPath: m_RootOrder
@@ -1959,6 +1981,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9076027595090777480, guid: 4fd78093cb9ea5f4cb24ed0b306060bd, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9076027595090777480, guid: 4fd78093cb9ea5f4cb24ed0b306060bd, type: 3}
+      propertyPath: m_BackGroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9076027595090777480, guid: 4fd78093cb9ea5f4cb24ed0b306060bd, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9076027595090777480, guid: 4fd78093cb9ea5f4cb24ed0b306060bd, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9076027595090777480, guid: 4fd78093cb9ea5f4cb24ed0b306060bd, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9076027595090777482, guid: 4fd78093cb9ea5f4cb24ed0b306060bd, type: 3}
       propertyPath: m_Name
       value: Main Camera

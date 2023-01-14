@@ -57,7 +57,7 @@ public class Ram : MonoBehaviour
     [SerializeField] float cooldownTimeAfterRamming = 3f;
     bool readyToRam = true;
 
-    Animator ramAnimator;
+    Animator animator;
 
     #endregion
 
@@ -67,7 +67,7 @@ public class Ram : MonoBehaviour
         water = FindObjectOfType<WaterScript>();
         rb = GetComponent<Rigidbody>();
 
-        ramAnimator = transform.GetChild(0).GetChild(0).gameObject.GetComponent<Animator>();
+        animator = transform.GetChild(0).GetChild(0).gameObject.GetComponent<Animator>();
 
         timeBetweenPoops = FindObjectOfType<Constants>().poopTime;
 
@@ -219,6 +219,8 @@ public class Ram : MonoBehaviour
         {
             if (moveTime > 0)
             {
+                animator.SetBool("Moving", true);
+
                 // Get next pos
                 Vector3 nextPos = transform.position + moveDirection * currentSpeed * Time.fixedDeltaTime;
 
@@ -257,6 +259,8 @@ public class Ram : MonoBehaviour
     {
         // If not ready yet, cancel
         if (!readyToRam) { return; }
+
+        animator.SetBool("Angry", true);
 
         // Set target
         aggroTarget = target;
@@ -345,6 +349,9 @@ public class Ram : MonoBehaviour
 
     private void EndAggro()
     {
+        animator.SetBool("Moving", false);
+        animator.SetBool("Angry", false);
+ 
         // Set as false
         aggroed = false;
 
