@@ -57,6 +57,7 @@ public class Ram : MonoBehaviour
     [SerializeField] float cooldownTimeAfterRamming = 3f;
     bool readyToRam = true;
 
+    Animator ramAnimator;
 
     #endregion
 
@@ -65,6 +66,8 @@ public class Ram : MonoBehaviour
         tileManager = FindObjectOfType<TileManager>();
         water = FindObjectOfType<WaterScript>();
         rb = GetComponent<Rigidbody>();
+
+        ramAnimator = transform.GetChild(0).GetChild(0).gameObject.GetComponent<Animator>();
 
         timeBetweenPoops = FindObjectOfType<Constants>().poopTime;
 
