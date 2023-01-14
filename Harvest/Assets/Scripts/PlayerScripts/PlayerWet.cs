@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class PlayerWet : MonoBehaviour
 {
+    TileManager tileManager;
+
     [SerializeField] float maxWetTime = 10f; //In seconds
     [SerializeField] float tileCheckTimer = 0.2f;
 
     [SerializeField] GameObject soakAnimation;
+    [SerializeField] GameObject spriteHolder;
     
     float wetTime;
     bool wetterIsOn = false;
 
-    TileManager tileManager;
+    [Tooltip("The height the Player Sprite wil be lowered to when entering lake.")]
+    [SerializeField] float bathHeight = -0.4f;
 
     private void Start()
     {
@@ -28,6 +32,7 @@ public class PlayerWet : MonoBehaviour
             StartCoroutine(Wetter());
         }
     }
+
 
     IEnumerator Wetter()
     {
@@ -66,5 +71,24 @@ public class PlayerWet : MonoBehaviour
         wetterIsOn = false;
 
         soakAnimation.SetActive(false);
+    }
+
+
+
+    public void GetInLake()
+    {
+        // Lower character sprite "into" the lake
+        MoveCharacterSprite(bathHeight);
+    }
+    public void GetOutOfLake()
+    {
+        // Rise character sprite out of the lake
+        MoveCharacterSprite(0f);
+    }
+
+    private void MoveCharacterSprite(float toHeight)
+    {
+        Vector3 pos = spriteHolder.transform.localPosition;
+        spriteHolder.transform.localPosition = new Vector3(pos.x, toHeight);
     }
 }

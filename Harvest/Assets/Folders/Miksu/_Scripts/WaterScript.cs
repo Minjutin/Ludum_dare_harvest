@@ -24,7 +24,20 @@ public class WaterScript : MonoBehaviour
         if (player)
         {
             player.GetWet();
-            //Debug.Log("Splish splash!");
+
+            // Lower Player Sprite into the water
+            player.GetInLake();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        PlayerWet player;
+        player = other.GetComponent<PlayerWet>();
+        if (player)
+        {
+            // Raise Player Sprites off the water
+            player.GetOutOfLake();
         }
     }
 
