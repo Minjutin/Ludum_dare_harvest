@@ -20,6 +20,6 @@ public static class Statics
     public static KeyCode p2down = KeyCode.DownArrow;
     public static KeyCode p2left = KeyCode.LeftArrow;
     public static KeyCode p2right = KeyCode.RightArrow;
-    public static KeyCode p2inventory = KeyCode.RightControl;
-    public static KeyCode p2interaction = KeyCode.RightShift;
+    public static KeyCode p2inventory = KeyCode.RightShift;
+    public static KeyCode p2interaction = KeyCode.RightControl;
 }
