@@ -228,7 +228,7 @@ public class Ram : MonoBehaviour
                 rb.MovePosition(nextPos);
 
                 // Reduce Movetime
-                moveTime -= Time.deltaTime;
+                moveTime -= Time.fixedDeltaTime;
             }
 
             yield return new WaitForSeconds(Time.fixedDeltaTime);
