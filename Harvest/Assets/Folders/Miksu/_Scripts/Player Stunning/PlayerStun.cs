@@ -9,15 +9,19 @@ public class PlayerStun : MonoBehaviour
 
     PlayerInventory playerInventory;
     PlayerInteraction playerInteraction;
+    [HideInInspector]
+    public PlayerMovement pMovement;
 
     [Header("Being stunned")]
     [Tooltip("How long the Player will remain stunned")]
     [SerializeField] float stunTime = 1f;
+    [HideInInspector]
+    public bool isStunned = false;
 
 
     [Header("Knockback Power")]
     [Tooltip("The Power this Player will RAM other players with")]
-    [SerializeField] float stunKnockBackPower = 15f;
+    [SerializeField] public float stunKnockBackPower = 15f;
 
     [Header("Item Drop Distance")]
     [Tooltip("How far the items will fly on getting stunned. Ramming direction x Distance = center of 3x3 Drop-Grid.")]
@@ -33,6 +37,7 @@ public class PlayerStun : MonoBehaviour
 
         playerInteraction = GetComponent<PlayerInteraction>();
         playerInventory = playerInteraction.inventory;
+        pMovement = GetComponent<PlayerMovement>();
     }
     #endregion
 
@@ -43,10 +48,14 @@ public class PlayerStun : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             // Collision with Player is happening
-            CollideWithPlayer(collision.gameObject);
+            //CollideWithPlayer(collision.gameObject);
+
+            CompareStunParticipants(collision.gameObject);
         }
     }
 
+    #region Deprecated
+    // OLD
     private void CollideWithPlayer(GameObject otherPlayer)
     {
         // Check inventory size
@@ -60,10 +69,53 @@ public class PlayerStun : MonoBehaviour
             StunOtherPlayer(otherPlayer);
             Debug.Log(otherPlayer.name + " got stunned with " + otherItemsAmount + " items");
         }
+        else
+        {
+            // Get stunned yourself
+        }
     }
+    #endregion
     #endregion
 
     #region Stunning
+    private void CompareStunParticipants(GameObject otherPlayer)
+    {
+        PlayerStun otherStun = otherPlayer.GetComponent<PlayerStun>();
+
+        // Check that neither of the Participants is already Stunned
+        if (!isStunned && !otherStun.isStunned)
+        {
+            // Get hitDirection
+            Vector3 hitDir = (transform.position - otherPlayer.transform.position).normalized;
+
+            // Compare Inventories
+            int otherItemsAmount = otherPlayer.GetComponent<PlayerInteraction>().inventory.ItemsAmount();
+            int yourItemsAmount = playerInventory.ItemsAmount();
+
+
+            if (yourItemsAmount == otherItemsAmount)
+            {
+                // If SAME, BOTH get stunned
+                StunOtherPlayer(otherPlayer);
+
+                GetStunned(stunTime, hitDir);
+                pMovement.GetRammed(hitDir, otherStun.stunKnockBackPower);
+            }
+            else if (yourItemsAmount < otherItemsAmount)
+            {
+                // If you have less stuff, STUN OTHER
+                StunOtherPlayer(otherPlayer);
+            }
+            else if (yourItemsAmount > otherItemsAmount)
+            {
+                // If you have more stuff, GET STUNNED yourself
+                GetStunned(stunTime, hitDir);
+                pMovement.GetRammed(hitDir, otherStun.stunKnockBackPower);
+            }
+        }
+    }
+
+
     private void StunOtherPlayer(GameObject otherPlayer)
     {
         // Get their rb
@@ -99,14 +151,17 @@ public class PlayerStun : MonoBehaviour
         // Check if already stunLocked
         if (input.stunLocked != true)
         {
-            // Stunlock them
+            // Stunlock the Player
             input.stunLocked = true;
+            isStunned = true;
 
             // Wait for the stunTime
             yield return new WaitForSeconds(stunDuration);
 
             // End the stunlock
             input.stunLocked = false;
+            isStunned = false;
+
             //Debug.Log("END stun");
         }
     }
