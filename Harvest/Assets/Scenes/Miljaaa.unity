@@ -193,31 +193,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6781019505389634132, guid: 1141b80c05abd7249b75118217232129, type: 3}
   m_PrefabInstance: {fileID: 59544388}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &76144383 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1027789067409807968, guid: 2192f7571db4bba4ebf98936e8e875bd, type: 3}
-  m_PrefabInstance: {fileID: 6501100487670889484}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &76144386
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 76144383}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: baf5787728fcba64d8953f81616598ed, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &199926613 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4352986810962038237, guid: b908c40fa323cbf4bacf5380538ccf68, type: 3}
@@ -623,6 +598,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5163290693463965861, guid: a03eef446e997074299adfbeaed49203, type: 3}
+      propertyPath: maxWetTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6269256524656728626, guid: a03eef446e997074299adfbeaed49203, type: 3}
       propertyPath: m_Name
       value: Player2
@@ -648,10 +627,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 777887784582995297, guid: 43ed5edb78b33d74e86ee8ca4a9d0a7d, type: 3}
-      propertyPath: timeBetweenPoops
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 777887784582995300, guid: 43ed5edb78b33d74e86ee8ca4a9d0a7d, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1879,6 +1854,10 @@ PrefabInstance:
     - target: {fileID: 1331964127855636970, guid: a03eef446e997074299adfbeaed49203, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5163290693463965861, guid: a03eef446e997074299adfbeaed49203, type: 3}
+      propertyPath: maxWetTime
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6269256524656728626, guid: a03eef446e997074299adfbeaed49203, type: 3}
       propertyPath: m_Name
