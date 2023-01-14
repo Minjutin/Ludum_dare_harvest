@@ -69,11 +69,11 @@ public class PlayerSpawner : MonoBehaviour
             PlayerStats stats = null;
             if      (player == player1) { stats = playerStats1; }
             else if (player == player2) { stats = playerStats2; }
-            
 
 
-            // Start Coroutine
-            //StartCoroutine(SpawnTimer(player, stats));
+
+            // Empty Inventory
+            stats.gameObject.GetComponent<PlayerInventory>().DropAll();
 
             SpawnPlayer(player, stats);
         }
