@@ -222,6 +222,7 @@ MonoBehaviour:
   brakeDrag: 10
   moveDrag: 0
   brakeAfterTime: 0.05
+  fallTreshold: -0.02
 --- !u!54 &1213809489
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -236,7 +237,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &8633868487395713932
 CapsuleCollider:
@@ -281,7 +282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stunTime: 1
   stunKnockBackPower: 15
-  itemFlyDistance: 2
+  itemDropDistance: 2
 --- !u!1 &8172581618596859347
 GameObject:
   m_ObjectHideFlags: 0

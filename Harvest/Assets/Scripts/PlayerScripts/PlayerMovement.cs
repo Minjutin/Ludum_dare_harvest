@@ -29,6 +29,10 @@ public class PlayerMovement : MonoBehaviour
     [Range(0.01f, 0.3f)]
     private float brakeAfterTime = 0.05f;
     private float timeSinceLastMoveInput = 0f;
+
+    [Header("Falling")]
+    [Tooltip("Y-coordinate, after which, the player will begin falling.")]
+    [SerializeField] float fallTreshold = -0.1f;
     #endregion
 
 
@@ -57,6 +61,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleMovement(Vector3 direction)
     {
+        // Cancel if Player is falling
+        if (CheckIfFalling()) { return; }
+
         // Move the Player
         AddMovementForce(direction, 1f);
 
@@ -106,6 +113,9 @@ public class PlayerMovement : MonoBehaviour
         {
             yield return new WaitForSeconds(Time.fixedDeltaTime);
 
+            // Check if falling
+            if (CheckIfFalling()) { SetFallDrag(); continue; }
+
             // If there has been enough time from last move input
             if (timeSinceLastMoveInput < brakeAfterTime)
             {
@@ -135,6 +145,28 @@ public class PlayerMovement : MonoBehaviour
 
         // Get stunned
         // TODO
+    }
+    #endregion
+
+    #region Falling
+    private bool CheckIfFalling()
+    {
+        // If Y pos is less than 0
+        if (transform.position.y < fallTreshold)
+        {
+            // Falling
+            return true;
+        }
+        else { return false; }
+    }
+
+    private void SetFallDrag()
+    {
+        Debug.Log("Falling");
+        rb.drag = 0f;
+
+        // Add some fall force too
+        rb.AddForce(Vector3.down * 2f, ForceMode.Force);
     }
     #endregion
 }

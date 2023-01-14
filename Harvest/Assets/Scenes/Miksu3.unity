@@ -842,6 +842,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2
       objectReference: {fileID: 0}
+    - target: {fileID: 6269256524656728626, guid: a03eef446e997074299adfbeaed49203, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655890661115276800, guid: a03eef446e997074299adfbeaed49203, type: 3}
+      propertyPath: fallTreshold
+      value: -0.02
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a03eef446e997074299adfbeaed49203, type: 3}
 --- !u!1 &1368552976
@@ -2186,10 +2194,6 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 227180830}
-    - target: {fileID: 1213809489, guid: a03eef446e997074299adfbeaed49203, type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
     - target: {fileID: 1331964127855636970, guid: a03eef446e997074299adfbeaed49203, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -2233,10 +2237,6 @@ PrefabInstance:
     - target: {fileID: 1331964127855636970, guid: a03eef446e997074299adfbeaed49203, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1767554677435558575, guid: a03eef446e997074299adfbeaed49203, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6269256524656728626, guid: a03eef446e997074299adfbeaed49203, type: 3}
       propertyPath: m_Name
