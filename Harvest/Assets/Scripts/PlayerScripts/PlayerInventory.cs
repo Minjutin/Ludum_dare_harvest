@@ -199,10 +199,12 @@ public class PlayerInventory : MonoBehaviour
             if (slot == i)
             {
                 inventorySlots[i].GetComponent<SpriteRenderer>().sprite = sprites[7] as Sprite;
+                items[i].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
             }
             else
             {
                 inventorySlots[i].GetComponent<SpriteRenderer>().sprite = sprites[6] as Sprite;
+                items[i].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
             }
         }
 
