@@ -230,6 +230,10 @@ public class Ram : MonoBehaviour
                 // Reduce Movetime
                 moveTime -= Time.fixedDeltaTime;
             }
+            else
+            {
+                animator.SetBool("Moving", false);
+            }
 
             yield return new WaitForSeconds(Time.fixedDeltaTime);
 
