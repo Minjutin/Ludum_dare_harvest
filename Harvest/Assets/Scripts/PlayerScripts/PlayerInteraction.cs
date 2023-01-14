@@ -19,12 +19,15 @@ public class PlayerInteraction : MonoBehaviour
 
     [SerializeField] GameObject playerController;
 
+    AudioPlayerMain audioPlayer;
+
     //Currently chosen inventory slot (between 1-3)
     int chosenSlot = 0;
 
     private void Awake()
     {
         tileManager = FindObjectOfType<TileManager>();
+        audioPlayer = FindObjectOfType<AudioPlayerMain>();
 
         inventory = playerController.GetComponent<PlayerInventory>(); //Fetch inventory
         stats = playerController.GetComponent<PlayerStats>();
@@ -111,6 +114,9 @@ public class PlayerInteraction : MonoBehaviour
     //If change slot button has been pressed.
     public void ChangeSlot()
     {
+        //Pick success
+        audioPlayer.PlaySwap(); //Play Sound
+
         switch (chosenSlot)
         {
             case 0:
@@ -152,6 +158,9 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (inventory.ThereIsItem(chosenSlot))
         {
+            //Sacrifice success
+            audioPlayer.PlaySacrifice(); //Play Sound
+
             InventoryItem item = inventory.GetItem(chosenSlot);
             points.GiveItem(item);
             inventory.RemoveItem(chosenSlot);
@@ -174,6 +183,10 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (inventory.GetItem(chosenSlot) is Seed)
             {
+                //Planting success
+
+                audioPlayer.PlayPlant(); //Play sound
+
                 Plant planted = new Plant();
                 tile.SetItem(planted); //Plant the plant to the tile.
 
@@ -225,9 +238,12 @@ public class PlayerInteraction : MonoBehaviour
         {
             InventoryItem item = tile.item as InventoryItem;
 
-            //If there is space in the inventory, remove the object.
+            //If there is space in the inventory, remove the object from the tile and pick it.
             if (!inventory.IsFull())
             {
+                //Pick success
+                audioPlayer.PlayPick(); //Play Sound
+
                 inventory.AddItem(item); //Aadd item to inventory.
                 tile.RemoveItem(); //Remove the item from the tile.
                 Destroy(tile.itemGO);
@@ -244,9 +260,12 @@ public class PlayerInteraction : MonoBehaviour
         {
             Plant plant = tile.item as Plant;
 
-            //If there is space in the inventory, remove the object.
+            //If there is space in the inventory, remove the plant from the tile and pick fruit.
             if (!inventory.IsFull() && plant.level >= Plant.maxLevel)
             {
+                //Pick success
+                audioPlayer.PlayPick(); //Play Sound
+
                 Enums.FruitType plantType = plant.Type;
                 inventory.AddItem(new Fruit(plantType)); //Add fruit.
                 tile.RemoveItem(); //Remove the plant from the tile.
