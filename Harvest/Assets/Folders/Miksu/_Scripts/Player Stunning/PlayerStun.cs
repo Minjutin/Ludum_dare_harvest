@@ -58,6 +58,7 @@ public class PlayerStun : MonoBehaviour
         {
             // --> STUN the other Player
             StunOtherPlayer(otherPlayer);
+            Debug.Log(otherPlayer.name + " got stunned with " + otherItemsAmount + " items");
         }
     }
     #endregion

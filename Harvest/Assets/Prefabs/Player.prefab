@@ -353,7 +353,7 @@ MonoBehaviour:
   tileCheckTimer: 0.2
   soakAnimation: {fileID: 1027559468}
   spriteHolder: {fileID: 8172581618596859347}
-  bathHeight: -0.4
+  bathHeight: -1
 --- !u!114 &1685414856
 MonoBehaviour:
   m_ObjectHideFlags: 0
