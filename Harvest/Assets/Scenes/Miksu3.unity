@@ -2018,6 +2018,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3856696918151568752, guid: 6d54305e3b6970c4fb021363472553af, type: 3}
+      propertyPath: spawnAfterYValue
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3856696918151568752, guid: 6d54305e3b6970c4fb021363472553af, type: 3}
+      propertyPath: playerController1
+      value: 
+      objectReference: {fileID: 227180830}
+    - target: {fileID: 3856696918151568752, guid: 6d54305e3b6970c4fb021363472553af, type: 3}
+      propertyPath: playerController2
+      value: 
+      objectReference: {fileID: 199926613}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d54305e3b6970c4fb021363472553af, type: 3}
 --- !u!1001 &3707313969206939463

@@ -167,6 +167,8 @@ MonoBehaviour:
   spawnPoint2: {fileID: 4505712602993844602}
   spawnPoint3: {fileID: 4110022945540076413}
   spawnPoint4: {fileID: 5826937181250806787}
+  spawnTime: 1
+  spawnAfterYValue: -10
 --- !u!1 &3563575921256325758
 GameObject:
   m_ObjectHideFlags: 0
