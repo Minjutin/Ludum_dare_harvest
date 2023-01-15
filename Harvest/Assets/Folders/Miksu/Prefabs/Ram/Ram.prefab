@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   graphics: {fileID: 777887786407212890}
   walkSpeed: 1
-  aggroSpeed: 2
+  aggroSpeed: 3
   changeDirectionFrequency: 2
   maxMoveTime: 2
   minMoveTime: 0.5

@@ -404,4 +404,4 @@ MonoBehaviour:
   clockUpdateFrequency: 0.01
   startRadius: 38
   endRadius: 30
-  roundTime: 5
+  roundTime: 120
