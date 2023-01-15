@@ -189,6 +189,11 @@ public class Ram : MonoBehaviour
         {
             //Debug.Log("Ram TOO FAR from lake");
             Debug.DrawLine(transform.position, water.gameObject.transform.position, Color.red, 2f);
+
+            // Alter difference a little bit
+            difference = new Vector3(difference.x + Random.Range(-0.4f, 0.4f),
+                                                    difference.y,
+                                                    difference.z + Random.Range(-0.4f, 0.4f));
             moveDirection = difference.normalized;
         }
 
@@ -197,6 +202,10 @@ public class Ram : MonoBehaviour
         {
             //Debug.Log("Ram TOO CLOSE from lake");
             Debug.DrawLine(transform.position, water.gameObject.transform.position, Color.blue, 2f);
+            // Alter difference a little bit
+            difference = new Vector3(difference.x + Random.Range(-0.4f, 0.4f),
+                                                    difference.y,
+                                                    difference.z + Random.Range(-0.4f, 0.4f));
             moveDirection = -difference.normalized;
         }
     }
