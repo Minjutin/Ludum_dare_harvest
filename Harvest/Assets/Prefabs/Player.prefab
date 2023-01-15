@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graphics: {fileID: 0}
-  playerMoveSpeed: 3
+  playerMoveSpeed: 5
   maxMoveSpeed: 5
   brakeDrag: 10
   moveDrag: 0
@@ -455,7 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 834f2c64a85ce764fbb35313d437ea61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxWetTime: 2
+  maxWetTime: 1
   tileCheckTimer: 0.2
   soakAnimation: {fileID: 1027559468}
   spriteHolder: {fileID: 8172581618596859347}
