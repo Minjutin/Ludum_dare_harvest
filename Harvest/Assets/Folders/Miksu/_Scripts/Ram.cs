@@ -389,6 +389,9 @@ public class Ram : MonoBehaviour
             // Move the Ram
             //MoveOnRam(GetRamDirection());
 
+            // Change Aggro target to collision Player
+            aggroTarget = collision.gameObject;
+
             RamTheTarget();
         }
     }
