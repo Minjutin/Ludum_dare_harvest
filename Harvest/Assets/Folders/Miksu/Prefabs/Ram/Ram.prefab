@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f27a675127d7dae47968d385367a448a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  graphics: {fileID: 777887786407212890}
   walkSpeed: 1
   aggroSpeed: 2
   changeDirectionFrequency: 2
@@ -62,6 +63,7 @@ MonoBehaviour:
   stunTime: 1
   knockBackPower: 15
   cooldownTimeAfterRamming: 3
+  ramIsActive: 1
 --- !u!54 &777887784582995302
 Rigidbody:
   m_ObjectHideFlags: 0

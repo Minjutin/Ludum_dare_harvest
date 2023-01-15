@@ -12,6 +12,7 @@ public class Ram : MonoBehaviour
     TileManager tileManager;
     Rigidbody rb;
     WaterScript water;
+    [SerializeField] GameObject graphics;
 
 
     [Header("Speeds")]
@@ -33,6 +34,7 @@ public class Ram : MonoBehaviour
     [SerializeField] float maxDistanceFromLake = 3f;
     [Tooltip("Distance from lake. The Ram turns back if too close to the Lake")]
     [SerializeField] float minDistanceFromLake = 1f;
+    Vector3 prevPos;
 
     [Header("Pooping")]
     [Tooltip("How often the Ram tries to 'fertilize' the ground. Requires empty fertile tile.")]
@@ -74,6 +76,8 @@ public class Ram : MonoBehaviour
         timeBetweenPoops = FindObjectOfType<Constants>().poopTime;
 
         aggroTrigger.radius = aggroRadius;
+
+        prevPos = transform.position;
 
         StartManureTimer();
         StartMoving();
@@ -220,6 +224,23 @@ public class Ram : MonoBehaviour
         return dir;
     }
 
+    private void FaceMoveDirection()
+    {
+        Vector3 s; // Next scale
+        //Debug.Log("Difference: " + (prevPos - transform.position));
+        // Compare previous and current position
+        if (moveDirection.x < 0f)
+        {
+            // Face left
+            s = new Vector3(1f, 1f, 1f);
+        }
+        else
+        {
+            // Face right
+            s = new Vector3(-1f, 1f, 1f);
+        }
+        graphics.transform.localScale = s;
+    }
     #endregion
 
     #region MOVING
@@ -238,8 +259,14 @@ public class Ram : MonoBehaviour
                 // Get next pos
                 Vector3 nextPos = transform.position + moveDirection * currentSpeed * Time.fixedDeltaTime;
 
+                // Update previous position
+                prevPos = transform.position;
+
                 // Move Forward
                 rb.MovePosition(nextPos);
+
+                // Turn the sprite towards move Direction
+                FaceMoveDirection();
 
                 // Reduce Movetime
                 moveTime -= Time.fixedDeltaTime;
