@@ -13,6 +13,8 @@ public class EndGame : MonoBehaviour
     Object[] endSprites;
     Sprite spriteNow;
 
+    [SerializeField] AudioSource endAudio;
+
     private void Start()
     {
         endSprites = Resources.LoadAll("EndScenes", typeof(Sprite));
@@ -32,8 +34,8 @@ public class EndGame : MonoBehaviour
 
     IEnumerator End()
     {
-        //TODO stop everything
-        
+
+        endAudio.Stop();
 
         yield return new WaitForSeconds(3f);
         CheckWhoWon();

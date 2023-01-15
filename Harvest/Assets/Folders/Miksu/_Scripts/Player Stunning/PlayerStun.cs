@@ -27,6 +27,7 @@ public class PlayerStun : MonoBehaviour
     [Tooltip("How far the items will fly on getting stunned. Ramming direction x Distance = center of 3x3 Drop-Grid.")]
     [SerializeField] float itemDropDistance = 2f;
 
+    [SerializeField] GameObject stunAnimation;
     #endregion
 
     #region Setup
@@ -151,6 +152,7 @@ public class PlayerStun : MonoBehaviour
         // Check if already stunLocked
         if (input.stunLocked != true)
         {
+            stunAnimation.SetActive(true);
             // Stunlock the Player
             input.stunLocked = true;
             isStunned = true;
@@ -164,6 +166,7 @@ public class PlayerStun : MonoBehaviour
 
             //Debug.Log("END stun");
         }
+        stunAnimation.SetActive(false);
     }
     #endregion
 
