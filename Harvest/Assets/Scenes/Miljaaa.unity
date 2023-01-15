@@ -551,9 +551,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1211482326}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1df48eb035d2fb4887784fd4c4ffbf8, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e0fba5fc015c204fb1900bc8701baca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  endImage: {fileID: 0}
+  endAudio: {fileID: 2084775637}
 --- !u!1001 &1355890376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -938,6 +940,10 @@ PrefabInstance:
       value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 5425370909617113330, guid: 0b0a98d96ec84014daecfd50da91fafa, type: 3}
+      propertyPath: debugDrawPath
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5425370909617113330, guid: 0b0a98d96ec84014daecfd50da91fafa, type: 3}
       propertyPath: clockUpdateFrequency
       value: 0.06
       objectReference: {fileID: 0}
@@ -1157,6 +1163,11 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 9076027595090777480, guid: 4fd78093cb9ea5f4cb24ed0b306060bd, type: 3}
   m_PrefabInstance: {fileID: 9076027594759238471}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &2084775637 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 9076027595090777494, guid: 4fd78093cb9ea5f4cb24ed0b306060bd, type: 3}
+  m_PrefabInstance: {fileID: 9076027594759238471}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1839735485 &2116440876 stripped
 Tilemap:
   m_CorrespondingSourceObject: {fileID: 768805501859926621, guid: 306619c0fdf85d147b4c97c32415d6cf, type: 3}
@@ -1323,6 +1334,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1765863371358965732, guid: 37073534fb813b444af2ada6e4a4d661, type: 3}
+      propertyPath: endAudio
+      value: 
+      objectReference: {fileID: 2084775637}
     - target: {fileID: 1765863371358965734, guid: 37073534fb813b444af2ada6e4a4d661, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1727,6 +1742,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1331964127855636970, guid: a03eef446e997074299adfbeaed49203, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3962261812258913978, guid: a03eef446e997074299adfbeaed49203, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5163290693463965861, guid: a03eef446e997074299adfbeaed49203, type: 3}
