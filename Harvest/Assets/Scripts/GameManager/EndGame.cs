@@ -24,12 +24,16 @@ public class EndGame : MonoBehaviour
     public void EndEverything()
     {
         //TODO stop game
+        TurnOffPlayers();
+        TurnOffRams();
+
         StartCoroutine(End());
     }
 
     IEnumerator End()
     {
         //TODO stop everything
+        
 
         yield return new WaitForSeconds(3f);
         CheckWhoWon();
@@ -71,5 +75,36 @@ public class EndGame : MonoBehaviour
         }
     }
 
+    #region Do End Show
+    private void TurnOffPlayers()
+    {
+        // Find all Players
+        //PlayerMovement[] players = FindObjectsOfType<PlayerMovement>();
+        PlayerInput[] players = FindObjectsOfType<PlayerInput>();
 
+        // Turn them off
+        //foreach (PlayerMovement p in players)
+        foreach (PlayerInput p in players)
+        {
+            // Turn off PlayerInput
+            p.stunLocked = true;
+        }
+
+    }
+
+    private void TurnOffRams()
+    {
+        // Find all rams
+        Ram[] rams = FindObjectsOfType<Ram>();
+
+        if (rams != null)
+        {
+            foreach(Ram r in rams)
+            {
+                // Turn off
+                r.ramIsActive = false;
+            }
+        }
+    }
+    #endregion
 }

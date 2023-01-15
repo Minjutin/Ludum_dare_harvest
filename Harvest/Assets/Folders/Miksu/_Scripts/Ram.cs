@@ -59,6 +59,8 @@ public class Ram : MonoBehaviour
 
     Animator animator;
 
+    [HideInInspector] public bool ramIsActive = true;
+
     #endregion
 
     private void Start()
@@ -132,6 +134,7 @@ public class Ram : MonoBehaviour
 
         while (true)
         {
+            if (!ramIsActive) { break; }
 
             if (!aggroed)
             {
@@ -226,6 +229,8 @@ public class Ram : MonoBehaviour
 
         while (true)
         {
+            if (!ramIsActive) { break; }
+
             if (moveTime > 0)
             {
                 animator.SetBool("Moving", true);

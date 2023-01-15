@@ -399,9 +399,9 @@ MonoBehaviour:
   handle_Right: {fileID: 5425370907710789579}
   leftIndicator: {fileID: 5425370907726280385}
   rightIndicator: {fileID: 5425370908160889014}
-  debugDrawPath: 1
+  debugDrawPath: 0
   startOffAngle: 115
   clockUpdateFrequency: 0.01
   startRadius: 38
   endRadius: 30
-  roundTime: 120
+  roundTime: 5
