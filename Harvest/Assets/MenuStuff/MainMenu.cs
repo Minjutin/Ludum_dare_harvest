@@ -80,7 +80,11 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     public void ExitGame()
     {
-        Application.Quit();
+        #if (UNITY_STANDALONE)
+            Application.Quit();
+        #elif (UNITY_WEBGL)
+            Application.OpenURL("about:blank");
+        #endif
     }
 
     // Update is called once per frame

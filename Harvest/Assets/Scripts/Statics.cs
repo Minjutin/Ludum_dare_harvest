@@ -16,10 +16,10 @@ public static class Statics
     public static KeyCode p1interaction = KeyCode.E;
 
     //Key Codes Player 2
-    public static KeyCode p2up = KeyCode.UpArrow;
-    public static KeyCode p2down = KeyCode.DownArrow;
-    public static KeyCode p2left = KeyCode.LeftArrow;
-    public static KeyCode p2right = KeyCode.RightArrow;
-    public static KeyCode p2inventory = KeyCode.RightShift;
-    public static KeyCode p2interaction = KeyCode.RightControl;
+    public static KeyCode p2up = KeyCode.I;
+    public static KeyCode p2down = KeyCode.K;
+    public static KeyCode p2left = KeyCode.J;
+    public static KeyCode p2right = KeyCode.L;
+    public static KeyCode p2inventory = KeyCode.U;
+    public static KeyCode p2interaction = KeyCode.O;
 }

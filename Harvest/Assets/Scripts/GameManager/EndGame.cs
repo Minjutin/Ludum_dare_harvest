@@ -24,6 +24,14 @@ public class EndGame : MonoBehaviour
     public void EndEverything()
     {
         //TODO stop game
+        StartCoroutine(End());
+    }
+
+    IEnumerator End()
+    {
+        //TODO stop everything
+
+        yield return new WaitForSeconds(3f);
         CheckWhoWon();
         endImage.GetComponent<Image>().sprite = spriteNow;
         endImage.SetActive(true);
